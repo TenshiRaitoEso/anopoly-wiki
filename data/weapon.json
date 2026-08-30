@@ -12,9 +12,33 @@
 "image": "assets/weapons/vector.png"
 },
 {
-"id": "p90",
-"name": "P90",
-"category": "smg",
+"id": "EBR",
+"name": "EBR-14",
+"category": "dmr",
 "image": "assets/weapons/p90.png"
-}
+},
+{
+"id": "T-5000",
+"name": "T-5000",
+"category": "sniper",
+"image": "assets/weapons/p90.png"
+},
+{
+"id": "AK15",
+"name": "AK-15",
+"category": "assault-rifle",
+"image": "assets/weapons/p90.png"
+},
+{
+"id": "MG330",
+"name": "MG330-Bor'z",
+"category": "machine-gun",
+"image": "assets/weapons/p90.png"
+},
+{
+"id": "saiga",
+"name": "Saiga",
+"category": "shotgun",
+"image": "assets/weapons/p90.png"
+},
 ]
