@@ -4,5 +4,11 @@
         "name": "Artifact Test",
         "rarity": "Rare",
         "image": "assets/artifacts/artifact-test.png"
-    }
+    },
+        {
+        "id": "artifact-test2",
+        "name": "Artifact Test2",
+        "rarity": "Rare",
+        "image": "assets/artifacts/artifact-test.png"
+    },
 ]
