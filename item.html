@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANOPOLY — Item</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
+
+  <a class="brand" href="index.html">
+    <span>ANO</span>POLY
+  </a>
+
+  <div class="topbar-label">
+    DATABASE // ARCHIVE
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <nav class="nav">
+
+```
+<!-- ACCUEIL -->
+<a class="nav-home" href="index.html">
+  ⌂ <span>Accueil</span>
+</a>
+
+<!-- ARMES -->
+<div class="nav-group">
+  <button class="nav-parent" aria-expanded="false">
+    <span>⚔</span>
+    <span>Armes</span>
+    <span class="chevron">⌄</span>
+  </button>
+
+  <div class="nav-children">
+    <a href="category.html?type=smg">SMG</a>
+    <a href="category.html?type=shotgun">Shotgun</a>
+    <a href="category.html?type=machine-gun">Machine Gun</a>
+    <a href="category.html?type=assault-rifle">Assault Rifle</a>
+    <a href="category.html?type=sniper">Sniper</a>
+    <a href="category.html?type=dmr">DMR</a>
+  </div>
+</div>
+
+<!-- ARMURES -->
+<div class="nav-group">
+  <button class="nav-parent" aria-expanded="false">
+    <span>🛡</span>
+    <span>Armures</span>
+    <span class="chevron">⌄</span>
+  </button>
+
+  <div class="nav-children">
+    <a href="category.html?type=armor-combat">Combat</a>
+    <a href="category.html?type=armor-research">Recherche</a>
+    <a href="category.html?type=armor-intermediate">Intermédiaire</a>
+  </div>
+</div>
+
+<!-- MAPS -->
+<div class="nav-group">
+  <button class="nav-parent" aria-expanded="false">
+    <span>▣</span>
+    <span>Maps</span>
+    <span class="chevron">⌄</span>
+  </button>
+
+  <div class="nav-children">
+    <a href="category.html?type=fort-bastion">Fort Bastion</a>
+    <a href="category.html?type=dune-ensanglantee">Dune Ensanglantée</a>
+    <a href="category.html?type=map-03">Map 03</a>
+    <a href="category.html?type=map-04">Map 04</a>
+    <a href="category.html?type=map-05">Map 05</a>
+    <a href="category.html?type=map-06">Map 06</a>
+    <a href="category.html?type=map-07">Map 07</a>
+  </div>
+</div>
+
+<!-- ENNEMIES -->
+<div class="nav-group">
+  <button class="nav-parent" aria-expanded="false">
+    <span>☠</span>
+    <span>Ennemies</span>
+    <span class="chevron">⌄</span>
+  </button>
+
+  <div class="nav-children">
+    <a href="category.html?type=enemies">
+      Tous les ennemis
+    </a>
+  </div>
+</div>
+
+<!-- ARTEFACTS -->
+<div class="nav-group">
+  <button class="nav-parent" aria-expanded="false">
+    <span>✦</span>
+    <span>Artefacts</span>
+    <span class="chevron">⌄</span>
+  </button>
+
+  <div class="nav-children">
+    <a href="category.html?type=artifacts">
+      Tous les artefacts
+    </a>
+  </div>
+</div>
+```
+
+  </nav>
+</aside>
+
+<main class="content inner">
+
+  <div class="breadcrumb" id="breadcrumb">
+    <a href="index.html">ANOPOLY</a>
+    / DATABASE
+    / ITEM
+  </div>
+
+  <section class="item-page" id="itemPage">
+
+```
+<!-- EN-TÊTE -->
+<header class="item-header">
+
+  <div class="eyebrow" id="itemCategory">
+    DATABASE
+  </div>
+
+  <h1 id="itemName">
+    Chargement...
+  </h1>
+
+  <div class="item-rarity" id="itemRarity"></div>
+
+  <p class="lead" id="itemDescription"></p>
+
+</header>
+
+<!-- CONTENU PRINCIPAL -->
+<section class="item-layout">
+
+  <!-- IMAGE / PREVIEW -->
+  <div class="item-preview">
+
+    <div class="item-image" id="itemImage">
+      NO IMAGE
+    </div>
+
+  </div>
+
+  <!-- INFORMATIONS -->
+  <div class="item-info">
+
+    <div class="item-section">
+      <div class="item-section-title">
+        GENERAL
+      </div>
+
+      <div class="item-stats" id="generalStats">
+      </div>
+    </div>
+
+    <div class="item-section">
+      <div class="item-section-title">
+        STATISTICS
+      </div>
+
+      <div class="item-stats" id="itemStats">
+      </div>
+    </div>
+
+    <div class="item-section" id="bonusSection">
+
+      <div class="item-section-title">
+        BONUS
+      </div>
+
+      <div class="item-stats" id="itemBonus">
+      </div>
+
+    </div>
+
+    <div class="item-section" id="malusSection">
+
+      <div class="item-section-title">
+        MALUS
+      </div>
+
+      <div class="item-stats" id="itemMalus">
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+```
+
+  </section>
+
+  <!-- ERREUR -->
+
+  <div class="placeholder" id="itemError" style="display:none;">
+    Impossible de trouver cet élément.
+  </div>
+
+</main>
+
+<script src="js/app.js"></script>
+
+<script src="js/item.js"></script>
+
+</body>
+</html>
