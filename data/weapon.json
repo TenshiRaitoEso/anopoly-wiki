@@ -1,0 +1,20 @@
+[
+{
+"id": "mp5",
+"name": "MP5",
+"category": "smg",
+"image": "assets/weapons/mp5.png"
+},
+{
+"id": "vector",
+"name": "Vector",
+"category": "smg",
+"image": "assets/weapons/vector.png"
+},
+{
+"id": "p90",
+"name": "P90",
+"category": "smg",
+"image": "assets/weapons/p90.png"
+}
+]

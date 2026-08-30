@@ -1,0 +1,20 @@
+[
+{
+"id": "armor-combat-01",
+"name": "Combat Armor 01",
+"category": "combat",
+"image": "assets/armors/armor-combat-01.png"
+},
+{
+"id": "armor-research-01",
+"name": "Research Armor 01",
+"category": "research",
+"image": "assets/armors/armor-research-01.png"
+},
+{
+"id": "armor-intermediate-01",
+"name": "Intermediate Armor 01",
+"category": "intermediate",
+"image": "assets/armors/armor-intermediate-01.png"
+}
+]
