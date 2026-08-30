@@ -1,6 +1,8 @@
-{
-"id": "artifact-test",
-"name": "Artifact Test",
-"rarity": "Rare",
-"image": "assets/artifacts/artifact-test.png"
-}
+[
+    {
+        "id": "artifact-test",
+        "name": "Artifact Test",
+        "rarity": "Rare",
+        "image": "assets/artifacts/artifact-test.png"
+    }
+]
