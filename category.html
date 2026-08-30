@@ -1,34 +1,25 @@
+```html
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>ANOPOLY — Database</title>
-
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANOPOLY — Database</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <header class="topbar">
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
 
-<button
- class="menu-btn"
- id="menuBtn"
- aria-label="Ouvrir le menu">
-☰ </button>
+    <a class="brand" href="index.html">
+        <span>ANO</span>POLY
+    </a>
 
-  <a class="brand" href="index.html">
-    <span>ANO</span>POLY
-  </a>
-
-  <div class="topbar-label">
-    DATABASE // ARCHIVE
-  </div>
-
+    <div class="topbar-label">
+        DATABASE // ARCHIVE
+    </div>
 </header>
 
 <!-- =========================
@@ -37,184 +28,122 @@
 
 <aside class="sidebar" id="sidebar">
 
-  <nav class="nav">
+    <nav class="nav">
 
-```
-<!-- ACCUEIL -->
+        <!-- ACCUEIL -->
 
-<a class="nav-home" href="index.html">
-  ⌂ <span>Accueil</span>
-</a>
+        <a class="nav-home" href="index.html">
+            ⌂ <span>Accueil</span>
+        </a>
 
+        <!-- ARMES -->
 
-<!-- ARMES -->
+        <div class="nav-group">
 
-<div class="nav-group">
+            <button class="nav-parent" aria-expanded="false">
+                <span>⚔</span>
+                <span>Armes</span>
+                <span class="chevron">⌄</span>
+            </button>
 
-  <button class="nav-parent" aria-expanded="false">
+            <div class="nav-children">
 
-    <span>⚔</span>
-    <span>Armes</span>
-    <span class="chevron">⌄</span>
+                <a href="category.html?type=smg">SMG</a>
+                <a href="category.html?type=shotgun">Shotgun</a>
+                <a href="category.html?type=machine-gun">Machine Gun</a>
+                <a href="category.html?type=assault-rifle">Assault Rifle</a>
+                <a href="category.html?type=sniper">Sniper</a>
+                <a href="category.html?type=dmr">DMR</a>
 
-  </button>
+            </div>
 
-  <div class="nav-children">
+        </div>
 
-    <a href="category.html?type=smg">
-      SMG
-    </a>
+        <!-- ARMURES -->
 
-    <a href="category.html?type=shotgun">
-      Shotgun
-    </a>
+        <div class="nav-group">
 
-    <a href="category.html?type=machine-gun">
-      Machine Gun
-    </a>
+            <button class="nav-parent" aria-expanded="false">
+                <span>🛡</span>
+                <span>Armures</span>
+                <span class="chevron">⌄</span>
+            </button>
 
-    <a href="category.html?type=assault-rifle">
-      Assault Rifle
-    </a>
+            <div class="nav-children">
 
-    <a href="category.html?type=sniper">
-      Sniper
-    </a>
+                <a href="category.html?type=armor-combat">Combat</a>
+                <a href="category.html?type=armor-research">Recherche</a>
+                <a href="category.html?type=armor-intermediate">Intermédiaire</a>
 
-    <a href="category.html?type=dmr">
-      DMR
-    </a>
+            </div>
 
-  </div>
+        </div>
 
-</div>
+        <!-- MAPS -->
 
+        <div class="nav-group">
 
-<!-- ARMURES -->
+            <button class="nav-parent" aria-expanded="false">
+                <span>▣</span>
+                <span>Maps</span>
+                <span class="chevron">⌄</span>
+            </button>
 
-<div class="nav-group">
+            <div class="nav-children">
 
-  <button class="nav-parent" aria-expanded="false">
+                <a href="category.html?type=fort-bastion">Fort Bastion</a>
+                <a href="category.html?type=dune-ensanglantee">Dune Ensanglantée</a>
+                <a href="category.html?type=map-03">Map 03</a>
+                <a href="category.html?type=map-04">Map 04</a>
+                <a href="category.html?type=map-05">Map 05</a>
+                <a href="category.html?type=map-06">Map 06</a>
+                <a href="category.html?type=map-07">Map 07</a>
 
-    <span>🛡</span>
-    <span>Armures</span>
-    <span class="chevron">⌄</span>
+            </div>
 
-  </button>
+        </div>
 
-  <div class="nav-children">
+        <!-- ENNEMIS -->
 
-    <a href="category.html?type=armor-combat">
-      Combat
-    </a>
+        <div class="nav-group">
 
-    <a href="category.html?type=armor-research">
-      Recherche
-    </a>
+            <button class="nav-parent" aria-expanded="false">
+                <span>☠</span>
+                <span>Ennemis</span>
+                <span class="chevron">⌄</span>
+            </button>
 
-    <a href="category.html?type=armor-intermediate">
-      Intermédiaire
-    </a>
+            <div class="nav-children">
 
-  </div>
+                <a href="category.html?type=enemies">
+                    Tous les ennemis
+                </a>
 
-</div>
+            </div>
 
+        </div>
 
-<!-- MAPS -->
+        <!-- ARTEFACTS -->
 
-<div class="nav-group">
+        <div class="nav-group">
 
-  <button class="nav-parent" aria-expanded="false">
+            <button class="nav-parent" aria-expanded="false">
+                <span>✦</span>
+                <span>Artefacts</span>
+                <span class="chevron">⌄</span>
+            </button>
 
-    <span>▣</span>
-    <span>Maps</span>
-    <span class="chevron">⌄</span>
+            <div class="nav-children">
 
-  </button>
+                <a href="category.html?type=artifacts">
+                    Tous les artefacts
+                </a>
 
-  <div class="nav-children">
+            </div>
 
-    <a href="category.html?type=fort-bastion">
-      Fort Bastion
-    </a>
+        </div>
 
-    <a href="category.html?type=dune-ensanglantee">
-      Dune Ensanglantée
-    </a>
-
-    <a href="category.html?type=map-03">
-      Map 03
-    </a>
-
-    <a href="category.html?type=map-04">
-      Map 04
-    </a>
-
-    <a href="category.html?type=map-05">
-      Map 05
-    </a>
-
-    <a href="category.html?type=map-06">
-      Map 06
-    </a>
-
-    <a href="category.html?type=map-07">
-      Map 07
-    </a>
-
-  </div>
-
-</div>
-
-
-<!-- ENNEMIS -->
-
-<div class="nav-group">
-
-  <button class="nav-parent" aria-expanded="false">
-
-    <span>☠</span>
-    <span>Ennemies</span>
-    <span class="chevron">⌄</span>
-
-  </button>
-
-  <div class="nav-children">
-
-    <a href="category.html?type=enemies">
-      Tous les ennemis
-    </a>
-
-  </div>
-
-</div>
-
-
-<!-- ARTEFACTS -->
-
-<div class="nav-group">
-
-  <button class="nav-parent" aria-expanded="false">
-
-    <span>✦</span>
-    <span>Artefacts</span>
-    <span class="chevron">⌄</span>
-
-  </button>
-
-  <div class="nav-children">
-
-    <a href="category.html?type=artifacts">
-      Tous les artefacts
-    </a>
-
-  </div>
-
-</div>
-```
-
-  </nav>
+    </nav>
 
 </aside>
 
@@ -224,59 +153,35 @@
 
 <main class="content inner">
 
-  <div class="breadcrumb">
+    <div class="breadcrumb">
+        <a href="index.html">ANOPOLY</a> / DATABASE
+    </div>
 
-```
-<a href="index.html">
-  ANOPOLY
-</a>
+    <div class="eyebrow" id="eyebrow">
+        DATABASE
+    </div>
 
-/ DATABASE
-```
+    <h1 id="title">
+        Chargement...
+    </h1>
 
-  </div>
+    <p class="lead" id="description"></p>
 
-  <div
-    class="eyebrow"
-    id="eyebrow">
-    DATABASE
-  </div>
+    <!-- =========================
+         LISTE DES OBJETS
+         ========================= -->
 
-  <h1 id="title">
-    Chargement...
-  </h1>
+    <section class="database-grid" id="databaseGrid">
+        <!-- Les cartes seront générées automatiquement par category.js -->
+    </section>
 
-  <p
-    class="lead"
-    id="description">
-  </p>
+    <!-- =========================
+         MESSAGE SI AUCUN OBJET
+         ========================= -->
 
-  <!-- =========================
-       LISTE DES OBJETS
-       ========================= -->
-
-  <section
-    class="database-grid"
-    id="databaseGrid">
-
-```
-<!-- Les cartes seront générées par category.js -->
-```
-
-  </section>
-
-  <!-- MESSAGE SI AUCUN OBJET -->
-
-  <div
-    class="placeholder"
-    id="emptyMessage"
-    style="display:none;">
-
-```
-Aucun élément disponible dans cette catégorie.
-```
-
-  </div>
+    <div class="placeholder" id="emptyMessage" style="display: none;">
+        Aucun élément disponible dans cette catégorie.
+    </div>
 
 </main>
 
@@ -285,9 +190,8 @@ Aucun élément disponible dans cette catégorie.
      ========================= -->
 
 <script src="js/app.js"></script>
-
 <script src="js/category.js"></script>
 
 </body>
-
 </html>
+```
