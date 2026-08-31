@@ -16,7 +16,7 @@
   { 
     "id": "accuracy-international-awm",
     "name": "Accuracy International AWM",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": ".338 Lapua Magnum",
     "damage": 100,
@@ -88,7 +88,7 @@
     
     "id": "ak-50",
     "name": "AK-50",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": "7.62x54mmR",
     "damage": 100,
@@ -283,7 +283,7 @@
     
     "id": "ax-50",
     "name": "AX-50",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": ".50 BMG",
     "damage": 100,
@@ -328,7 +328,7 @@
     
     "id": "barret-m82",
     "name": "Barret M82",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": ".50 BMG",
     "damage": 100,
@@ -343,7 +343,7 @@
     
     "id": "barret-m90",
     "name": "Barret M90",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": ".50 BMG",
     "damage": 100,
@@ -357,7 +357,7 @@
   {
     "id": "barret-mrad",
     "name": "Barret MRAD",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": ".338 Lapua Magnum",
     "damage": 100,
@@ -385,7 +385,7 @@
   {
     "id": "cheytac-m-200",
     "name": "Cheytac M-200",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": ".408 CheyTac",
     "damage": 100,
@@ -472,7 +472,7 @@
     
     "id": "dsr-50",
     "name": "DSR 50",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": ".50 BMG",
     "damage": 100,
@@ -883,7 +883,7 @@
     
     "id": "kar98k",
     "name": "Kar98K",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": "7.92x57mm Mauser",
     "damage": 100,
@@ -1435,7 +1435,7 @@
     
     "id": "r93",
     "name": "R93",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": ".300 Win Mag",
     "damage": 100,
@@ -1450,7 +1450,7 @@
     
     "id": "recon-n",
     "name": "Recon_N",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": "7.62x51mm",
     "damage": 100,
@@ -1465,7 +1465,7 @@
     
     "id": "recon-p",
     "name": "Recon_P",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": "7.62x51mm",
     "damage": 100,
@@ -1480,7 +1480,7 @@
     
     "id": "remington-700",
     "name": "Remington 700",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": "7.62x51mm",
     "damage": 100,
@@ -1547,7 +1547,7 @@
     
     "id": "s-w-o-r-d-mk-18-mjolnir",
     "name": "S.W.O.R.D MK-18 (Mjolnir)",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": ".338 Lapua Magnum",
     "damage": 100,
@@ -1764,7 +1764,7 @@
     
     "id": "srs-a2",
     "name": "SRS A2",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": "7.62x51mm",
     "damage": 100,
@@ -1779,7 +1779,7 @@
     
     "id": "ssg-08-scout",
     "name": "SSg 08 Scout",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": "7.62x51mm",
     "damage": 100,
@@ -1794,7 +1794,7 @@
     
     "id": "steyr-scout",
     "name": "Steyr Scout",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": "7.62x51mm",
     "damage": 100,
@@ -1840,7 +1840,7 @@
     
     "id": "t-5000m",
     "name": "T-5000M",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": "7.62x51mm",
     "damage": 100,
@@ -1892,7 +1892,7 @@
     
     "id": "victrix-armaments-gladio-v",
     "name": "Victrix Armaments Gladio V",
-    "category": "sniper-rifle",
+    "category": "sniper",
     "weight": 5.5,
     "caliber": ".338 Lapua Magnum",
     "damage": 100,
