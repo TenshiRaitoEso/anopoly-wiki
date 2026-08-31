@@ -2,459 +2,1090 @@
 
 * {
   box-sizing: border-box;
-  }
+}
 
 html,
 body {
-margin: 0;
-min-height: 100%;
-background: #080a0d;
-color: #e7e9ec;
-font-family: Rajdhani, Arial, sans-serif;
+  margin: 0;
+  min-height: 100%;
+  background: #080a0d;
+  color: #e7e9ec;
+  font-family: Rajdhani, Arial, sans-serif;
 }
 
 body {
-background-image:
-linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-background-size: 45px 45px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 45px 45px;
 }
 
 /* =========================================================
-TOPBAR
+   TOPBAR
 ========================================================= */
 
 .topbar {
-height: 68px;
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-z-index: 20;
-display: flex;
-align-items: center;
-padding: 0 28px;
-background: rgba(7, 9, 12, 0.94);
-border-bottom: 1px solid #252a31;
-backdrop-filter: blur(10px);
+  height: 68px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 28px;
+
+  background: rgba(7, 9, 12, 0.94);
+  border-bottom: 1px solid #252a31;
+
+  backdrop-filter: blur(10px);
 }
 
 .brand {
-color: #f2f3f4;
-font-size: 27px;
-font-weight: 700;
-letter-spacing: 5px;
-text-decoration: none;
+  color: #f2f3f4;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-decoration: none;
 }
 
 .brand span {
-opacity: 0.48;
+  opacity: 0.48;
 }
 
 .topbar-label {
-margin-left: auto;
-color: #727982;
-font-family: 'Share Tech Mono', monospace;
-font-size: 12px;
-letter-spacing: 2px;
+  margin-left: auto;
+
+  color: #727982;
+
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
 }
 
 .menu-btn {
-display: none;
-margin-right: 18px;
-padding: 0;
-background: none;
-border: 0;
-color: #ddd;
-font-size: 25px;
-cursor: pointer;
+  display: none;
+
+  margin-right: 18px;
+  padding: 0;
+
+  background: none;
+  border: 0;
+
+  color: #ddd;
+  font-size: 25px;
+
+  cursor: pointer;
 }
 
 /* =========================================================
-SIDEBAR
+   SIDEBAR
 ========================================================= */
 
 .sidebar {
-position: fixed;
-top: 68px;
-bottom: 0;
-left: 0;
-width: 265px;
-z-index: 10;
-padding: 25px 15px;
-background: rgba(10, 12, 16, 0.97);
-border-right: 1px solid #252a31;
+  position: fixed;
+
+  top: 68px;
+  bottom: 0;
+  left: 0;
+
+  width: 265px;
+  z-index: 10;
+
+  padding: 25px 15px;
+
+  background: rgba(10, 12, 16, 0.97);
+  border-right: 1px solid #252a31;
 }
 
 .nav {
-width: 100%;
+  width: 100%;
 }
 
 .nav-home,
 .nav-parent {
-width: 100%;
-min-height: 45px;
-display: flex;
-align-items: center;
-gap: 12px;
-padding: 0 14px;
-color: #aeb4bc;
-background: none;
-border: 0;
-font-family: Rajdhani, Arial, sans-serif;
-font-size: 16px;
-font-weight: 600;
-text-align: left;
-text-decoration: none;
-cursor: pointer;
+  width: 100%;
+  min-height: 45px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+  padding: 0 14px;
+
+  color: #aeb4bc;
+
+  background: none;
+  border: 0;
+
+  font-family: Rajdhani, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+
+  text-align: left;
+  text-decoration: none;
+
+  cursor: pointer;
 }
 
 .nav-home:hover,
 .nav-parent:hover,
 .nav-home.active {
-color: #fff;
-background: #15191f;
+  color: #fff;
+  background: #15191f;
 }
 
 .nav-parent .chevron {
-margin-left: auto;
-transition: transform 0.2s ease;
+  margin-left: auto;
+
+  transition: transform 0.2s ease;
 }
 
 .nav-parent[aria-expanded="false"] .chevron {
-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 /* =========================================================
-SOUS-CATEGORIES
+   SOUS-CATEGORIES
 ========================================================= */
 
 .nav-children {
-max-height: 0;
-overflow: hidden;
-margin-left: 26px;
-border-left: 1px solid #2b3037;
-transition: max-height 0.28s ease;
+  max-height: 0;
+
+  overflow: hidden;
+
+  margin-left: 26px;
+
+  border-left: 1px solid #2b3037;
+
+  transition: max-height 0.28s ease;
 }
 
 .nav-children.open {
-max-height: 500px;
+  max-height: 500px;
 }
 
 .nav-children a {
-display: block;
-padding: 9px 14px;
-color: #747b84;
-font-size: 15px;
-text-decoration: none;
-transition: color 0.15s ease, background 0.15s ease;
+  display: block;
+
+  padding: 9px 14px;
+
+  color: #747b84;
+
+  font-size: 15px;
+
+  text-decoration: none;
+
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
 }
 
 .nav-children a:hover,
 .nav-children a.current {
-color: #fff;
-background: #11151a;
+  color: #fff;
+  background: #11151a;
 }
 
 /* =========================================================
-CONTENU PRINCIPAL
+   CONTENU PRINCIPAL
 ========================================================= */
 
 .content {
-min-height: 100vh;
-margin-left: 265px;
-padding: 68px 6vw 60px;
+  min-height: 100vh;
+
+  margin-left: 265px;
+
+  padding: 68px 6vw 60px;
 }
 
 /* =========================================================
-PAGE D'ACCUEIL
+   PAGE D'ACCUEIL
 ========================================================= */
 
 .hero {
-max-width: 850px;
-padding-top: 14vh;
+  max-width: 850px;
+
+  padding-top: 14vh;
 }
 
 .eyebrow,
 .breadcrumb {
-color: #727982;
-font-family: 'Share Tech Mono', monospace;
-font-size: 12px;
-letter-spacing: 2px;
+  color: #727982;
+
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+
+  letter-spacing: 2px;
 }
 
 .hero h1 {
-margin: 25px 0;
-font-size: clamp(54px, 8vw, 108px);
-line-height: 0.82;
-font-weight: 500;
-letter-spacing: 2px;
+  margin: 25px 0;
+
+  font-size: clamp(54px, 8vw, 108px);
+  line-height: 0.82;
+
+  font-weight: 500;
+  letter-spacing: 2px;
 }
 
 .hero h1 strong {
-font-weight: 700;
+  font-weight: 700;
 }
 
 .hero p,
 .lead {
-max-width: 620px;
-color: #969da5;
-font-size: 21px;
+  max-width: 620px;
+
+  color: #969da5;
+
+  font-size: 21px;
 }
 
 .cta {
-display: inline-block;
-margin-top: 25px;
-padding: 13px 20px;
-border: 1px solid #59616b;
-color: #fff;
-font-weight: 600;
-letter-spacing: 1px;
-text-decoration: none;
-transition: background 0.2s ease, color 0.2s ease;
+  display: inline-block;
+
+  margin-top: 25px;
+  padding: 13px 20px;
+
+  border: 1px solid #59616b;
+
+  color: #fff;
+
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .cta:hover {
-background: #e7e9ec;
-color: #080a0d;
+  background: #e7e9ec;
+  color: #080a0d;
 }
 
 /* =========================================================
-CARTES DE L'ACCUEIL
+   CARTES DE L'ACCUEIL
 ========================================================= */
 
 .cards {
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-gap: 12px;
-margin-top: 16vh;
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-top: 16vh;
 }
 
 .card {
-min-height: 190px;
-padding: 22px;
-border: 1px solid #252a31;
-background: rgba(13, 16, 21, 0.75);
-color: #fff;
-text-decoration: none;
-transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  min-height: 190px;
+
+  padding: 22px;
+
+  border: 1px solid #252a31;
+
+  background: rgba(13, 16, 21, 0.75);
+
+  color: #fff;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
 .card:hover {
-transform: translateY(-4px);
-border-color: #69717b;
-background: #15191f;
+  transform: translateY(-4px);
+
+  border-color: #69717b;
+
+  background: #15191f;
 }
 
 .card small {
-color: #626a73;
-font-family: 'Share Tech Mono', monospace;
-font-size: 11px;
+  color: #626a73;
+
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
 }
 
 .card h2 {
-margin: 35px 0 8px;
-font-size: 25px;
+  margin: 35px 0 8px;
+
+  font-size: 25px;
 }
 
 .card p {
-margin: 0;
-color: #858c95;
+  margin: 0;
+
+  color: #858c95;
 }
 
 /* =========================================================
-PAGES DATABASE
+   PAGES DATABASE
 ========================================================= */
 
 .inner {
-padding-top: 110px;
+  padding-top: 110px;
 }
 
 .breadcrumb a {
-color: #777f87;
-text-decoration: none;
+  color: #777f87;
+
+  text-decoration: none;
 }
 
 .breadcrumb a:hover {
-color: #fff;
+  color: #fff;
 }
 
 .inner h1 {
-margin: 18px 0 8px;
-font-size: 72px;
+  margin: 18px 0 8px;
+
+  font-size: 72px;
 }
 
 /* =========================================================
-DATABASE — GRILLE
+   DATABASE — GRILLE
 ========================================================= */
 
 .database-grid {
-display: grid;
-grid-template-columns: repeat(4, minmax(0, 1fr));
-gap: 16px;
-max-width: 1200px;
-margin-top: 50px;
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 16px;
+
+  max-width: 1200px;
+
+  margin-top: 50px;
 }
 
 /* =========================================================
-DATABASE — CARTE
+   DATABASE — CARTE
 ========================================================= */
 
 .database-card {
-display: block;
-min-height: 260px;
-overflow: hidden;
-border: 1px solid #252a31;
-background: rgba(13, 16, 21, 0.78);
-color: #fff;
-text-decoration: none;
-transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  display: block;
+
+  min-height: 260px;
+
+  overflow: hidden;
+
+  border: 1px solid #252a31;
+
+  background: rgba(13, 16, 21, 0.78);
+
+  color: #fff;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
 .database-card:hover {
-transform: translateY(-4px);
-border-color: #69717b;
-background: #15191f;
+  transform: translateY(-4px);
+
+  border-color: #69717b;
+
+  background: #15191f;
 }
 
 /* =========================================================
-IMAGE CARTE
+   IMAGE CARTE
 ========================================================= */
 
 .database-card-image {
-height: 190px;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 20px;
-background: rgba(8, 10, 13, 0.55);
-border-bottom: 1px solid #252a31;
-color: #555d66;
-font-family: 'Share Tech Mono', monospace;
-font-size: 11px;
-letter-spacing: 1px;
+  height: 190px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(8, 10, 13, 0.55);
+
+  border-bottom: 1px solid #252a31;
+
+  color: #555d66;
+
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+
+  letter-spacing: 1px;
 }
 
 .database-card-image img {
-width: 100%;
-height: 100%;
-display: block;
-object-fit: contain;
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
 }
 
 /* =========================================================
-INFORMATIONS CARTE
+   INFORMATIONS CARTE
 ========================================================= */
 
 .database-card-info {
-padding: 14px 16px 16px;
+  padding: 14px 16px 16px;
 }
 
 .database-card-info h2 {
-margin: 0;
-color: #fff;
-font-size: 21px;
-font-weight: 600;
-letter-spacing: 1px;
+  margin: 0;
+
+  color: #fff;
+
+  font-size: 21px;
+  font-weight: 600;
+
+  letter-spacing: 1px;
 }
 
 /* =========================================================
-RARETE ARTEFACT
+   RARETE ARTEFACT
 ========================================================= */
 
 .database-card-rarity {
-margin-top: 6px;
-color: #777f87;
-font-family: 'Share Tech Mono', monospace;
-font-size: 11px;
-text-transform: uppercase;
-letter-spacing: 1px;
+  margin-top: 6px;
+
+  color: #777f87;
+
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
 }
 
 /* =========================================================
-MESSAGE VIDE
+   MESSAGE VIDE
 ========================================================= */
 
 .placeholder {
-max-width: 900px;
-margin-top: 55px;
-padding: 45px;
-border: 1px dashed #353b43;
-color: #747c85;
-font-family: 'Share Tech Mono', monospace;
-font-size: 14px;
-text-align: center;
+  max-width: 900px;
+
+  margin-top: 55px;
+  padding: 45px;
+
+  border: 1px dashed #353b43;
+
+  color: #747c85;
+
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+
+  text-align: center;
 }
 
 /* =========================================================
-RESPONSIVE — TABLETTE
+   =========================================================
+   PAGE ITEM / ARME
+   =========================================================
+========================================================= */
+
+.item-page {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 110px 40px 80px;
+}
+
+/* ---------------------------------------------------------
+   BOUTON RETOUR
+--------------------------------------------------------- */
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 30px;
+
+  color: #858c95;
+
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+
+  letter-spacing: 1px;
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.back-button:hover {
+  color: #fff;
+}
+
+/* ---------------------------------------------------------
+   HEADER ARME
+--------------------------------------------------------- */
+
+.item-header {
+  display: grid;
+
+  grid-template-columns: 420px minmax(0, 1fr);
+
+  gap: 45px;
+
+  align-items: center;
+
+  margin-bottom: 55px;
+
+  padding-bottom: 45px;
+
+  border-bottom: 1px solid #252a31;
+}
+
+.item-image {
+  width: 100%;
+  height: 280px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  background: rgba(13, 16, 21, 0.75);
+
+  border: 1px solid #252a31;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+.item-title {
+  min-width: 0;
+}
+
+.item-category {
+  display: inline-block;
+
+  margin-bottom: 10px;
+
+  color: #737b84;
+
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+.item-title h1 {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: clamp(42px, 6vw, 76px);
+
+  line-height: 0.95;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+.item-title p {
+  margin: 18px 0 0;
+
+  color: #858c95;
+
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+
+  letter-spacing: 1px;
+}
+
+/* =========================================================
+   SECTIONS ITEM
+========================================================= */
+
+.stats-section,
+.damage-section,
+.info-section {
+  margin-top: 45px;
+}
+
+.stats-section h2,
+.damage-section h2,
+.info-section h2 {
+  margin: 0 0 20px;
+
+  color: #fff;
+
+  font-size: 26px;
+  font-weight: 600;
+
+  letter-spacing: 1px;
+}
+
+/* =========================================================
+   STATISTIQUES
+========================================================= */
+
+.stats-grid {
+  display: grid;
+
+  /*
+   * IMPORTANT :
+   * 2 colonnes fixes.
+   * Chaque ligne contient donc :
+   *
+   * DÉGÂTS        | CADENCE
+   * 22            | 850 RPM
+   *
+   * CHARGEUR      | RECHARGEMENT
+   * 30 COUPS      | 2 SECONDES
+   */
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+/* ---------------------------------------------------------
+   CARTE STAT
+--------------------------------------------------------- */
+
+.stat-card {
+  min-width: 0;
+  min-height: 82px;
+
+  display: grid;
+
+  /*
+   * Label à gauche
+   * Valeur à droite
+   */
+
+  grid-template-columns: minmax(0, 1fr) auto auto;
+
+  align-items: center;
+
+  column-gap: 12px;
+
+  padding: 16px 20px;
+
+  border: 1px solid #252a31;
+
+  background: rgba(13, 16, 21, 0.78);
+}
+
+/* ---------------------------------------------------------
+   LABEL STAT
+--------------------------------------------------------- */
+
+.stat-label {
+  min-width: 0;
+
+  color: #737b84;
+
+  font-family: 'Share Tech Mono', monospace;
+
+  font-size: 11px;
+
+  font-weight: 400;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+   VALEUR STAT
+--------------------------------------------------------- */
+
+.stat-value {
+  color: #f2f3f4;
+
+  font-family: 'Share Tech Mono', monospace;
+
+  font-size: 22px;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+   UNITE
+--------------------------------------------------------- */
+
+.stat-unit {
+  min-width: 65px;
+
+  color: #626a73;
+
+  font-family: 'Share Tech Mono', monospace;
+
+  font-size: 10px;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   ZONES D'IMPACT
+========================================================= */
+
+.damage-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+.damage-card {
+  min-height: 100px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 20px;
+
+  border: 1px solid #252a31;
+
+  background: rgba(13, 16, 21, 0.78);
+}
+
+.damage-label {
+  color: #737b84;
+
+  font-family: 'Share Tech Mono', monospace;
+
+  font-size: 11px;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+.damage-value {
+  color: #f2f3f4;
+
+  font-family: 'Share Tech Mono', monospace;
+
+  font-size: 24px;
+
+  font-weight: 500;
+}
+
+/* =========================================================
+   INFORMATIONS
+========================================================= */
+
+.info-list {
+  display: flex;
+
+  flex-direction: column;
+
+  border: 1px solid #252a31;
+}
+
+.info-row {
+  min-height: 55px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 0 20px;
+
+  border-bottom: 1px solid #252a31;
+
+  background: rgba(13, 16, 21, 0.55);
+}
+
+.info-row:last-child {
+  border-bottom: 0;
+}
+
+.info-row span:first-child {
+  color: #737b84;
+
+  font-family: 'Share Tech Mono', monospace;
+
+  font-size: 11px;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+}
+
+.info-row span:last-child {
+  color: #e7e9ec;
+
+  font-family: 'Share Tech Mono', monospace;
+
+  font-size: 13px;
+
+  text-align: right;
+}
+
+/* =========================================================
+   MESSAGE ERREUR
+========================================================= */
+
+.error-message {
+  margin-top: 40px;
+
+  padding: 35px;
+
+  border: 1px dashed #353b43;
+
+  color: #747c85;
+
+  font-family: 'Share Tech Mono', monospace;
+
+  text-align: center;
+}
+
+.error-message h1 {
+  margin: 0 0 10px;
+
+  color: #fff;
+
+  font-family: Rajdhani, Arial, sans-serif;
+
+  font-size: 32px;
+}
+
+.error-message p {
+  margin: 0;
+}
+
+/* =========================================================
+   RESPONSIVE — TABLETTE
 ========================================================= */
 
 @media (max-width: 1100px) {
-.database-grid {
-grid-template-columns: repeat(3, minmax(0, 1fr));
-}
+
+  .database-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .item-header {
+    grid-template-columns: 350px minmax(0, 1fr);
+
+    gap: 30px;
+  }
+
+  .damage-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
 }
 
 /* =========================================================
-RESPONSIVE — MOBILE
+   RESPONSIVE — TABLETTE / MOBILE
 ========================================================= */
 
 @media (max-width: 900px) {
-.sidebar {
-transform: translateX(-100%);
-transition: transform 0.25s ease;
-}
 
-.sidebar.mobile-open {
-transform: translateX(0);
-}
+  .sidebar {
+    transform: translateX(-100%);
 
-.menu-btn {
-display: block;
-}
+    transition: transform 0.25s ease;
+  }
 
-.content {
-margin-left: 0;
-padding-left: 25px;
-padding-right: 25px;
-}
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
 
-.cards {
-grid-template-columns: 1fr 1fr;
-}
+  .menu-btn {
+    display: block;
+  }
 
-.topbar-label {
-display: none;
-}
+  .content {
+    margin-left: 0;
 
-.database-grid {
-grid-template-columns: repeat(2, minmax(0, 1fr));
-}
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .topbar-label {
+    display: none;
+  }
+
+  .database-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* ITEM */
+
+  .item-page {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .item-header {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+  }
+
+  .item-image {
+    height: 300px;
+  }
+
 }
 
 /* =========================================================
-RESPONSIVE — PETIT MOBILE
+   RESPONSIVE — PETIT MOBILE
 ========================================================= */
 
-@media (max-width: 550px) {
-.cards {
-grid-template-columns: 1fr;
+@media (max-width: 600px) {
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .database-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 10vh;
+  }
+
+  .inner h1 {
+    font-size: 48px;
+  }
+
+  .database-card-image {
+    height: 220px;
+  }
+
+  /* -------------------------------------------------------
+     ITEM
+  ------------------------------------------------------- */
+
+  .item-page {
+    padding: 95px 18px 50px;
+  }
+
+  .item-title h1 {
+    font-size: 44px;
+  }
+
+  .item-image {
+    height: 240px;
+  }
+
+  /*
+   * Sur petit écran on repasse en une colonne.
+   * Chaque stat reste cependant horizontale :
+   *
+   * DÉGÂTS          22
+   * CADENCE         850 RPM
+   */
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+
+    min-height: 70px;
+
+    padding: 14px 16px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
+
+  .stat-value {
+    font-size: 19px;
+  }
+
+  .stat-unit {
+    min-width: 55px;
+
+    font-size: 9px;
+  }
+
+  .damage-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
 }
 
-.database-grid {
-grid-template-columns: 1fr;
-}
+/* =========================================================
+   TRES PETIT ECRAN
+========================================================= */
 
-.hero {
-padding-top: 10vh;
-}
+@media (max-width: 400px) {
 
-.inner h1 {
-font-size: 48px;
-}
+  .stat-card {
+    column-gap: 7px;
 
-.database-card-image {
-height: 220px;
-}
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .stat-value {
+    font-size: 17px;
+  }
+
+  .stat-unit {
+    min-width: 45px;
+
+    font-size: 8px;
+  }
+
+  .damage-grid {
+    grid-template-columns: 1fr;
+  }
+
 }
