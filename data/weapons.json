@@ -1,44 +1,2010 @@
 [
-    {
-        "id": "mp5",
-        "name": "MP5",
-        "category": "smg",
-        "image": "assets/weapons/mp5.png"
-    },
-    {
-        "id": "vector",
-        "name": "Vector",
-        "category": "smg",
-        "image": "assets/weapons/vector.png"
-    },
-    {
-        "id": "EBR",
-        "name": "EBR-14",
-        "category": "dmr",
-        "image": "assets/weapons/p90.png"
-    },
-    {
-        "id": "T-5000",
-        "name": "T-5000",
-        "category": "sniper",
-        "image": "assets/weapons/p90.png"
-    },
-    {
-        "id": "AK15",
-        "name": "AK-15",
-        "category": "assault-rifle",
-        "image": "assets/weapons/p90.png"
-    },
-    {
-        "id": "MG330",
-        "name": "MG330-Bor'z",
-        "category": "machine-gun",
-        "image": "assets/weapons/p90.png"
-    },
-    {
-        "id": "saiga",
-        "name": "Saiga",
-        "category": "shotgun",
-        "image": "assets/weapons/p90.png"
-    }
+  { 
+    "id": "aa-12",
+    "name": "AA-12",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  { 
+    "id": "accuracy-international-awm",
+    "name": "Accuracy International AWM",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": ".338 Lapua Magnum",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    "id": "acr-dmr-bushmaster",
+    "name": "ACR DMR Bushmaster",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "5.56x45mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    "id": "ak-104",
+    "name": "AK-104",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "7.62x39mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    "id": "ak-203",
+    "name": "AK-203",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "7.62x39mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "ak-47",
+    "name": "AK-47",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "7.62x39mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "ak-50",
+    "name": "AK-50",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": "7.62x54mmR",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "aks-74u",
+    "name": "AKS-74u",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "5.45x39mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "ar-15",
+    "name": "AR-15",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "ar-15-soccom",
+    "name": "AR-15 Soccom",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "5.56x45mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "ar-g-2",
+    "name": "AR_G_2",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "ar-k-2",
+    "name": "AR_K_2",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "ar-q-2",
+    "name": "AR_Q_2",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "ares-strikes",
+    "name": "ARES STRIKES",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "7.62x51mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "armalite-ar18",
+    "name": "ARmalite AR18",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "armsel-striker",
+    "name": "Armsel Striker",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "as-val",
+    "name": "AS-Val",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "9x39mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "ash-12",
+    "name": "Ash-12",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "12.7x55mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "ati-sks",
+    "name": "ATI SKS",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "7.62x39mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "ax-50",
+    "name": "AX-50",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": ".50 BMG",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "b-t-ag-ghm9",
+    "name": "B&T AG GHM9",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "b-t-mp9",
+    "name": "B&T MP9",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "barret-m82",
+    "name": "Barret M82",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": ".50 BMG",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "barret-m90",
+    "name": "Barret M90",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": ".50 BMG",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    "id": "barret-mrad",
+    "name": "Barret MRAD",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": ".338 Lapua Magnum",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    "id": "berreta-1301",
+    "name": "Berreta 1301",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    "id": "cheytac-m-200",
+    "name": "Cheytac M-200",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": ".408 CheyTac",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    "id": "cw-ar-b",
+    "name": "CW_AR_B",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    "id": "cz-bren-805",
+    "name": "CZ-BREN 805",
+    "category": "assault-rifle",
+    "weight": 3.4
+  },
+  {
+
+    "id": "cz-shadow-2",
+    "name": "CZ SHADOW 2",
+    "category": "pistol",
+    "weight": 1,
+    "caliber": "9x19mm",
+    "damage": 28,
+    "fireRate": 250,
+    "magazine": 10,
+    "reloadTime": 2.7,
+    "range": 130,
+    "spread": 1.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "daewoo-k2",
+    "name": "Daewoo K2",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "desert-eagle",
+    "name": "Desert_Eagle",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "dmr-h-2",
+    "name": "DMR_H_2",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "7.62x51mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "dsr-50",
+    "name": "DSR 50",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": ".50 BMG",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "famas-f1",
+    "name": "FAMAS F1",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "fmg9",
+    "name": "FMG9",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "fn-evolys",
+    "name": "FN Evolys",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "5.56x45mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "fn-fal",
+    "name": "FN FAL",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "7.62x51mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "fn-iws",
+    "name": "FN IWS",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "fn-p45",
+    "name": "FN P45",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "fn-p90",
+    "name": "FN P90",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "5.7x28mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "fn-scar-ssr",
+    "name": "FN Scar SSR",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "7.62x51mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "g36c",
+    "name": "G36C",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "glock-17",
+    "name": "Glock 17",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "hawk-type-97",
+    "name": "Hawk Type 97",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "hk146d",
+    "name": "HK146D",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "hk21",
+    "name": "HK21",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "7.62x51mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "hk416c",
+    "name": "HK416C",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "hk433",
+    "name": "HK433",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "hk-g28",
+    "name": "HK G28",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "7.62x51mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "hk-mg36",
+    "name": "HK MG36",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "5.56x45mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "hk-mg4",
+    "name": "HK MG4",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "5.56x45mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "hk-mp5",
+    "name": "HK MP5",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "hk-mp5k",
+    "name": "HK MP5K",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "hk-mp7a1",
+    "name": "HK MP7A1",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "4.6x30mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "hk-psg1",
+    "name": "HK PSG1",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "7.62x51mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "hk-sl8",
+    "name": "HK SL8",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "5.56x45mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "hk-usp",
+    "name": "HK USP",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "imi-uzi",
+    "name": "IMI Uzi",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "jackhammer",
+    "name": "JackHammer",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "k-2",
+    "name": "K-2",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "kac-lamg",
+    "name": "KAC LAMG",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "7.62x51mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "kar98k",
+    "name": "Kar98K",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": "7.92x57mm Mauser",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "kriss-vector",
+    "name": "Kriss Vector",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": ".45 ACP",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "l86a2-lsw",
+    "name": "L86A2 LSW",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "5.56x45mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "lmg-b-2",
+    "name": "LMG_B_2",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "5.56x45mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "m1014",
+    "name": "M1014",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "m110-sass",
+    "name": "M110 SASS",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "7.62x51mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "m16a1",
+    "name": "M16A1",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "m1911",
+    "name": "M1911",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "m249-saw",
+    "name": "M249 SAW",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "5.56x45mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "m250",
+    "name": "M250",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "6.8x51mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "m4-9mm",
+    "name": "M4 9MM",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "m4a1",
+    "name": "M4A1",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "m60e1",
+    "name": "M60E1",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "7.62x51mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "m870",
+    "name": "M870",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "mac-10",
+    "name": "Mac-10",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": ".45 ACP",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "mass-26",
+    "name": "MASS 26",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "mdrx",
+    "name": "MDRX",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "mg42",
+    "name": "MG42",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "7.92x57mm Mauser",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "mg-330-borz",
+    "name": "MG 330 BORZ",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 300,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "mk18",
+    "name": "MK18",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "mk-14-ebr",
+    "name": "MK 14 EBR",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "7.62x51mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "mk-47-mutant",
+    "name": "MK-47 Mutant",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "7.62x39mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "olympia",
+    "name": "Olympia",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "omni-410",
+    "name": "OMNI 410",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "p320",
+    "name": "P320",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "pistol-j",
+    "name": "Pistol_J",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "pistol-o",
+    "name": "Pistol_O",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "pl15",
+    "name": "PL15",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "pp-bizon",
+    "name": "PP-Bizon",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x18mm Makarov",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "ppk-20",
+    "name": "PPK-20",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "python",
+    "name": "Python",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "qbb-95",
+    "name": "QBB-95",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "5.8x42mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "qbs-09",
+    "name": "QBS-09",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "qbu-191",
+    "name": "QBU-191",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "5.8x42mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "qbu-88",
+    "name": "QBU-88",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "5.8x42mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "qbz-191",
+    "name": "QBZ-191",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.8x42mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "qbz-95",
+    "name": "QBZ 95",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.8x42mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "qcq-171",
+    "name": "QCQ-171",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "5.8x21mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "qcw-05",
+    "name": "QCW-05",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "5.8x21mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "r11-rsass",
+    "name": "R11 RSASS",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "7.62x51mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "r93",
+    "name": "R93",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": ".300 Win Mag",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "recon-n",
+    "name": "Recon_N",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": "7.62x51mm",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "recon-p",
+    "name": "Recon_P",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": "7.62x51mm",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "remington-700",
+    "name": "Remington 700",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": "7.62x51mm",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "rpd",
+    "name": "RPD",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "7.62x39mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "rpk-16",
+    "name": "RPK-16",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "5.45x39mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "rpl-20",
+    "name": "RPL-20",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "5.45x39mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+    
+    "id": "ruger-mk4",
+    "name": "RUGER MK4",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "s-w-o-r-d-mk-18-mjolnir",
+    "name": "S.W.O.R.D MK-18 (Mjolnir)",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": ".338 Lapua Magnum",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "saiga-12",
+    "name": "Saiga 12",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "saiga-12k",
+    "name": "Saiga 12K",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "scar-17",
+    "name": "SCAR-17",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "7.62x51mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "scar-l",
+    "name": "SCAR-L",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "scorpion-evo",
+    "name": "SCORPION EVO",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "sg-550",
+    "name": "SG 550",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "5.56x45mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "shotgun-m",
+    "name": "ShotGun_M",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "sig-552",
+    "name": "SIG-552",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "5.56x45mm",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "sig-mcx-spear",
+    "name": "SIG MCX Spear",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "6.8x51mm",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "sig-mpx",
+    "name": "SIG MPX",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "sig-sauer-p226",
+    "name": "SIG SAUER P226",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "smg-f-2",
+    "name": "SMG_F_2",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "smg-j-2",
+    "name": "SMG_J_2",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "spas-12",
+    "name": "SPAS-12",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "srs-a2",
+    "name": "SRS A2",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": "7.62x51mm",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "ssg-08-scout",
+    "name": "SSg 08 Scout",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": "7.62x51mm",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "steyr-scout",
+    "name": "Steyr Scout",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": "7.62x51mm",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "stoner-63a",
+    "name": "Stoner 63A",
+    "category": "machine-gun",
+    "weight": 7.5,
+    "caliber": "5.56x45mm",
+    "damage": 32,
+    "fireRate": 750,
+    "magazine": 100,
+    "reloadTime": 4.5,
+    "range": 300,
+    "spread": 2.5,
+    "ergonomics": 30
+  },
+  {
+
+    "id": "svd-dragunov",
+    "name": "SVD Dragunov",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": "7.62x54mmR",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+
+  {
+    
+    "id": "t-5000m",
+    "name": "T-5000M",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": "7.62x51mm",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "tec-9",
+    "name": "Tec-9",
+    "category": "pistol",
+    "weight": 1
+  },
+  {
+    
+    "id": "ump-45",
+    "name": "UMP 45",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": ".45 ACP",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "usas-15",
+    "name": "USAS-15",
+    "category": "shotgun",
+    "weight": 3.6,
+    "caliber": "12 Gauge",
+    "damage": 14,
+    "fireRate": 80,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 30,
+    "spread": 6,
+    "ergonomics": 35
+  },
+  {
+    
+    "id": "victrix-armaments-gladio-v",
+    "name": "Victrix Armaments Gladio V",
+    "category": "sniper-rifle",
+    "weight": 5.5,
+    "caliber": ".338 Lapua Magnum",
+    "damage": 100,
+    "fireRate": 55,
+    "magazine": 5,
+    "reloadTime": 3.5,
+    "range": 800,
+    "spread": 0.3,
+    "ergonomics": 20
+  },
+  {
+    
+    "id": "wa2000-walther",
+    "name": "WA2000 Walther",
+    "category": "dmr",
+    "weight": 4.2,
+    "caliber": ".300 Win Mag",
+    "damage": 60,
+    "fireRate": 300,
+    "magazine": 20,
+    "reloadTime": 3,
+    "range": 500,
+    "spread": 0.8,
+    "ergonomics": 40
+  },
+  {
+    
+    "id": "wwii-ar-a",
+    "name": "WWII_AR_A",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "7.92x33mm Kurz",
+    "damage": 35,
+    "fireRate": 600,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "wwii-smg-a",
+    "name": "WWII_SMG_A",
+    "category": "smg",
+    "weight": 2.4,
+    "caliber": "9x19mm",
+    "damage": 22,
+    "fireRate": 850,
+    "magazine": 30,
+    "reloadTime": 2,
+    "range": 150,
+    "spread": 2.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "57",
+    "name": "57",
+    "category": "pistol",
+    "weight": 1,
+    "caliber": "9x19mm",
+    "damage": 12,
+    "fireRate": 400,
+    "magazine": 17,
+    "reloadTime": 1.25,
+    "range": 100,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "aug-a3",
+    "name": "Aug A3",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "damage": 33,
+    "fireRate": 680,
+    "magazine": 30,
+    "reloadTime": 2.7,
+    "range": 250,
+    "spread": 1.2,
+    "ergonomics": 65
+  },
+  {
+    
+    "id": "mcx-spear",
+    "name": "MCX Spear",
+    "category": "assault-rifle",
+    "weight": 3.4,
+    "caliber": "7.62mm",
+    "damage": 25,
+    "fireRate": 950,
+    "magazine": 30,
+    "reloadTime": 2.5,
+    "range": 300,
+    "spread": 1.5,
+    "ergonomics": 50
+  },
+  {
+    
+    "id": "mossberg-590",
+    "name": "Mossberg 590",
+    "category": "shotgun",
+    "weight": 3.8,
+    "caliber": "12 Gauge",
+    "damage": 20,
+    "fireRate": 75,
+    "magazine": 8,
+    "reloadTime": 4,
+    "range": 50,
+    "spread": 5,
+    "ergonomics": 45
+  }
 ]
