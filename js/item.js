@@ -1,230 +1,1248 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
+initializeWeaponPage();
+});
 
-    // Récupère l'id dans l'URL
-    // Exemple : item.html?id=ak-104
-    const params = new URLSearchParams(window.location.search);
-    const weaponId = params.get("id");
+/* =========================================================
+INITIALISATION
+========================================================= */
 
-    if (!weaponId) {
-        showError();
+async function initializeWeaponPage() {
+
+
+const weaponId = getWeaponIdFromUrl();
+
+if (!weaponId) {
+    showError("Aucun identifiant d'arme n'a été fourni dans l'URL.");
+    return;
+}
+
+try {
+
+    const weapons = await loadWeapons();
+
+    const weapon = findWeapon(weapons, weaponId);
+
+    if (!weapon) {
+        showError(
+            `Aucune arme avec l'identifiant "${weaponId}" n'a été trouvée.`
+        );
         return;
     }
 
-    try {
+    displayWeapon(weapon);
 
-        // Charge le fichier JSON
-        const response = await fetch("data/weapons.json");
+} catch (error) {
 
-        if (!response.ok) {
-            throw new Error("Impossible de charger weapons.json");
-        }
+    console.error("ANOPOLY — erreur chargement arme :", error);
 
-        const weapons = await response.json();
+    showError(
+        "Impossible de charger weapons.json. Vérifie le chemin du fichier et son format JSON."
+    );
 
-        // Recherche l'arme
-        const weapon = weapons.find(
-            item => item.id === weaponId
-        );
+}
 
-        if (!weapon) {
-            showError();
-            return;
-        }
 
-        // Affiche l'arme
-        displayWeapon(weapon);
+}
 
-    } catch (error) {
+/* =========================================================
+URL
+========================================================= */
 
-        console.error(error);
-        showError();
+function getWeaponIdFromUrl() {
 
+
+const params = new URLSearchParams(
+    window.location.search
+);
+
+return params.get("id")?.trim() || null;
+
+
+}
+
+/* =========================================================
+JSON
+========================================================= */
+
+async function loadWeapons() {
+
+
+const response = await fetch(
+    "data/weapons.json",
+    {
+        cache: "no-cache"
     }
+);
+
+if (!response.ok) {
+    throw new Error(
+        `HTTP ${response.status} — weapons.json introuvable`
+    );
+}
+
+const data = await response.json();
+
+/*
+ * Le fichier doit normalement être :
+ *
+ * [
+ *   {...},
+ *   {...}
+ * ]
+ *
+ * Mais on accepte aussi :
+ *
+ * {
+ *   "weapons": [...]
+ * }
+ */
+
+if (Array.isArray(data)) {
+    return data;
+}
+
+if (Array.isArray(data.weapons)) {
+    return data.weapons;
+}
+
+throw new Error(
+    "Format weapons.json invalide."
+);
+
+
+}
+
+/* =========================================================
+RECHERCHE ARME
+========================================================= */
+
+function findWeapon(weapons, id) {
+
+
+const normalizedId = normalize(id);
+
+return weapons.find(weapon => {
+
+    if (!weapon) {
+        return false;
+    }
+
+    return normalize(
+        weapon.id
+    ) === normalizedId;
 
 });
 
 
+}
+
+/* =========================================================
+AFFICHAGE GLOBAL
+========================================================= */
+
 function displayWeapon(weapon) {
 
-    /*
-     * =========================
-     * INFORMATIONS PRINCIPALES
-     * =========================
-     */
 
-    document.getElementById("weapon-name").textContent =
-        weapon.name;
+const name =
+    getValue(
+        weapon,
+        ["name", "displayName", "Name", "DisplayName"],
+        "Arme inconnue"
+    );
 
-    document.getElementById("weapon-category").textContent =
-        formatCategory(weapon.category);
+const id =
+    getValue(
+        weapon,
+        ["id", "Id"],
+        "unknown"
+    );
 
-    document.getElementById("weapon-id").textContent =
-        weapon.id;
+const category =
+    getValue(
+        weapon,
+        ["category", "Category"],
+        ""
+    );
 
-    document.getElementById("weapon-category-info").textContent =
-        formatCategory(weapon.category);
+const caliber =
+    getValue(
+        weapon,
+        ["caliber", "Caliber"],
+        ""
+    );
 
-
-    /*
-     * =========================
-     * CALIBRE
-     * =========================
-     */
-
-    const caliber =
-        weapon.caliber || "Non renseigné";
-
-    document.getElementById("weapon-caliber").textContent =
-        caliber;
-
-    document.getElementById("weapon-caliber-info").textContent =
-        caliber;
-
-
-    /*
-     * =========================
-     * STATISTIQUES
-     * =========================
-     */
-
-    document.getElementById("damage").textContent =
-        weapon.damage ?? "-";
-
-    document.getElementById("fire-rate").textContent =
-        weapon.fireRate ?? "-";
-
-    document.getElementById("magazine").textContent =
-        weapon.magazine ?? "-";
-
-    document.getElementById("reload-time").textContent =
-        weapon.reloadTime ?? "-";
-
-    document.getElementById("range").textContent =
-        weapon.range ?? "-";
-
-    document.getElementById("spread").textContent =
-        weapon.spread ?? "-";
-
-    document.getElementById("ergonomics").textContent =
-        weapon.ergonomics ?? "-";
-
-    document.getElementById("weight").textContent =
-        weapon.weight ?? "-";
+const description =
+    getValue(
+        weapon,
+        ["description", "Description"],
+        ""
+    );
 
 
-    /*
-     * =========================
-     * MULTIPLICATEURS
-     * =========================
-     *
-     * Pour le moment ils ne sont
-     * pas encore dans weapons.json.
-     */
+/* -----------------------------------------------------
+   TITRE
+----------------------------------------------------- */
 
-    document.getElementById("body-multiplier").textContent =
-        formatMultiplier(weapon.bodyMultiplier, "1.00");
+setText(
+    "weapon-name",
+    name
+);
 
-    document.getElementById("head-multiplier").textContent =
-        formatMultiplier(weapon.headMultiplier);
+setText(
+    "weapon-category",
+    formatCategory(category)
+);
 
-    document.getElementById("arm-multiplier").textContent =
-        formatMultiplier(weapon.armMultiplier);
+setText(
+    "weapon-caliber",
+    caliber || "Non renseigné"
+);
 
-    document.getElementById("leg-multiplier").textContent =
-        formatMultiplier(weapon.legMultiplier);
+setText(
+    "weapon-id",
+    id
+);
 
+setText(
+    "breadcrumb-name",
+    name.toUpperCase()
+);
 
-    /*
-     * =========================
-     * IMAGE
-     * =========================
-     *
-     * On pourra utiliser :
-     *
-     * images/weapons/ak-104.webp
-     *
-     * grâce à l'id de l'arme.
-     */
+setText(
+    "breadcrumb-category",
+    formatCategory(category).toUpperCase()
+);
 
-    const image = document.getElementById("weapon-image");
-
-    image.src = `images/weapons/${weapon.id}.webp`;
-
-    image.alt = weapon.name;
-
-    image.onerror = () => {
-        image.style.display = "none";
-    };
+setText(
+    "weapon-description",
+    description
+);
 
 
-    /*
-     * =========================
-     * TITRE DE LA PAGE
-     * =========================
-     */
+/* -----------------------------------------------------
+   INFORMATIONS
+----------------------------------------------------- */
 
-    document.title =
-        `${weapon.name} - Anopoly Wiki`;
+setText(
+    "info-id",
+    id
+);
+
+setText(
+    "info-category",
+    formatCategory(category)
+);
+
+setText(
+    "info-caliber",
+    caliber || "Non renseigné"
+);
+
+setText(
+    "info-type",
+    getValue(
+        weapon,
+        ["type", "Type", "weaponType", "WeaponType"],
+        "Non renseigné"
+    )
+);
+
+
+/* -----------------------------------------------------
+   STATISTIQUES
+----------------------------------------------------- */
+
+const damage = getWeaponDamage(weapon);
+
+setText(
+    "stat-damage",
+    formatNumber(damage)
+);
+
+setText(
+    "stat-fire-rate",
+    formatNumber(
+        getValue(
+            weapon,
+            [
+                "fireRate",
+                "FireRate",
+                "rpm",
+                "RPM",
+                "rateOfFire",
+                "RateOfFire"
+            ]
+        )
+    )
+);
+
+setText(
+    "stat-magazine",
+    formatNumber(
+        getValue(
+            weapon,
+            [
+                "magazine",
+                "Magazine",
+                "magazineSize",
+                "MagazineSize",
+                "capacity",
+                "Capacity"
+            ]
+        )
+    )
+);
+
+setText(
+    "stat-reload",
+    formatNumber(
+        getValue(
+            weapon,
+            [
+                "reloadTime",
+                "ReloadTime",
+                "reload",
+                "Reload"
+            ]
+        ),
+        2
+    )
+);
+
+setText(
+    "stat-range",
+    formatNumber(
+        getValue(
+            weapon,
+            [
+                "range",
+                "Range",
+                "effectiveRange",
+                "EffectiveRange"
+            ]
+        )
+    )
+);
+
+setText(
+    "stat-spread",
+    formatNumber(
+        getValue(
+            weapon,
+            [
+                "spread",
+                "Spread",
+                "dispersion",
+                "Dispersion"
+            ]
+        ),
+        3
+    )
+);
+
+setText(
+    "stat-ergonomics",
+    formatNumber(
+        getValue(
+            weapon,
+            [
+                "ergonomics",
+                "Ergonomics",
+                "ergonomy",
+                "Ergonomy"
+            ]
+        )
+    )
+);
+
+setText(
+    "stat-weight",
+    formatNumber(
+        getValue(
+            weapon,
+            [
+                "weight",
+                "Weight"
+            ]
+        ),
+        2
+    )
+);
+
+
+/* -----------------------------------------------------
+   MULTIPLICATEURS
+----------------------------------------------------- */
+
+displayMultipliers(weapon);
+
+
+/* -----------------------------------------------------
+   COURBE DE DÉGÂTS
+----------------------------------------------------- */
+
+displayDamageCurve(weapon);
+
+
+/* -----------------------------------------------------
+   IMAGE
+----------------------------------------------------- */
+
+displayWeaponImage(
+    weapon,
+    id,
+    name
+);
+
+
+/* -----------------------------------------------------
+   LIENS
+----------------------------------------------------- */
+
+setupNavigation(
+    category
+);
+
+
+/* -----------------------------------------------------
+   TITRE
+----------------------------------------------------- */
+
+document.title =
+    `${name} — ANOPOLY`;
+
+
+}
+
+/* =========================================================
+DÉGÂTS
+========================================================= */
+
+function getWeaponDamage(weapon) {
+
+
+const directDamage = getValue(
+    weapon,
+    [
+        "damage",
+        "Damage",
+        "baseDamage",
+        "BaseDamage"
+    ]
+);
+
+if (isNumber(directDamage)) {
+    return directDamage;
 }
 
 
 /*
- * Transforme :
+ * Si l'arme utilise une courbe :
  *
- * assault-rifle
- * → Assault Rifle
+ * damageCurve: [
+ *   { distance: 0, damage: 50 },
+ *   { distance: 50, damage: 45 }
+ * ]
  *
- * machine-gun
- * → Machine Gun
+ * On affiche ici le premier dommage
+ * comme valeur principale.
  */
+
+const curve =
+    getDamageCurve(weapon);
+
+if (curve.length > 0) {
+
+    const first = curve[0];
+
+    return getValue(
+        first,
+        [
+            "damage",
+            "Damage",
+            "value",
+            "Value"
+        ]
+    );
+
+}
+
+return null;
+
+
+}
+
+/* =========================================================
+MULTIPLICATEURS
+========================================================= */
+
+function displayMultipliers(weapon) {
+
+
+const multipliers =
+    weapon.multipliers ||
+    weapon.Multipliers ||
+    weapon.hitMultipliers ||
+    weapon.HitMultipliers ||
+    {};
+
+
+const body =
+    getValue(
+        weapon,
+        [
+            "bodyMultiplier",
+            "BodyMultiplier",
+            "bodyDamageMultiplier",
+            "BodyDamageMultiplier"
+        ],
+        getValue(
+            multipliers,
+            [
+                "body",
+                "Body"
+            ]
+        )
+    );
+
+
+const head =
+    getValue(
+        weapon,
+        [
+            "headMultiplier",
+            "HeadMultiplier",
+            "headDamageMultiplier",
+            "HeadDamageMultiplier"
+        ],
+        getValue(
+            multipliers,
+            [
+                "head",
+                "Head"
+            ]
+        )
+    );
+
+
+const arm =
+    getValue(
+        weapon,
+        [
+            "armMultiplier",
+            "ArmMultiplier",
+            "limbMultiplier",
+            "LimbMultiplier"
+        ],
+        getValue(
+            multipliers,
+            [
+                "arm",
+                "Arm",
+                "limb",
+                "Limb"
+            ]
+        )
+    );
+
+
+const leg =
+    getValue(
+        weapon,
+        [
+            "legMultiplier",
+            "LegMultiplier",
+            "legDamageMultiplier",
+            "LegDamageMultiplier"
+        ],
+        getValue(
+            multipliers,
+            [
+                "leg",
+                "Leg"
+            ]
+        )
+    );
+
+
+setText(
+    "mult-body",
+    formatMultiplier(
+        body,
+        "1.00"
+    )
+);
+
+setText(
+    "mult-head",
+    formatMultiplier(
+        head
+    )
+);
+
+setText(
+    "mult-arm",
+    formatMultiplier(
+        arm
+    )
+);
+
+setText(
+    "mult-leg",
+    formatMultiplier(
+        leg
+    )
+);
+
+
+}
+
+/* =========================================================
+COURBE DE DÉGÂTS
+========================================================= */
+
+function getDamageCurve(weapon) {
+
+
+const curve =
+    weapon.damageCurve ||
+    weapon.DamageCurve ||
+    weapon.damagePoints ||
+    weapon.DamagePoints ||
+    weapon.damage ||
+    null;
+
+
+if (!Array.isArray(curve)) {
+    return [];
+}
+
+
+return curve
+    .map(point => {
+
+        if (typeof point === "number") {
+
+            return {
+                distance: null,
+                damage: point
+            };
+
+        }
+
+        if (!point) {
+            return null;
+        }
+
+        return {
+            distance: getValue(
+                point,
+                [
+                    "distance",
+                    "Distance",
+                    "range",
+                    "Range"
+                ]
+            ),
+
+            damage: getValue(
+                point,
+                [
+                    "damage",
+                    "Damage",
+                    "value",
+                    "Value"
+                ]
+            )
+        };
+
+    })
+    .filter(point =>
+        point &&
+        isNumber(point.damage)
+    );
+
+
+}
+
+function displayDamageCurve(weapon) {
+
+
+const container =
+    document.getElementById(
+        "damage-curve"
+    );
+
+if (!container) {
+    return;
+}
+
+
+const curve =
+    getDamageCurve(weapon);
+
+
+if (curve.length === 0) {
+
+    container.innerHTML = `
+        <div class="curve-empty">
+            Aucune donnée balistique disponible.
+        </div>
+    `;
+
+    return;
+}
+
+
+container.innerHTML = "";
+
+
+const maxDamage =
+    Math.max(
+        ...curve.map(
+            point => Number(point.damage)
+        )
+    );
+
+
+curve.forEach(point => {
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+    row.className =
+        "damage-curve-row";
+
+
+    const distance =
+        document.createElement(
+            "div"
+        );
+
+    distance.className =
+        "damage-curve-distance";
+
+    distance.textContent =
+        point.distance !== null
+            ? `${formatNumber(point.distance)} m`
+            : "—";
+
+
+    const bar =
+        document.createElement(
+            "div"
+        );
+
+    bar.className =
+        "damage-curve-bar";
+
+
+    const fill =
+        document.createElement(
+            "div"
+        );
+
+    fill.className =
+        "damage-curve-fill";
+
+
+    const percentage =
+        maxDamage > 0
+            ? Math.max(
+                4,
+                (point.damage / maxDamage) * 100
+            )
+            : 0;
+
+
+    fill.style.width =
+        `${percentage}%`;
+
+
+    const value =
+        document.createElement(
+            "div"
+        );
+
+    value.className =
+        "damage-curve-value";
+
+    value.textContent =
+        formatNumber(point.damage);
+
+
+    bar.appendChild(fill);
+
+    row.appendChild(distance);
+
+    row.appendChild(bar);
+
+    row.appendChild(value);
+
+    container.appendChild(row);
+
+});
+
+
+}
+
+/* =========================================================
+IMAGE
+========================================================= */
+
+function displayWeaponImage(
+weapon,
+id,
+name
+) {
+
+
+const image =
+    document.getElementById(
+        "weapon-image"
+    );
+
+const placeholder =
+    document.getElementById(
+        "weapon-image-placeholder"
+    );
+
+
+if (!image) {
+    return;
+}
+
+
+const jsonImage =
+    getValue(
+        weapon,
+        [
+            "image",
+            "Image",
+            "imagePath",
+            "ImagePath",
+            "icon",
+            "Icon",
+            "iconPath",
+            "IconPath"
+        ]
+    );
+
+
+const possiblePaths = [];
+
+
+if (jsonImage) {
+
+    let path =
+        String(jsonImage).trim();
+
+    path =
+        path.replace(/\\/g, "/");
+
+    if (
+        path.startsWith("/")
+    ) {
+        path =
+            path.substring(1);
+    }
+
+    if (
+        path.startsWith("./")
+    ) {
+        path =
+            path.substring(2);
+    }
+
+    possiblePaths.push(
+        path
+    );
+}
+
+
+possiblePaths.push(
+    `images/weapons/${id}.webp`
+);
+
+possiblePaths.push(
+    `images/weapons/${id}.png`
+);
+
+possiblePaths.push(
+    `images/weapons/${id}.jpg`
+);
+
+
+let currentPath = 0;
+
+
+function tryNextImage() {
+
+    if (
+        currentPath >=
+        possiblePaths.length
+    ) {
+
+        image.style.display =
+            "none";
+
+        if (placeholder) {
+            placeholder.style.display =
+                "flex";
+        }
+
+        return;
+    }
+
+
+    const path =
+        possiblePaths[currentPath++];
+
+    image.src =
+        path;
+
+    image.alt =
+        name;
+
+}
+
+
+image.onload = () => {
+
+    image.style.display =
+        "block";
+
+    if (placeholder) {
+        placeholder.style.display =
+            "none";
+    }
+
+};
+
+
+image.onerror = () => {
+
+    tryNextImage();
+
+};
+
+
+tryNextImage();
+
+
+}
+
+/* =========================================================
+NAVIGATION
+========================================================= */
+
+function setupNavigation(category) {
+
+
+const backButton =
+    document.getElementById(
+        "back-button"
+    );
+
+const breadcrumb =
+    document.getElementById(
+        "breadcrumb-category"
+    );
+
+
+if (!category) {
+    return;
+}
+
+
+const categoryUrl =
+    `category.html?type=${encodeURIComponent(category)}`;
+
+
+if (backButton) {
+    backButton.href =
+        categoryUrl;
+}
+
+
+if (breadcrumb) {
+    breadcrumb.href =
+        categoryUrl;
+}
+
+
+}
+
+/* =========================================================
+CATEGORIES
+========================================================= */
 
 function formatCategory(category) {
 
-    if (!category) {
-        return "Non renseigné";
+
+if (!category) {
+    return "Arme";
+}
+
+
+return String(category)
+    .replace(/[_-]+/g, " ")
+    .split(" ")
+    .filter(Boolean)
+    .map(
+        word =>
+            word.charAt(0).toUpperCase() +
+            word.slice(1)
+    )
+    .join(" ");
+
+
+}
+
+/* =========================================================
+VALEURS JSON
+========================================================= */
+
+function getValue(
+object,
+keys,
+fallback = null
+) {
+
+
+if (
+    object === null ||
+    object === undefined
+) {
+    return fallback;
+}
+
+
+for (const key of keys) {
+
+    if (
+        object[key] !== undefined &&
+        object[key] !== null
+    ) {
+
+        return object[key];
+
     }
 
-    return category
-        .split("-")
-        .map(word =>
-            word.charAt(0).toUpperCase() + word.slice(1)
+}
+
+
+return fallback;
+
+}
+
+/* =========================================================
+DOM
+========================================================= */
+
+function setText(
+id,
+value
+) {
+
+const element =
+    document.getElementById(id);
+
+if (!element) {
+    return;
+}
+
+
+if (
+    value === null ||
+    value === undefined ||
+    value === ""
+) {
+
+    element.textContent =
+        "—";
+
+    return;
+}
+
+
+element.textContent =
+    value;
+
+}
+
+/* =========================================================
+FORMAT NOMBRE
+========================================================= */
+
+function formatNumber(
+value,
+decimals = 2
+) {
+
+if (
+    value === null ||
+    value === undefined ||
+    value === ""
+) {
+    return "—";
+}
+
+
+const number =
+    Number(value);
+
+
+if (!Number.isFinite(number)) {
+    return "—";
+}
+
+
+/*
+ * Supprime les zéros inutiles.
+ *
+ * 40.00 → 40
+ * 40.50 → 40.5
+ */
+
+return number
+    .toFixed(decimals)
+    .replace(
+        /\.?0+$/,
+        ""
+    );
+
+}
+
+/* =========================================================
+MULTIPLICATEUR
+========================================================= */
+
+function formatMultiplier(
+value,
+fallback = "—"
+) {
+
+if (
+    value === null ||
+    value === undefined ||
+    value === ""
+) {
+    return fallback;
+}
+
+
+const number =
+    Number(value);
+
+
+if (!Number.isFinite(number)) {
+    return fallback;
+}
+
+
+return `${number.toFixed(2)}×`;
+
+}
+
+/* =========================================================
+TEST NOMBRE
+========================================================= */
+
+function isNumber(value) {
+
+return (
+    value !== null &&
+    value !== undefined &&
+    value !== "" &&
+    Number.isFinite(
+        Number(value)
+    )
+);
+
+}
+
+/* =========================================================
+NORMALISATION
+========================================================= */
+
+function normalize(value) {
+
+if (
+    value === null ||
+    value === undefined
+) {
+    return "";
+}
+
+
+return String(value)
+    .trim()
+    .toLowerCase();
+
+}
+
+/* =========================================================
+ERREUR
+========================================================= */
+
+function showError(message) {
+
+const page =
+    document.querySelector(
+        ".weapon-page"
+    );
+
+const error =
+    document.getElementById(
+        "weapon-error"
+    );
+
+const errorText =
+    document.getElementById(
+        "weapon-error-text"
+    );
+
+
+if (errorText) {
+    errorText.textContent =
+        message;
+}
+
+
+if (error) {
+    error.hidden =
+        false;
+}
+
+
+/*
+ * On masque seulement les données
+ * de l'arme.
+ *
+ * La topbar et la sidebar
+ * restent visibles.
+ */
+
+if (page) {
+
+    page
+        .querySelectorAll(
+            ".weapon-hero, .weapon-section"
         )
-        .join(" ");
+        .forEach(element => {
+
+            element.style.display =
+                "none";
+
+        });
+
 }
 
 
-/*
- * Affichage des multiplicateurs
- */
-
-function formatMultiplier(value, fallback = "-") {
-
-    if (value === undefined || value === null) {
-        return fallback;
-    }
-
-    return `${Number(value).toFixed(2)}×`;
-}
-
-
-/*
- * Erreur
- */
-
-function showError() {
-
-    document.querySelector(".item-page").innerHTML = `
-        <a href="weapons.html" class="back-button">
-            ← Retour aux armes
-        </a>
-
-        <div class="error-message">
-            <h1>Arme introuvable</h1>
-            <p>
-                L'arme demandée n'existe pas ou
-                n'a pas pu être chargée.
-            </p>
-        </div>
-    `;
+document.title =
+    "Arme introuvable — ANOPOLY";
 
 }
