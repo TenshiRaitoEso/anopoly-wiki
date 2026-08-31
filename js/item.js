@@ -1,331 +1,470 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-
-/*
- * =========================================================
- * RÉCUPÉRATION DE L'ID
- * =========================================================
- */
-
 const params = new URLSearchParams(window.location.search);
-const weaponId = params.get("id");
+const itemId = params.get("id");
 
-if (!weaponId) {
+if (!itemId) {
     showError();
     return;
 }
 
-
-/*
- * =========================================================
- * CHARGEMENT DU JSON
- * =========================================================
- */
-
 try {
 
-    const response = await fetch("data/weapons.json");
-
-    if (!response.ok) {
-        throw new Error(
-            "Impossible de charger weapons.json"
-        );
-    }
-
-    const weapons = await response.json();
-
-
-    /*
-     * Vérification du format
-     */
-
-    if (!Array.isArray(weapons)) {
-        throw new Error(
-            "Le fichier weapons.json ne contient pas un tableau."
-        );
-    }
-
-
     /*
      * =====================================================
-     * RECHERCHE DE L'ARME
+     * CHARGEMENT DES DONNÉES
      * =====================================================
      */
 
-    const weapon = weapons.find(
-        item => String(item.id) === String(weaponId)
-    );
+    const [weaponsResponse, artifactsResponse] =
+        await Promise.all([
+            fetch("data/weapons.json"),
+            fetch("data/artifacts.json")
+        ]);
 
+    if (!weaponsResponse.ok) {
+        throw new Error("Impossible de charger weapons.json");
+    }
 
-    if (!weapon) {
-        showError();
+    if (!artifactsResponse.ok) {
+        throw new Error("Impossible de charger artifacts.json");
+    }
+
+    const weapons = await weaponsResponse.json();
+    const artifactsData = await artifactsResponse.json();
+
+    /*
+     * =====================================================
+     * DÉTECTION DE L'ITEM
+     * =====================================================
+     */
+
+    const weapon =
+        Array.isArray(weapons)
+            ? weapons.find(
+                item =>
+                    String(item.id) === String(itemId)
+            )
+            : null;
+
+    const artifacts =
+        Array.isArray(artifactsData)
+            ? artifactsData
+            : artifactsData.artifacts;
+
+    const artifact =
+        Array.isArray(artifacts)
+            ? artifacts.find(
+                item =>
+                    String(item.id) === String(itemId)
+            )
+            : null;
+
+    /*
+     * =====================================================
+     * ARME
+     * =====================================================
+     */
+
+    if (weapon) {
+
+        displayWeapon(weapon);
+
+        setupWeaponNavigation(
+            weapon,
+            weapons
+        );
+
+        setupBackLink(weapon);
+
         return;
     }
 
-
     /*
      * =====================================================
-     * AFFICHAGE
+     * ARTEFACT
      * =====================================================
      */
 
-    displayWeapon(weapon);
+    if (artifact) {
 
+        displayArtifact(
+            artifact,
+            artifactsData.rarityQualityScaling
+        );
 
-    /*
-     * =====================================================
-     * NAVIGATION
-     *
-     * IMPORTANT :
-     *
-     * On ne garde QUE les armes ayant la même catégorie
-     * que l'arme actuelle.
-     *
-     * Exemple :
-     *
-     * AK-104       assault-rifle
-     * M4           assault-rifle
-     * SCAR         assault-rifle
-     *
-     * La navigation sera :
-     *
-     * AK-104 → M4 → SCAR
-     *
-     * Elle ne pourra jamais aller vers une SMG ou un Sniper.
-     * =====================================================
-     */
+        setupArtifactNavigation(
+            artifact,
+            artifacts
+        );
 
-    setupNavigation(weapon, weapons);
+        setupArtifactBackLink();
 
+        return;
+    }
 
-    /*
-     * =====================================================
-     * LIEN RETOUR
-     * =====================================================
-     */
-
-    setupBackLink(weapon);
-
+    showError();
 
 } catch (error) {
 
     console.error(
-        "Erreur lors du chargement de l'arme :",
+        "Erreur lors du chargement de l'item :",
         error
     );
 
     showError();
-
 }
 
 
 });
 
-/*
+/* =============================================================
+ARTEFACT
+============================================================= */
 
-* =============================================================
-* AFFICHAGE DE L'ARME
-* =============================================================
-  */
+function displayArtifact(
+artifact,
+rarityConfig
+) {
 
-function displayWeapon(weapon) {
-
-
-/*
- * ---------------------------------------------------------
- * NOM
- * ---------------------------------------------------------
- */
-
-document.getElementById("weapon-name").textContent =
-    weapon.name ?? "Arme inconnue";
-
-
-/*
- * ---------------------------------------------------------
- * CATÉGORIE
- * ---------------------------------------------------------
- */
-
-const category =
-    weapon.category ?? "";
-
-document.getElementById("weapon-category").textContent =
-    formatCategory(category);
-
-document.getElementById("weapon-category-info").textContent =
-    formatCategory(category);
-
-
-/*
- * ---------------------------------------------------------
- * ID
- * ---------------------------------------------------------
- */
-
-document.getElementById("weapon-id").textContent =
-    weapon.id ?? "-";
-
-
-/*
- * ---------------------------------------------------------
- * CALIBRE
- * ---------------------------------------------------------
- */
-
-const caliber =
-    weapon.caliber ??
-    weapon.Caliber ??
-    "Non renseigné";
-
-document.getElementById("weapon-caliber").textContent =
-    caliber;
-
-document.getElementById("weapon-caliber-info").textContent =
-    caliber;
-
-
-/*
- * ---------------------------------------------------------
- * STATISTIQUES
- * ---------------------------------------------------------
- *
- * On accepte également les noms avec une majuscule
- * au cas où le JSON utilise un autre format.
- */
-
-document.getElementById("damage").textContent =
-    getValue(
-        weapon,
-        ["damage", "Damage"]
-    );
-
-document.getElementById("fire-rate").textContent =
-    getValue(
-        weapon,
-        ["fireRate", "FireRate", "rpm", "RPM"]
-    );
-
-document.getElementById("magazine").textContent =
-    getValue(
-        weapon,
-        ["magazine", "Magazine", "magazineSize", "MagazineSize"]
-    );
-
-document.getElementById("reload-time").textContent =
-    getValue(
-        weapon,
-        ["reloadTime", "ReloadTime"]
-    );
-
-document.getElementById("range").textContent =
-    getValue(
-        weapon,
-        ["range", "Range"]
-    );
-
-document.getElementById("spread").textContent =
-    getValue(
-        weapon,
-        ["spread", "Spread"]
-    );
-
-document.getElementById("ergonomics").textContent =
-    getValue(
-        weapon,
-        ["ergonomics", "Ergonomics"]
-    );
-
-document.getElementById("weight").textContent =
-    getValue(
-        weapon,
-        ["weight", "Weight"]
-    );
-
-
-/*
- * ---------------------------------------------------------
- * MULTIPLICATEURS
- * ---------------------------------------------------------
- */
-
-document.getElementById("body-multiplier").textContent =
-    formatMultiplier(
-        getRawValue(
-            weapon,
-            [
-                "bodyMultiplier",
-                "BodyMultiplier"
-            ]
-        )
-    );
-
-
-document.getElementById("head-multiplier").textContent =
-    formatMultiplier(
-        getRawValue(
-            weapon,
-            [
-                "headMultiplier",
-                "HeadMultiplier"
-            ]
-        )
-    );
-
-
-document.getElementById("arm-multiplier").textContent =
-    formatMultiplier(
-        getRawValue(
-            weapon,
-            [
-                "armMultiplier",
-                "ArmMultiplier"
-            ]
-        )
-    );
-
-
-document.getElementById("leg-multiplier").textContent =
-    formatMultiplier(
-        getRawValue(
-            weapon,
-            [
-                "legMultiplier",
-                "LegMultiplier"
-            ]
-        )
-    );
-
-
-/*
- * ---------------------------------------------------------
- * IMAGE
- * ---------------------------------------------------------
- */
-
-setupImage(weapon);
-
-
-/*
- * ---------------------------------------------------------
- * TITRE DE LA PAGE
- * ---------------------------------------------------------
- */
 
 document.title =
-    `${weapon.name ?? "Arme"} - Anopoly Wiki`;
+    `${artifact.name ?? "Artefact"} - Anopoly Wiki`;
+
+setText(
+    "item-name",
+    artifact.name ?? "Artefact inconnu"
+);
+
+setText(
+    "item-category",
+    "Artefact"
+);
+
+setText(
+    "item-anomaly",
+    formatAnomaly(artifact.anomalyType)
+);
+
+setText(
+    "item-id",
+    artifact.id ?? "-"
+);
+
+setText(
+    "item-anomaly-info",
+    formatAnomaly(artifact.anomalyType)
+);
+
+setText(
+    "item-rarity",
+    formatRarity(artifact.rarity)
+);
+
+setText(
+    "item-weight",
+    formatNumber(artifact.weight) + " kg"
+);
+
+if (artifact.gridSize) {
+
+    setText(
+        "item-size",
+        `${artifact.gridSize.x} × ${artifact.gridSize.y}`
+    );
+
+} else {
+
+    setText(
+        "item-size",
+        "-"
+    );
+
+}
+
+setText(
+    "item-description",
+    artifact.description ?? ""
+);
+
+
+/*
+ * =========================================================
+ * QUALITÉ
+ * =========================================================
+ */
+
+const select =
+    document.getElementById("quality-select");
+
+const percent =
+    document.getElementById("quality-percent");
+
+
+const qualityTable =
+    rarityConfig?.table ?? [];
+
+
+/*
+ * Création dynamique des qualités depuis
+ * ArtifactRarityConfigSO / artifacts.json.
+ */
+
+if (qualityTable.length > 0) {
+
+    select.innerHTML = "";
+
+    for (const rarity of qualityTable) {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            rarity.qualityPercent;
+
+        option.dataset.rarity =
+            rarity.rarity;
+
+        option.textContent =
+            `${formatRarity(rarity.rarity)} — ${rarity.qualityPercent}%`;
+
+        /*
+         * La valeur sélectionnée par défaut est
+         * la rareté propre de l'artefact.
+         */
+
+        if (
+            rarity.rarity ===
+            artifact.rarity
+        ) {
+            option.selected = true;
+        }
+
+        select.appendChild(option);
+    }
+
+}
+
+
+function updateQuality() {
+
+    const quality =
+        Number(select.value);
+
+    percent.textContent =
+        `${quality}%`;
+
+    displayArtifactStats(
+        artifact,
+        quality
+    );
+
+    displayArtifactAnomalies(
+        artifact,
+        quality
+    );
+}
+
+
+select.addEventListener(
+    "change",
+    updateQuality
+);
+
+
+updateQuality();
+
+
+/*
+ * =========================================================
+ * IMAGE
+ * =========================================================
+ */
+
+setupArtifactImage(artifact);
 
 
 }
 
-/*
+/* =============================================================
+STATISTIQUES ARTEFACT
+============================================================= */
 
-* =============================================================
-* NAVIGATION PRÉCÉDENT / SUIVANT
-* =============================================================
-  */
+function displayArtifactStats(
+artifact,
+qualityPercent
+) {
 
-function setupNavigation(currentWeapon, weapons) {
+
+const container =
+    document.getElementById(
+        "artifact-stats"
+    );
+
+container.innerHTML = "";
+
+const modifiers =
+    artifact.statModifiers ?? [];
+
+if (modifiers.length === 0) {
+
+    container.innerHTML = `
+        <div class="placeholder">
+            Aucun bonus de statistique
+        </div>
+    `;
+
+    return;
+}
+
+
+const multiplier =
+    qualityPercent / 100;
+
+
+for (const modifier of modifiers) {
+
+    const baseValue =
+        Number(modifier.value);
+
+    const finalValue =
+        baseValue * multiplier;
+
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "stat-row";
+
+
+    const label =
+        document.createElement("span");
+
+    label.className =
+        "stat-label";
+
+    label.textContent =
+        formatStatType(
+            modifier.statType
+        );
+
+
+    const value =
+        document.createElement("span");
+
+    value.className =
+        "stat-value";
+
+
+    value.textContent =
+        formatModifierValue(
+            finalValue,
+            modifier.isPercentage
+        );
+
+
+    row.appendChild(label);
+    row.appendChild(value);
+
+    container.appendChild(row);
+}
+
+
+}
+
+/* =============================================================
+ANOMALIES
+============================================================= */
+
+function displayArtifactAnomalies(
+artifact,
+qualityPercent
+) {
+
+
+const container =
+    document.getElementById(
+        "artifact-anomalies"
+    );
+
+container.innerHTML = "";
+
+const modifiers =
+    artifact.anomalyModifiers ?? [];
+
+
+if (modifiers.length === 0) {
+
+    container.innerHTML = `
+        <div class="placeholder">
+            Aucune modification d'anomalie
+        </div>
+    `;
+
+    return;
+}
+
+
+const multiplier =
+    qualityPercent / 100;
+
+
+for (const modifier of modifiers) {
+
+    const finalValue =
+        Number(modifier.value) *
+        multiplier;
+
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "damage-row";
+
+
+    const label =
+        document.createElement("span");
+
+    label.className =
+        "damage-label";
+
+    label.textContent =
+        formatAnomaly(
+            modifier.type
+        );
+
+
+    const value =
+        document.createElement("span");
+
+    value.className =
+        "damage-value";
+
+    value.textContent =
+        formatModifierValue(
+            finalValue,
+            false
+        );
+
+
+    row.appendChild(label);
+    row.appendChild(value);
+
+    container.appendChild(row);
+}
+
+}
+
+/* =============================================================
+NAVIGATION ARTEFACTS
+============================================================= */
+
+function setupArtifactNavigation(
+currentArtifact,
+artifacts
+) {
 
 
 const previousContainer =
@@ -339,55 +478,25 @@ const nextContainer =
     );
 
 
-/*
- * Nettoyage
- */
-
 previousContainer.innerHTML = "";
 nextContainer.innerHTML = "";
 
 
 /*
- * =========================================================
- * FILTRE DE CATÉGORIE
- * =========================================================
+ * IMPORTANT :
  *
- * C'est ici que l'on empêche la navigation de changer
- * de catégorie.
- */
-
-const category =
-    currentWeapon.category;
-
-
-const sameCategoryWeapons =
-    weapons.filter(
-        weapon =>
-            weapon.category === category
-    );
-
-
-/*
- * Si l'arme n'a pas de catégorie, on désactive
- * complètement la navigation.
- */
-
-if (!category || sameCategoryWeapons.length === 0) {
-    return;
-}
-
-
-/*
- * =========================================================
- * POSITION DANS LA CATÉGORIE
- * =========================================================
+ * Ici on ne mélange JAMAIS les armes,
+ * armures, maps, etc.
+ *
+ * La liste est exclusivement celle
+ * de artifacts.json.
  */
 
 const currentIndex =
-    sameCategoryWeapons.findIndex(
-        weapon =>
-            String(weapon.id) ===
-            String(currentWeapon.id)
+    artifacts.findIndex(
+        artifact =>
+            String(artifact.id) ===
+            String(currentArtifact.id)
     );
 
 
@@ -396,42 +505,24 @@ if (currentIndex === -1) {
 }
 
 
-/*
- * =========================================================
- * ARME PRÉCÉDENTE
- * =========================================================
- */
-
 if (currentIndex > 0) {
 
-    const previousWeapon =
-        sameCategoryWeapons[currentIndex - 1];
-
     previousContainer.innerHTML =
-        createNavigationCard(
-            previousWeapon,
+        createArtifactNavigationCard(
+            artifacts[currentIndex - 1],
             "previous"
         );
 }
 
 
-/*
- * =========================================================
- * ARME SUIVANTE
- * =========================================================
- */
-
 if (
     currentIndex <
-    sameCategoryWeapons.length - 1
+    artifacts.length - 1
 ) {
 
-    const nextWeapon =
-        sameCategoryWeapons[currentIndex + 1];
-
     nextContainer.innerHTML =
-        createNavigationCard(
-            nextWeapon,
+        createArtifactNavigationCard(
+            artifacts[currentIndex + 1],
             "next"
         );
 }
@@ -439,44 +530,46 @@ if (
 
 }
 
-/*
+/* =============================================================
+CARTE NAVIGATION ARTEFACT
+============================================================= */
 
-* =============================================================
-* CRÉATION D'UNE CARTE DE NAVIGATION
-* =============================================================
-  */
+function createArtifactNavigationCard(
+artifact,
+direction
+) {
 
-function createNavigationCard(weapon, direction) {
-
+const isPrevious =
+    direction === "previous";
 
 const arrow =
-    direction === "previous"
-        ? "←"
-        : "→";
-
+    isPrevious ? "←" : "→";
 
 const label =
-    direction === "previous"
+    isPrevious
         ? "PRÉCÉDENT"
         : "SUIVANT";
 
 
 const imagePath =
-    `images/weapons/${weapon.id}.webp`;
+    `images/artifacts/${artifact.id}.webp`;
 
 
 return `
     <a
         class="item-nav-card ${direction}"
-        href="item.html?id=${encodeURIComponent(weapon.id)}">
+        href="item.html?id=${encodeURIComponent(artifact.id)}">
 
         <div class="item-nav-direction">
+
             ${
-                direction === "previous"
+                isPrevious
                     ? `${arrow} ${label}`
                     : `${label} ${arrow}`
             }
+
         </div>
+
 
         <div class="item-nav-content">
 
@@ -484,22 +577,22 @@ return `
 
                 <img
                     src="${imagePath}"
-                    alt="${escapeHtml(weapon.name ?? "")}"
+                    alt="${escapeHtml(artifact.name ?? "")}"
                     onerror="this.style.display='none';">
 
             </div>
 
+
             <div class="item-nav-info">
 
                 <span class="item-nav-category">
-                    ${escapeHtml(
-                        formatCategory(weapon.category)
-                    )}
+                    ARTEFACT
                 </span>
 
                 <strong>
                     ${escapeHtml(
-                        weapon.name ?? "Arme inconnue"
+                        artifact.name ??
+                        "Artefact inconnu"
                     )}
                 </strong>
 
@@ -513,96 +606,81 @@ return `
 
 }
 
-/*
+/* =============================================================
+LIEN RETOUR ARTEFACT
+============================================================= */
 
-* =============================================================
-* LIEN RETOUR
-* =============================================================
-  */
-
-function setupBackLink(weapon) {
+function setupArtifactBackLink() {
 
 
 const backLink =
-    document.getElementById("back-link");
+    document.getElementById(
+        "back-link"
+    );
 
 if (!backLink) {
     return;
 }
 
+backLink.href =
+    "category.html?type=artifacts";
 
-const category =
-    weapon.category;
-
-
-if (category) {
-
-    backLink.href =
-        `category.html?type=${encodeURIComponent(category)}`;
-
-    backLink.textContent =
-        `← Retour aux ${formatCategory(category)}`;
-
-} else {
-
-    backLink.href =
-        "index.html";
-
-    backLink.textContent =
-        "← Retour à la database";
-
-}
+backLink.textContent =
+    "← Retour aux artefacts";
 
 
 }
 
-/*
+/* =============================================================
+IMAGE ARTEFACT
+============================================================= */
 
-* =============================================================
-* IMAGE
-* =============================================================
-  */
-
-function setupImage(weapon) {
+function setupArtifactImage(
+artifact
+) {
 
 
 const image =
     document.getElementById(
-        "weapon-image"
+        "item-image"
     );
 
 const placeholder =
     document.getElementById(
-        "weapon-image-placeholder"
+        "item-image-placeholder"
     );
 
 
-if (!image) {
-    return;
-}
-
-
 const imagePath =
-    `images/weapons/${weapon.id}.webp`;
+    `images/artifacts/${artifact.id}.webp`;
 
 
-image.src = imagePath;
-image.alt = weapon.name ?? "";
+image.src =
+    imagePath;
+
+image.alt =
+    artifact.name ?? "";
 
 
-image.style.display = "block";
+image.style.display =
+    "block";
+
 
 if (placeholder) {
-    placeholder.style.display = "none";
+    placeholder.style.display =
+        "none";
 }
 
 
 image.onerror = () => {
 
-    image.style.display = "none";
+    image.style.display =
+        "none";
 
     if (placeholder) {
-        placeholder.style.display = "flex";
+
+        placeholder.style.display =
+            "flex";
     }
 
 };
@@ -610,100 +688,411 @@ image.onerror = () => {
 
 }
 
+/* =============================================================
+ARMES
+============================================================= */
+
+function displayWeapon(weapon) {
+
+document.title =
+    `${weapon.name ?? "Arme"} - Anopoly Wiki`;
+
+setText(
+    "item-name",
+    weapon.name ?? "Arme inconnue"
+);
+
+setText(
+    "item-category",
+    formatCategory(weapon.category)
+);
+
+setText(
+    "item-anomaly",
+    weapon.caliber ??
+    weapon.Caliber ??
+    ""
+);
+
 /*
+ * Cette page est désormais polyvalente.
+ * Les anciens IDs d'armes sont utilisés
+ * uniquement s'ils existent dans le HTML.
+ */
 
-* =============================================================
-* RÉCUPÉRATION D'UNE VALEUR
-* =============================================================
-  */
+setText(
+    "weapon-name",
+    weapon.name
+);
 
-function getRawValue(object, keys) {
+setText(
+    "weapon-category",
+    formatCategory(weapon.category)
+);
+
+setText(
+    "weapon-id",
+    weapon.id
+);
+
+setText(
+    "weapon-caliber-info",
+    weapon.caliber ??
+    weapon.Caliber ??
+    "-"
+);
+
+setText(
+    "weapon-category-info",
+    formatCategory(weapon.category)
+);
+
+setupWeaponImage(weapon);
 
 
-for (const key of keys) {
+}
 
-    if (
-        object[key] !== undefined &&
-        object[key] !== null
-    ) {
-        return object[key];
+function setupWeaponNavigation(
+currentWeapon,
+weapons
+) {
+
+
+const category =
+    currentWeapon.category;
+
+const sameCategory =
+    weapons.filter(
+        weapon =>
+            weapon.category === category
+    );
+
+const index =
+    sameCategory.findIndex(
+        weapon =>
+            String(weapon.id) ===
+            String(currentWeapon.id)
+    );
+
+if (index === -1) {
+    return;
+}
+
+const previous =
+    document.getElementById(
+        "previous-container"
+    );
+
+const next =
+    document.getElementById(
+        "next-container"
+    );
+
+if (index > 0) {
+
+    previous.innerHTML =
+        createWeaponNavigationCard(
+            sameCategory[index - 1],
+            "previous"
+        );
+}
+
+if (
+    index <
+    sameCategory.length - 1
+) {
+
+    next.innerHTML =
+        createWeaponNavigationCard(
+            sameCategory[index + 1],
+            "next"
+        );
+}
+
+
+}
+
+function createWeaponNavigationCard(
+weapon,
+direction
+) {
+
+const previous =
+    direction === "previous";
+
+return `
+    <a
+        class="item-nav-card ${direction}"
+        href="item.html?id=${encodeURIComponent(weapon.id)}">
+
+        <div class="item-nav-direction">
+
+            ${
+                previous
+                    ? "← PRÉCÉDENT"
+                    : "SUIVANT →"
+            }
+
+        </div>
+
+        <div class="item-nav-content">
+
+            <div class="item-nav-image">
+
+                <img
+                    src="images/weapons/${weapon.id}.webp"
+                    alt="${escapeHtml(weapon.name ?? "")}">
+
+            </div>
+
+            <div class="item-nav-info">
+
+                <span class="item-nav-category">
+                    ${escapeHtml(
+                        formatCategory(
+                            weapon.category
+                        )
+                    )}
+                </span>
+
+                <strong>
+                    ${escapeHtml(
+                        weapon.name ??
+                        "Arme inconnue"
+                    )}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </a>
+`;
+
+}
+
+function setupWeaponBackLink(weapon) {
+
+const link =
+    document.getElementById(
+        "back-link"
+    );
+
+if (!link) {
+    return;
+}
+
+link.href =
+    `category.html?type=${encodeURIComponent(
+        weapon.category
+    )}`;
+
+link.textContent =
+    `← Retour aux ${formatCategory(
+        weapon.category
+    )}`;
+
+}
+
+function setupWeaponImage(weapon) {
+
+const image =
+    document.getElementById(
+        "item-image"
+    );
+
+const placeholder =
+    document.getElementById(
+        "item-image-placeholder"
+    );
+
+if (!image) {
+    return;
+}
+
+image.src =
+    `images/weapons/${weapon.id}.webp`;
+
+image.alt =
+    weapon.name ?? "";
+
+image.style.display =
+    "block";
+
+if (placeholder) {
+    placeholder.style.display =
+        "none";
+}
+
+image.onerror = () => {
+
+    image.style.display =
+        "none";
+
+    if (placeholder) {
+        placeholder.style.display =
+            "flex";
     }
 
-}
-
-return null;
-
+};
+```
 
 }
 
-function getValue(object, keys) {
+/* =============================================================
+OUTILS
+============================================================= */
 
-
-const value =
-    getRawValue(object, keys);
-
-
-if (
-    value === null ||
-    value === undefined ||
-    value === ""
+function setText(
+id,
+value
 ) {
-    return "-";
+
+
+const element =
+    document.getElementById(id);
+
+if (element) {
+    element.textContent =
+        value ?? "-";
 }
 
 
-return value;
-
-
 }
 
-/*
-
-* =============================================================
-* MULTIPLICATEUR
-* =============================================================
-  */
-
-function formatMultiplier(value) {
-
-
-if (
-    value === null ||
-    value === undefined ||
-    value === ""
+function formatNumber(
+value
 ) {
-    return "-";
-}
-
 
 const number =
     Number(value);
 
-
 if (Number.isNaN(number)) {
-    return `${value}×`;
+    return value ?? "-";
 }
 
-
-return `${number.toFixed(2)}×`;
-
+return Number.isInteger(number)
+    ? String(number)
+    : number.toFixed(2)
+        .replace(/\.?0+$/, "");
 
 }
 
-/*
+function formatModifierValue(
+value,
+isPercentage
+) {
 
-* =============================================================
-* CATÉGORIE
-* =============================================================
-  */
+const formatted =
+    formatNumber(value);
 
-function formatCategory(category) {
+return isPercentage
+    ? `${formatted}%`
+    : `+${formatted}`;
 
+}
+
+function formatStatType(
+value
+) {
+
+const names = {
+
+    Health:
+        "Santé",
+
+    MoveSpeed:
+        "Vitesse de déplacement",
+
+    CarryWeight:
+        "Capacité de charge",
+
+    StaminaRegen:
+        "Régénération d'endurance",
+
+    Stamina:
+        "Endurance",
+
+    DamageReduction:
+        "Réduction des dégâts",
+
+    HealingEfficiency:
+        "Efficacité des soins"
+
+};
+
+return names[value] ??
+    formatCategory(value);
+
+}
+
+function formatAnomaly(
+value
+) {
+
+const names = {
+
+    Gravitational:
+        "Gravitationnelle",
+
+    Electro:
+        "Électrique",
+
+    Chemical:
+        "Chimique",
+
+    Thermal:
+        "Thermique",
+
+    Psi:
+        "Psi"
+
+};
+
+return names[value] ??
+    formatCategory(value);
+
+}
+
+function formatRarity(
+value
+) {
+
+const names = {
+
+    Common:
+        "Commune",
+
+    Uncommon:
+        "Peu commune",
+
+    Rare:
+        "Rare",
+
+    Epic:
+        "Épique",
+
+    Legendary:
+        "Légendaire",
+
+    Quest:
+        "Quête"
+
+};
+
+return names[value] ??
+    value ??
+    "Inconnue";
+
+}
+
+function formatCategory(
+category
+) {
 
 if (!category) {
     return "Non renseigné";
 }
-
 
 return String(category)
     .split("-")
@@ -714,18 +1103,11 @@ return String(category)
     )
     .join(" ");
 
-
 }
 
-/*
-
-* =============================================================
-* PROTECTION HTML
-* =============================================================
-  */
-
-function escapeHtml(value) {
-
+function escapeHtml(
+value
+) {
 
 return String(value)
     .replaceAll("&", "&amp;")
@@ -734,39 +1116,31 @@ return String(value)
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 
-
 }
-
-/*
-
-* =============================================================
-* ERREUR
-* =============================================================
-  */
 
 function showError() {
 
 
 const page =
-    document.querySelector(".item-page");
-
+    document.querySelector(
+        ".item-page"
+    );
 
 if (!page) {
     return;
 }
-
 
 page.innerHTML = `
 
     <div class="error-message">
 
         <h1>
-            Arme introuvable
+            Item introuvable
         </h1>
 
         <p>
-            L'arme demandée n'existe pas ou
-            n'a pas pu être chargée.
+            L'item demandé n'existe pas ou
+            n'a pas pu être chargé.
         </p>
 
         <a
@@ -780,6 +1154,5 @@ page.innerHTML = `
     </div>
 
 `;
-
 
 }
