@@ -1,432 +1,232 @@
+```javascript
 document.addEventListener("DOMContentLoaded", async () => {
 
-```
-// =========================================================
-// RÉCUPÉRATION DES PARAMÈTRES URL
-// =========================================================
+    // Récupère l'id dans l'URL
+    // Exemple : item.html?id=ak-104
+    const params = new URLSearchParams(window.location.search);
+    const weaponId = params.get("id");
 
-const params = new URLSearchParams(window.location.search);
-
-const type = params.get("type");
-const id = params.get("id");
-
-
-console.log("=================================");
-console.log("ITEM.JS");
-console.log("Type :", type);
-console.log("ID :", id);
-console.log("=================================");
-
-
-// =========================================================
-// ÉLÉMENTS HTML
-// =========================================================
-
-const title = document.getElementById("itemTitle");
-const eyebrow = document.getElementById("itemEyebrow");
-const description = document.getElementById("itemDescription");
-
-const breadcrumbName =
-    document.getElementById("breadcrumbName");
-
-const image =
-    document.getElementById("itemImage");
-
-const noImage =
-    document.getElementById("noImage");
-
-const error =
-    document.getElementById("itemError");
-
-
-// =========================================================
-// VÉRIFICATION DES PARAMÈTRES
-// =========================================================
-
-if (!type || !id) {
-
-    showError(
-        "Paramètres manquants dans l'URL."
-    );
-
-    return;
-}
-
-
-// =========================================================
-// BASES DE DONNÉES DISPONIBLES
-// =========================================================
-
-const databases = {
-
-    weapons: {
-        file: "weapons",
-        eyebrow: "WEAPON DATABASE"
-    },
-
-    armors: {
-        file: "armors",
-        eyebrow: "ARMOR DATABASE"
-    },
-
-    artifacts: {
-        file: "artifacts",
-        eyebrow: "ARTIFACT DATABASE"
-    }
-
-};
-
-
-const databaseInfo =
-    databases[type];
-
-
-if (!databaseInfo) {
-
-    showError(
-        "Type d'élément inconnu."
-    );
-
-    return;
-}
-
-
-// =========================================================
-// CHARGEMENT DU JSON
-// =========================================================
-
-const jsonPath =
-    `data/${databaseInfo.file}.json`;
-
-
-console.log("JSON :", jsonPath);
-
-
-try {
-
-    const response =
-        await fetch(jsonPath);
-
-
-    console.log(
-        "HTTP status :",
-        response.status
-    );
-
-
-    if (!response.ok) {
-
-        throw new Error(
-            `Impossible de charger ${jsonPath}`
-        );
-    }
-
-
-    const database =
-        await response.json();
-
-
-    // =====================================================
-    // VÉRIFICATION DU FORMAT
-    // =====================================================
-
-    if (!Array.isArray(database)) {
-
-        throw new Error(
-            "Le JSON doit contenir un tableau."
-        );
-    }
-
-
-    // =====================================================
-    // RECHERCHE DE L'ÉLÉMENT
-    // =====================================================
-
-    const item =
-        database.find(
-            entry => entry.id === id
-        );
-
-
-    if (!item) {
-
-        showError(
-            `L'élément "${id}" est introuvable.`
-        );
-
+    if (!weaponId) {
+        showError();
         return;
     }
 
+    try {
 
-    console.log(
-        "Élément trouvé :",
-        item
-    );
+        // Charge le fichier JSON
+        const response = await fetch("data/weapons.json");
 
+        if (!response.ok) {
+            throw new Error("Impossible de charger weapons.json");
+        }
 
-    // =====================================================
-    // AFFICHAGE
-    // =====================================================
+        const weapons = await response.json();
 
-    displayItem(
-        item,
-        type,
-        databaseInfo
-    );
+        // Recherche l'arme
+        const weapon = weapons.find(
+            item => item.id === weaponId
+        );
 
+        if (!weapon) {
+            showError();
+            return;
+        }
 
-} catch (err) {
+        // Affiche l'arme
+        displayWeapon(weapon);
 
-    console.error(
-        "ERREUR ITEM.JS :",
-        err
-    );
+    } catch (error) {
 
-    showError(
-        "Impossible de charger la base de données."
-    );
-
-}
-
-
-// =========================================================
-// FONCTION D'AFFICHAGE
-// =========================================================
-
-function displayItem(item, type, databaseInfo) {
-
-    // -----------------------------------------------------
-    // TITRE
-    // -----------------------------------------------------
-
-    document.title =
-        `ANOPOLY — ${item.name || "Database"}`;
-
-
-    title.textContent =
-        item.name || "Objet sans nom";
-
-
-    breadcrumbName.textContent =
-        item.name || "Objet";
-
-
-    eyebrow.textContent =
-        databaseInfo.eyebrow;
-
-
-    // -----------------------------------------------------
-    // DESCRIPTION
-    // -----------------------------------------------------
-
-    if (item.description) {
-
-        description.textContent =
-            item.description;
-
-    } else {
-
-        description.textContent = "";
-    }
-
-
-    // -----------------------------------------------------
-    // IMAGE
-    // -----------------------------------------------------
-
-    if (item.image) {
-
-        image.src =
-            item.image;
-
-        image.alt =
-            item.name || "Objet";
-
-
-        image.onload = () => {
-
-            image.style.display =
-                "block";
-
-            noImage.style.display =
-                "none";
-        };
-
-
-        image.onerror = () => {
-
-            image.style.display =
-                "none";
-
-            noImage.style.display =
-                "flex";
-        };
-
-    } else {
-
-        image.style.display =
-            "none";
-
-        noImage.style.display =
-            "flex";
-    }
-
-
-    // -----------------------------------------------------
-    // ARMES
-    // -----------------------------------------------------
-
-    if (type === "weapons") {
-
-        displayWeapon(item);
+        console.error(error);
+        showError();
 
     }
 
+});
 
-    // -----------------------------------------------------
-    // DESCRIPTION COMPLÈTE
-    // -----------------------------------------------------
-
-    if (item.description) {
-
-        const fullDescription =
-            document.getElementById(
-                "fullDescription"
-            );
-
-        const descriptionSection =
-            document.getElementById(
-                "descriptionSection"
-            );
-
-
-        fullDescription.textContent =
-            item.description;
-
-
-        descriptionSection.style.display =
-            "block";
-    }
-
-}
-
-
-// =========================================================
-// AFFICHAGE D'UNE ARME
-// =========================================================
 
 function displayWeapon(weapon) {
 
-    setStat(
-        "statCaliber",
-        weapon.caliber,
-        ""
-    );
+    /*
+     * =========================
+     * INFORMATIONS PRINCIPALES
+     * =========================
+     */
+
+    document.getElementById("weapon-name").textContent =
+        weapon.name;
+
+    document.getElementById("weapon-category").textContent =
+        formatCategory(weapon.category);
+
+    document.getElementById("weapon-id").textContent =
+        weapon.id;
+
+    document.getElementById("weapon-category-info").textContent =
+        formatCategory(weapon.category);
 
 
-    setStat(
-        "statWeight",
-        weapon.weight,
-        weapon.weight !== undefined
-            ? " kg"
-            : ""
-    );
+    /*
+     * =========================
+     * CALIBRE
+     * =========================
+     */
+
+    const caliber =
+        weapon.caliber || "Non renseigné";
+
+    document.getElementById("weapon-caliber").textContent =
+        caliber;
+
+    document.getElementById("weapon-caliber-info").textContent =
+        caliber;
 
 
-    setStat(
-        "statMagazine",
-        weapon.magazine,
-        weapon.magazine !== undefined
-            ? " rounds"
-            : ""
-    );
+    /*
+     * =========================
+     * STATISTIQUES
+     * =========================
+     */
+
+    document.getElementById("damage").textContent =
+        weapon.damage ?? "-";
+
+    document.getElementById("fire-rate").textContent =
+        weapon.fireRate ?? "-";
+
+    document.getElementById("magazine").textContent =
+        weapon.magazine ?? "-";
+
+    document.getElementById("reload-time").textContent =
+        weapon.reloadTime ?? "-";
+
+    document.getElementById("range").textContent =
+        weapon.range ?? "-";
+
+    document.getElementById("spread").textContent =
+        weapon.spread ?? "-";
+
+    document.getElementById("ergonomics").textContent =
+        weapon.ergonomics ?? "-";
+
+    document.getElementById("weight").textContent =
+        weapon.weight ?? "-";
 
 
-    setStat(
-        "statRange",
-        weapon.range,
-        weapon.range !== undefined
-            ? " m"
-            : ""
-    );
+    /*
+     * =========================
+     * MULTIPLICATEURS
+     * =========================
+     *
+     * Pour le moment ils ne sont
+     * pas encore dans weapons.json.
+     */
+
+    document.getElementById("body-multiplier").textContent =
+        formatMultiplier(weapon.bodyMultiplier, "1.00");
+
+    document.getElementById("head-multiplier").textContent =
+        formatMultiplier(weapon.headMultiplier);
+
+    document.getElementById("arm-multiplier").textContent =
+        formatMultiplier(weapon.armMultiplier);
+
+    document.getElementById("leg-multiplier").textContent =
+        formatMultiplier(weapon.legMultiplier);
 
 
-    setStat(
-        "statDamage",
-        weapon.damage,
-        ""
-    );
+    /*
+     * =========================
+     * IMAGE
+     * =========================
+     *
+     * On pourra utiliser :
+     *
+     * images/weapons/ak-104.webp
+     *
+     * grâce à l'id de l'arme.
+     */
+
+    const image = document.getElementById("weapon-image");
+
+    image.src = `images/weapons/${weapon.id}.webp`;
+
+    image.alt = weapon.name;
+
+    image.onerror = () => {
+        image.style.display = "none";
+    };
 
 
-    setStat(
-        "statRPM",
-        weapon.rpm,
-        weapon.rpm !== undefined
-            ? " RPM"
-            : ""
-    );
+    /*
+     * =========================
+     * TITRE DE LA PAGE
+     * =========================
+     */
 
-
-    setStat(
-        "statHeadshot",
-        weapon.headshotMultiplier,
-        weapon.headshotMultiplier !== undefined
-            ? "x"
-            : ""
-    );
-
+    document.title =
+        `${weapon.name} - Anopoly Wiki`;
 }
 
 
-// =========================================================
-// AFFICHAGE D'UNE STATISTIQUE
-// =========================================================
+/*
+ * Transforme :
+ *
+ * assault-rifle
+ * → Assault Rifle
+ *
+ * machine-gun
+ * → Machine Gun
+ */
 
-function setStat(elementId, value, suffix) {
+function formatCategory(category) {
 
-    const element =
-        document.getElementById(elementId);
-
-
-    if (!element) {
-        return;
+    if (!category) {
+        return "Non renseigné";
     }
 
-
-    if (
-        value === undefined ||
-        value === null ||
-        value === ""
-    ) {
-
-        element.textContent =
-            "—";
-
-        return;
-    }
-
-
-    element.textContent =
-        `${value}${suffix}`;
+    return category
+        .split("-")
+        .map(word =>
+            word.charAt(0).toUpperCase() + word.slice(1)
+        )
+        .join(" ");
 }
 
 
-// =========================================================
-// AFFICHAGE D'UNE ERREUR
-// =========================================================
+/*
+ * Affichage des multiplicateurs
+ */
 
-function showError(message) {
+function formatMultiplier(value, fallback = "-") {
 
-    if (error) {
-
-        error.textContent =
-            message;
-
-        error.style.display =
-            "block";
+    if (value === undefined || value === null) {
+        return fallback;
     }
+
+    return `${Number(value).toFixed(2)}×`;
+}
+
+
+/*
+ * Erreur
+ */
+
+function showError() {
+
+    document.querySelector(".item-page").innerHTML = `
+        <a href="weapons.html" class="back-button">
+            ← Retour aux armes
+        </a>
+
+        <div class="error-message">
+            <h1>Arme introuvable</h1>
+            <p>
+                L'arme demandée n'existe pas ou
+                n'a pas pu être chargée.
+            </p>
+        </div>
+    `;
 
 }
 ```
-
-});
