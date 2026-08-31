@@ -1,164 +1,812 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Arme - Anopoly Wiki</title>
 
-    <link rel="stylesheet" href="style.css">
+<title>Arme — ANOPOLY</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+
 </head>
 
 <body>
 
-    <main class="item-page">
-
-        <!-- Retour -->
-        <a href="weapons.html" class="back-button">
-            ← Retour aux armes
-        </a>
-
-        <!-- En-tête de l'arme -->
-        <section class="item-header">
-
-            <div class="item-image">
-                <img id="weapon-image" src="" alt="">
-            </div>
-
-            <div class="item-title">
-                <span id="weapon-category" class="item-category"></span>
-                <h1 id="weapon-name">Chargement...</h1>
-                <p id="weapon-caliber"></p>
-            </div>
-
-        </section>
+<header class="topbar">
 
 
-        <!-- Statistiques principales -->
-        <section class="stats-section">
+<button
+    class="menu-btn"
+    id="menuBtn"
+    aria-label="Ouvrir le menu">
+    ☰
+</button>
 
-            <h2>Statistiques</h2>
+<a class="brand" href="index.html">
+    <span>ANO</span>POLY
+</a>
 
-            <div class="stats-grid">
-
-                <div class="stat-card">
-                    <span class="stat-label">Dégâts</span>
-                    <span id="damage" class="stat-value">-</span>
-                </div>
-
-                <div class="stat-card">
-                    <span class="stat-label">Cadence de tir</span>
-                    <span id="fire-rate" class="stat-value">-</span>
-                    <span class="stat-unit">RPM</span>
-                </div>
-
-                <div class="stat-card">
-                    <span class="stat-label">Chargeur</span>
-                    <span id="magazine" class="stat-value">-</span>
-                    <span class="stat-unit">coups</span>
-                </div>
-
-                <div class="stat-card">
-                    <span class="stat-label">Temps de rechargement</span>
-                    <span id="reload-time" class="stat-value">-</span>
-                    <span class="stat-unit">s</span>
-                </div>
-
-                <div class="stat-card">
-                    <span class="stat-label">Portée</span>
-                    <span id="range" class="stat-value">-</span>
-                    <span class="stat-unit">m</span>
-                </div>
-
-                <div class="stat-card">
-                    <span class="stat-label">Dispersion</span>
-                    <span id="spread" class="stat-value">-</span>
-                    <span class="stat-unit">°</span>
-                </div>
-
-                <div class="stat-card">
-                    <span class="stat-label">Ergonomie</span>
-                    <span id="ergonomics" class="stat-value">-</span>
-                </div>
-
-                <div class="stat-card">
-                    <span class="stat-label">Poids</span>
-                    <span id="weight" class="stat-value">-</span>
-                    <span class="stat-unit">kg</span>
-                </div>
-
-            </div>
-
-        </section>
+<div class="topbar-label">
+    DATABASE // WEAPON ARCHIVE
+</div>
 
 
-        <!-- Multiplicateurs de dégâts -->
-        <section class="damage-section">
+</header>
 
-            <h2>Dégâts</h2>
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
 
-            <div class="damage-grid">
-
-                <div class="damage-card">
-                    <span class="damage-label">Corps</span>
-                    <span id="body-multiplier" class="damage-value">1.00×</span>
-                </div>
-
-                <div class="damage-card">
-                    <span class="damage-label">Tête</span>
-                    <span id="head-multiplier" class="damage-value">-</span>
-                </div>
-
-                <div class="damage-card">
-                    <span class="damage-label">Bras</span>
-                    <span id="arm-multiplier" class="damage-value">-</span>
-                </div>
-
-                <div class="damage-card">
-                    <span class="damage-label">Jambes</span>
-                    <span id="leg-multiplier" class="damage-value">-</span>
-                </div>
-
-            </div>
-
-        </section>
+<aside class="sidebar" id="sidebar">
 
 
-        <!-- Informations supplémentaires -->
-        <section class="info-section">
+<nav class="nav">
 
-            <h2>Informations</h2>
-
-            <div class="info-list">
-
-                <div class="info-row">
-                    <span>Identifiant</span>
-                    <span id="weapon-id">-</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Catégorie</span>
-                    <span id="weapon-category-info">-</span>
-                </div>
-
-                <div class="info-row">
-                    <span>Calibre</span>
-                    <span id="weapon-caliber-info">-</span>
-                </div>
-
-            </div>
-
-        </section>
+    <!-- ACCUEIL -->
+    <a class="nav-home" href="index.html">
+        <span>⌂</span>
+        <span>Accueil</span>
+    </a>
 
 
-        <!-- Message d'erreur -->
-        <div id="error-message" class="error-message" hidden>
-            Arme introuvable.
+    <!-- ARMES -->
+    <div class="nav-group">
+
+        <button
+            class="nav-parent"
+            aria-expanded="true">
+
+            <span>⚔</span>
+            <span>Armes</span>
+            <span class="chevron">⌄</span>
+
+        </button>
+
+        <div class="nav-children open">
+
+            <a href="category.html?type=smg">
+                SMG
+            </a>
+
+            <a href="category.html?type=shotgun">
+                Shotgun
+            </a>
+
+            <a href="category.html?type=machine-gun">
+                Machine Gun
+            </a>
+
+            <a href="category.html?type=assault-rifle">
+                Assault Rifle
+            </a>
+
+            <a href="category.html?type=sniper">
+                Sniper
+            </a>
+
+            <a href="category.html?type=dmr">
+                DMR
+            </a>
+
         </div>
 
-    </main>
+    </div>
 
-    <script src="item.js"></script>
+
+    <!-- ARMURES -->
+    <div class="nav-group">
+
+        <button
+            class="nav-parent"
+            aria-expanded="false">
+
+            <span>🛡</span>
+            <span>Armures</span>
+            <span class="chevron">⌄</span>
+
+        </button>
+
+        <div class="nav-children">
+
+            <a href="category.html?type=armor-combat">
+                Combat
+            </a>
+
+            <a href="category.html?type=armor-research">
+                Recherche
+            </a>
+
+            <a href="category.html?type=armor-intermediate">
+                Intermédiaire
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAPS -->
+    <div class="nav-group">
+
+        <button
+            class="nav-parent"
+            aria-expanded="false">
+
+            <span>▣</span>
+            <span>Maps</span>
+            <span class="chevron">⌄</span>
+
+        </button>
+
+        <div class="nav-children">
+
+            <a href="category.html?type=fort-bastion">
+                Fort Bastion
+            </a>
+
+            <a href="category.html?type=dune-ensanglantee">
+                Dune Ensanglantée
+            </a>
+
+            <a href="category.html?type=map-03">
+                Map 03
+            </a>
+
+            <a href="category.html?type=map-04">
+                Map 04
+            </a>
+
+            <a href="category.html?type=map-05">
+                Map 05
+            </a>
+
+            <a href="category.html?type=map-06">
+                Map 06
+            </a>
+
+            <a href="category.html?type=map-07">
+                Map 07
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ENNEMIS -->
+    <div class="nav-group">
+
+        <button
+            class="nav-parent"
+            aria-expanded="false">
+
+            <span>☠</span>
+            <span>Ennemies</span>
+            <span class="chevron">⌄</span>
+
+        </button>
+
+        <div class="nav-children">
+
+            <a href="category.html?type=enemies">
+                Tous les ennemis
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ARTEFACTS -->
+    <div class="nav-group">
+
+        <button
+            class="nav-parent"
+            aria-expanded="false">
+
+            <span>✦</span>
+            <span>Artefacts</span>
+            <span class="chevron">⌄</span>
+
+        </button>
+
+        <div class="nav-children">
+
+            <a href="category.html?type=artifacts">
+                Tous les artefacts
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+</aside>
+
+<!-- =========================================================
+     CONTENU
+========================================================= -->
+
+<main class="content">
+
+
+<div class="weapon-page">
+
+    <!-- RETOUR -->
+    <a
+        href="category.html?type=smg"
+        class="back-button"
+        id="back-button">
+
+        ← Retour aux armes
+
+    </a>
+
+
+    <!-- =====================================================
+         BREADCRUMB
+    ====================================================== -->
+
+    <div class="weapon-breadcrumb">
+
+        <a href="index.html">
+            ANOPOLY
+        </a>
+
+        <span>/</span>
+
+        <a href="category.html?type=smg" id="breadcrumb-category">
+            ARMES
+        </a>
+
+        <span>/</span>
+
+        <span id="breadcrumb-name">
+            CHARGEMENT...
+        </span>
+
+    </div>
+
+
+    <!-- =====================================================
+         HEADER ARME
+    ====================================================== -->
+
+    <section class="weapon-hero">
+
+        <div class="weapon-visual">
+
+            <div class="weapon-image-frame">
+
+                <div class="weapon-image-grid"></div>
+
+                <img
+                    id="weapon-image"
+                    src=""
+                    alt="">
+
+                <div
+                    class="weapon-image-placeholder"
+                    id="weapon-image-placeholder">
+
+                    IMAGE NON DISPONIBLE
+
+                </div>
+
+            </div>
+
+            <div class="weapon-id-label">
+                ID // <span id="weapon-id">---</span>
+            </div>
+
+        </div>
+
+
+        <div class="weapon-heading">
+
+            <div
+                id="weapon-category"
+                class="weapon-category">
+
+                CHARGEMENT
+
+            </div>
+
+            <h1 id="weapon-name">
+                Chargement...
+            </h1>
+
+            <div class="weapon-caliber-line">
+
+                <span class="weapon-caliber-label">
+                    CALIBRE
+                </span>
+
+                <span id="weapon-caliber">
+                    ---
+                </span>
+
+            </div>
+
+            <div class="weapon-description" id="weapon-description">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STATISTIQUES PRINCIPALES
+    ====================================================== -->
+
+    <section class="weapon-section">
+
+        <div class="section-heading">
+
+            <span class="section-index">
+                01
+            </span>
+
+            <div>
+                <div class="section-kicker">
+                    PERFORMANCE
+                </div>
+
+                <h2>
+                    Statistiques
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div class="weapon-stats-grid">
+
+
+            <div class="weapon-stat-card weapon-stat-primary">
+
+                <div class="weapon-stat-label">
+                    DÉGÂTS
+                </div>
+
+                <div
+                    id="stat-damage"
+                    class="weapon-stat-value">
+                    —
+                </div>
+
+                <div class="weapon-stat-unit">
+                    PAR TIR
+                </div>
+
+            </div>
+
+
+            <div class="weapon-stat-card">
+
+                <div class="weapon-stat-label">
+                    CADENCE
+                </div>
+
+                <div
+                    id="stat-fire-rate"
+                    class="weapon-stat-value">
+                    —
+                </div>
+
+                <div class="weapon-stat-unit">
+                    RPM
+                </div>
+
+            </div>
+
+
+            <div class="weapon-stat-card">
+
+                <div class="weapon-stat-label">
+                    CHARGEUR
+                </div>
+
+                <div
+                    id="stat-magazine"
+                    class="weapon-stat-value">
+                    —
+                </div>
+
+                <div class="weapon-stat-unit">
+                    COUPS
+                </div>
+
+            </div>
+
+
+            <div class="weapon-stat-card">
+
+                <div class="weapon-stat-label">
+                    RECHARGEMENT
+                </div>
+
+                <div
+                    id="stat-reload"
+                    class="weapon-stat-value">
+                    —
+                </div>
+
+                <div class="weapon-stat-unit">
+                    SECONDES
+                </div>
+
+            </div>
+
+
+            <div class="weapon-stat-card">
+
+                <div class="weapon-stat-label">
+                    PORTÉE
+                </div>
+
+                <div
+                    id="stat-range"
+                    class="weapon-stat-value">
+                    —
+                </div>
+
+                <div class="weapon-stat-unit">
+                    MÈTRES
+                </div>
+
+            </div>
+
+
+            <div class="weapon-stat-card">
+
+                <div class="weapon-stat-label">
+                    DISPERSION
+                </div>
+
+                <div
+                    id="stat-spread"
+                    class="weapon-stat-value">
+                    —
+                </div>
+
+                <div class="weapon-stat-unit">
+                    °
+                </div>
+
+            </div>
+
+
+            <div class="weapon-stat-card">
+
+                <div class="weapon-stat-label">
+                    ERGONOMIE
+                </div>
+
+                <div
+                    id="stat-ergonomics"
+                    class="weapon-stat-value">
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="weapon-stat-card">
+
+                <div class="weapon-stat-label">
+                    POIDS
+                </div>
+
+                <div
+                    id="stat-weight"
+                    class="weapon-stat-value">
+                    —
+                </div>
+
+                <div class="weapon-stat-unit">
+                    KG
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MULTIPLICATEURS
+    ====================================================== -->
+
+    <section
+        class="weapon-section"
+        id="damage-section">
+
+        <div class="section-heading">
+
+            <span class="section-index">
+                02
+            </span>
+
+            <div>
+
+                <div class="section-kicker">
+                    ZONES D'IMPACT
+                </div>
+
+                <h2>
+                    Multiplicateurs de dégâts
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="hit-zone-grid">
+
+
+            <div class="hit-zone-card">
+
+                <div class="hit-zone-icon">
+                    BODY
+                </div>
+
+                <div class="hit-zone-info">
+
+                    <span>
+                        Corps
+                    </span>
+
+                    <strong id="mult-body">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="hit-zone-card">
+
+                <div class="hit-zone-icon">
+                    HEAD
+                </div>
+
+                <div class="hit-zone-info">
+
+                    <span>
+                        Tête
+                    </span>
+
+                    <strong id="mult-head">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="hit-zone-card">
+
+                <div class="hit-zone-icon">
+                    ARM
+                </div>
+
+                <div class="hit-zone-info">
+
+                    <span>
+                        Bras
+                    </span>
+
+                    <strong id="mult-arm">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="hit-zone-card">
+
+                <div class="hit-zone-icon">
+                    LEG
+                </div>
+
+                <div class="hit-zone-info">
+
+                    <span>
+                        Jambes
+                    </span>
+
+                    <strong id="mult-leg">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         COURBE DE DÉGÂTS
+    ====================================================== -->
+
+    <section
+        class="weapon-section"
+        id="damage-curve-section">
+
+        <div class="section-heading">
+
+            <span class="section-index">
+                03
+            </span>
+
+            <div>
+
+                <div class="section-kicker">
+                    BALISTIQUE
+                </div>
+
+                <h2>
+                    Dégâts par distance
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="damage-curve"
+            class="damage-curve">
+
+            <div class="curve-empty">
+                Aucune donnée balistique disponible.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         INFORMATIONS
+    ====================================================== -->
+
+    <section class="weapon-section">
+
+        <div class="section-heading">
+
+            <span class="section-index">
+                04
+            </span>
+
+            <div>
+
+                <div class="section-kicker">
+                    DATABASE
+                </div>
+
+                <h2>
+                    Informations
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="weapon-info-grid">
+
+            <div class="weapon-info-row">
+
+                <span>
+                    Identifiant
+                </span>
+
+                <strong id="info-id">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="weapon-info-row">
+
+                <span>
+                    Catégorie
+                </span>
+
+                <strong id="info-category">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="weapon-info-row">
+
+                <span>
+                    Calibre
+                </span>
+
+                <strong id="info-caliber">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="weapon-info-row">
+
+                <span>
+                    Type
+                </span>
+
+                <strong id="info-type">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ERREUR
+    ====================================================== -->
+
+    <section
+        id="weapon-error"
+        class="weapon-error"
+        hidden>
+
+        <div class="weapon-error-code">
+            ERROR // 404
+        </div>
+
+        <h2>
+            Arme introuvable
+        </h2>
+
+        <p id="weapon-error-text">
+            Impossible de charger les données de cette arme.
+        </p>
+
+        <a
+            href="category.html?type=smg"
+            class="cta">
+
+            RETOUR AUX ARMES →
+
+        </a>
+
+    </section>
+
+</div>
+
+
+</main>
+
+<script src="js/app.js"></script>
+
+<script src="js/item.js"></script>
 
 </body>
 </html>
