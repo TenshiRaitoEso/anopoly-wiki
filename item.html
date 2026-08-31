@@ -1,219 +1,166 @@
+```html
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANOPOLY — Item</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Arme - Anopoly Wiki</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="topbar">
-  <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
+    <main class="item-page">
 
-  <a class="brand" href="index.html">
-    <span>ANO</span>POLY
-  </a>
+        <!-- Retour -->
+        <a href="weapons.html" class="back-button">
+            ← Retour aux armes
+        </a>
 
-  <div class="topbar-label">
-    DATABASE // ARCHIVE
-  </div>
-</header>
+        <!-- En-tête de l'arme -->
+        <section class="item-header">
 
-<aside class="sidebar" id="sidebar">
-  <nav class="nav">
-    
-<!-- ACCUEIL -->
-<a class="nav-home" href="index.html">
-  ⌂ <span>Accueil</span>
-</a>
+            <div class="item-image">
+                <img id="weapon-image" src="" alt="">
+            </div>
 
-<!-- ARMES -->
-<div class="nav-group">
-  <button class="nav-parent" aria-expanded="false">
-    <span>⚔</span>
-    <span>Armes</span>
-    <span class="chevron">⌄</span>
-  </button>
+            <div class="item-title">
+                <span id="weapon-category" class="item-category"></span>
+                <h1 id="weapon-name">Chargement...</h1>
+                <p id="weapon-caliber"></p>
+            </div>
 
-  <div class="nav-children">
-    <a href="category.html?type=smg">SMG</a>
-    <a href="category.html?type=shotgun">Shotgun</a>
-    <a href="category.html?type=machine-gun">Machine Gun</a>
-    <a href="category.html?type=assault-rifle">Assault Rifle</a>
-    <a href="category.html?type=sniper">Sniper</a>
-    <a href="category.html?type=dmr">DMR</a>
-  </div>
-</div>
+        </section>
 
-<!-- ARMURES -->
-<div class="nav-group">
-  <button class="nav-parent" aria-expanded="false">
-    <span>🛡</span>
-    <span>Armures</span>
-    <span class="chevron">⌄</span>
-  </button>
 
-  <div class="nav-children">
-    <a href="category.html?type=armor-combat">Combat</a>
-    <a href="category.html?type=armor-research">Recherche</a>
-    <a href="category.html?type=armor-intermediate">Intermédiaire</a>
-  </div>
-</div>
+        <!-- Statistiques principales -->
+        <section class="stats-section">
 
-<!-- MAPS -->
-<div class="nav-group">
-  <button class="nav-parent" aria-expanded="false">
-    <span>▣</span>
-    <span>Maps</span>
-    <span class="chevron">⌄</span>
-  </button>
+            <h2>Statistiques</h2>
 
-  <div class="nav-children">
-    <a href="category.html?type=fort-bastion">Fort Bastion</a>
-    <a href="category.html?type=dune-ensanglantee">Dune Ensanglantée</a>
-    <a href="category.html?type=map-03">Map 03</a>
-    <a href="category.html?type=map-04">Map 04</a>
-    <a href="category.html?type=map-05">Map 05</a>
-    <a href="category.html?type=map-06">Map 06</a>
-    <a href="category.html?type=map-07">Map 07</a>
-  </div>
-</div>
+            <div class="stats-grid">
 
-<!-- ENNEMIES -->
-<div class="nav-group">
-  <button class="nav-parent" aria-expanded="false">
-    <span>☠</span>
-    <span>Ennemies</span>
-    <span class="chevron">⌄</span>
-  </button>
+                <div class="stat-card">
+                    <span class="stat-label">Dégâts</span>
+                    <span id="damage" class="stat-value">-</span>
+                </div>
 
-  <div class="nav-children">
-    <a href="category.html?type=enemies">
-      Tous les ennemis
-    </a>
-  </div>
-</div>
+                <div class="stat-card">
+                    <span class="stat-label">Cadence de tir</span>
+                    <span id="fire-rate" class="stat-value">-</span>
+                    <span class="stat-unit">RPM</span>
+                </div>
 
-<!-- ARTEFACTS -->
-<div class="nav-group">
-  <button class="nav-parent" aria-expanded="false">
-    <span>✦</span>
-    <span>Artefacts</span>
-    <span class="chevron">⌄</span>
-  </button>
+                <div class="stat-card">
+                    <span class="stat-label">Chargeur</span>
+                    <span id="magazine" class="stat-value">-</span>
+                    <span class="stat-unit">coups</span>
+                </div>
 
-  <div class="nav-children">
-    <a href="category.html?type=artifacts">
-      Tous les artefacts
-    </a>
-  </div>
-</div>
+                <div class="stat-card">
+                    <span class="stat-label">Temps de rechargement</span>
+                    <span id="reload-time" class="stat-value">-</span>
+                    <span class="stat-unit">s</span>
+                </div>
 
-  </nav>
-</aside>
+                <div class="stat-card">
+                    <span class="stat-label">Portée</span>
+                    <span id="range" class="stat-value">-</span>
+                    <span class="stat-unit">m</span>
+                </div>
 
-<main class="content inner">
+                <div class="stat-card">
+                    <span class="stat-label">Dispersion</span>
+                    <span id="spread" class="stat-value">-</span>
+                    <span class="stat-unit">°</span>
+                </div>
 
-  <div class="breadcrumb" id="breadcrumb">
-    <a href="index.html">ANOPOLY</a>
-    / DATABASE
-    / ITEM
-  </div>
+                <div class="stat-card">
+                    <span class="stat-label">Ergonomie</span>
+                    <span id="ergonomics" class="stat-value">-</span>
+                </div>
 
-  <section class="item-page" id="itemPage">
+                <div class="stat-card">
+                    <span class="stat-label">Poids</span>
+                    <span id="weight" class="stat-value">-</span>
+                    <span class="stat-unit">kg</span>
+                </div>
 
-<!-- EN-TÊTE -->
-<header class="item-header">
+            </div>
 
-  <div class="eyebrow" id="itemCategory">
-    DATABASE
-  </div>
+        </section>
 
-  <h1 id="itemName">
-    Chargement...
-  </h1>
 
-  <div class="item-rarity" id="itemRarity"></div>
+        <!-- Multiplicateurs de dégâts -->
+        <section class="damage-section">
 
-  <p class="lead" id="itemDescription"></p>
+            <h2>Dégâts</h2>
 
-</header>
+            <div class="damage-grid">
 
-<!-- CONTENU PRINCIPAL -->
-<section class="item-layout">
+                <div class="damage-card">
+                    <span class="damage-label">Corps</span>
+                    <span id="body-multiplier" class="damage-value">1.00×</span>
+                </div>
 
-  <!-- IMAGE / PREVIEW -->
-  <div class="item-preview">
+                <div class="damage-card">
+                    <span class="damage-label">Tête</span>
+                    <span id="head-multiplier" class="damage-value">-</span>
+                </div>
 
-    <div class="item-image" id="itemImage">
-      NO IMAGE
-    </div>
+                <div class="damage-card">
+                    <span class="damage-label">Bras</span>
+                    <span id="arm-multiplier" class="damage-value">-</span>
+                </div>
 
-  </div>
+                <div class="damage-card">
+                    <span class="damage-label">Jambes</span>
+                    <span id="leg-multiplier" class="damage-value">-</span>
+                </div>
 
-  <!-- INFORMATIONS -->
-  <div class="item-info">
+            </div>
 
-    <div class="item-section">
-      <div class="item-section-title">
-        GENERAL
-      </div>
+        </section>
 
-      <div class="item-stats" id="generalStats">
-      </div>
-    </div>
 
-    <div class="item-section">
-      <div class="item-section-title">
-        STATISTICS
-      </div>
+        <!-- Informations supplémentaires -->
+        <section class="info-section">
 
-      <div class="item-stats" id="itemStats">
-      </div>
-    </div>
+            <h2>Informations</h2>
 
-    <div class="item-section" id="bonusSection">
+            <div class="info-list">
 
-      <div class="item-section-title">
-        BONUS
-      </div>
+                <div class="info-row">
+                    <span>Identifiant</span>
+                    <span id="weapon-id">-</span>
+                </div>
 
-      <div class="item-stats" id="itemBonus">
-      </div>
+                <div class="info-row">
+                    <span>Catégorie</span>
+                    <span id="weapon-category-info">-</span>
+                </div>
 
-    </div>
+                <div class="info-row">
+                    <span>Calibre</span>
+                    <span id="weapon-caliber-info">-</span>
+                </div>
 
-    <div class="item-section" id="malusSection">
+            </div>
 
-      <div class="item-section-title">
-        MALUS
-      </div>
+        </section>
 
-      <div class="item-stats" id="itemMalus">
-      </div>
 
-    </div>
+        <!-- Message d'erreur -->
+        <div id="error-message" class="error-message" hidden>
+            Arme introuvable.
+        </div>
 
-  </div>
+    </main>
 
-</section>
-
-  </section>
-
-  <!-- ERREUR -->
-
-  <div class="placeholder" id="itemError" style="display:none;">
-    Impossible de trouver cet élément.
-  </div>
-
-</main>
-
-<script src="js/app.js"></script>
-
-<script src="js/item.js"></script>
+    <script src="item.js"></script>
 
 </body>
 </html>
+```
