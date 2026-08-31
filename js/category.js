@@ -103,124 +103,169 @@ function initializeNavigation() {
 
 async function loadDatabase() {
 
-    const [
-        weaponsResponse,
-        armorsResponse,
-        mapsResponse,
-        enemiesResponse,
-        artifactsResponse
-    ] = await Promise.all([
+    const databases = {
 
-        fetch("data/weapons.json"),
+        weapons: "data/weapons.json",
 
-        fetch("data/armors.json"),
+        armors: "data/armors.json",
 
-        fetch("data/maps.json"),
+        maps: "data/maps.json",
 
-        fetch("data/enemies.json"),
+        enemies: "data/enemies.json",
 
-        fetch("data/artifacts.json")
-
-    ]);
-
-
-    if (!weaponsResponse.ok) {
-
-        throw new Error(
-            "Impossible de charger weapons.json"
-        );
-
-    }
-
-
-    if (!armorsResponse.ok) {
-
-        throw new Error(
-            "Impossible de charger armors.json"
-        );
-
-    }
-
-
-    if (!mapsResponse.ok) {
-
-        throw new Error(
-            "Impossible de charger maps.json"
-        );
-
-    }
-
-
-    if (!enemiesResponse.ok) {
-
-        throw new Error(
-            "Impossible de charger enemies.json"
-        );
-
-    }
-
-
-    if (!artifactsResponse.ok) {
-
-        throw new Error(
-            "Impossible de charger artifacts.json"
-        );
-
-    }
-
-
-    const [
-        weaponsData,
-        armorsData,
-        mapsData,
-        enemiesData,
-        artifactsData
-    ] = await Promise.all([
-
-        weaponsResponse.json(),
-
-        armorsResponse.json(),
-
-        mapsResponse.json(),
-
-        enemiesResponse.json(),
-
-        artifactsResponse.json()
-
-    ]);
-
-
-    return {
-
-        weapons: extractArray(
-            weaponsData,
-            "weapons"
-        ),
-
-        armors: extractArray(
-            armorsData,
-            "armors"
-        ),
-
-        maps: extractArray(
-            mapsData,
-            "maps"
-        ),
-
-        enemies: extractArray(
-            enemiesData,
-            "enemies"
-        ),
-
-        artifacts: extractArray(
-            artifactsData,
-            "artifacts"
-        )
+        artifacts: "data/artifacts.json"
 
     };
 
+
+    const result = {
+
+        weapons: [],
+
+        armors: [],
+
+        maps: [],
+
+        enemies: [],
+
+        artifacts: []
+
+    };
+
+
+    /*
+     * Chaque database est chargée indépendamment.
+     *
+     * Si un fichier n'existe pas encore, cela ne bloque
+     * pas les autres databases.
+     */
+
+    await Promise.all(
+
+        Object.entries(databases).map(
+            async ([databaseName, filePath]) => {
+
+                try {
+
+                    const response =
+                        await fetch(filePath);
+
+
+                    /*
+                     * Une database absente est simplement
+                     * considérée comme vide.
+                     */
+
+                    if (!response.ok) {
+
+                        console.warn(
+                            `Database non disponible : ${filePath}`
+                        );
+
+                        return;
+
+                    }
+
+
+                    const data =
+                        await response.json();
+
+
+                    result[databaseName] =
+                        extractArray(
+                            data,
+                            databaseName
+                        );
+
+
+                } catch (error) {
+
+                    console.warn(
+                        `Impossible de charger ${filePath}`,
+                        error
+                    );
+
+                }
+
+            }
+        )
+
+    );
+
+
+    return result;
+
 }
 
+
+/* =========================================================
+   EXTRACTION TABLEAU JSON
+========================================================= */
+
+function extractArray(data, propertyName) {
+
+    /*
+     * JSON directement sous forme de tableau :
+     *
+     * [
+     *   {...},
+     *   {...}
+     * ]
+     */
+
+    if (Array.isArray(data)) {
+
+        return data;
+
+    }
+
+
+    /*
+     * JSON sous forme :
+     *
+     * {
+     *     "weapons": [...]
+     * }
+     */
+
+    if (
+        data &&
+        Array.isArray(
+            data[propertyName]
+        )
+    ) {
+
+        return data[propertyName];
+
+    }
+
+
+    /*
+     * Certains fichiers peuvent utiliser
+     * un nom singulier.
+     */
+
+    const singularName =
+        propertyName.endsWith("s")
+            ? propertyName.slice(0, -1)
+            : propertyName;
+
+
+    if (
+        data &&
+        Array.isArray(
+            data[singularName]
+        )
+    ) {
+
+        return data[singularName];
+
+    }
+
+
+    return [];
+
+}
 
 /* =========================================================
    EXTRACTION TABLEAU JSON
