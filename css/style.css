@@ -493,9 +493,7 @@ body {
 }
 
 /* =========================================================
-   =========================================================
    PAGE ITEM / ARME
-   =========================================================
 ========================================================= */
 
 .item-page {
@@ -506,9 +504,9 @@ body {
   padding: 110px 40px 80px;
 }
 
-/* ---------------------------------------------------------
+/* =========================================================
    BOUTON RETOUR
---------------------------------------------------------- */
+========================================================= */
 
 .back-button {
   display: inline-flex;
@@ -534,9 +532,9 @@ body {
   color: #fff;
 }
 
-/* ---------------------------------------------------------
+/* =========================================================
    HEADER ARME
---------------------------------------------------------- */
+========================================================= */
 
 .item-header {
   display: grid;
@@ -650,37 +648,20 @@ body {
 .stats-grid {
   display: grid;
 
-  /*
-   * IMPORTANT :
-   * 2 colonnes fixes.
-   * Chaque ligne contient donc :
-   *
-   * DÉGÂTS        | CADENCE
-   * 22            | 850 RPM
-   *
-   * CHARGEUR      | RECHARGEMENT
-   * 30 COUPS      | 2 SECONDES
-   */
-
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   gap: 10px;
 }
 
-/* ---------------------------------------------------------
+/* =========================================================
    CARTE STAT
---------------------------------------------------------- */
+========================================================= */
 
 .stat-card {
   min-width: 0;
   min-height: 82px;
 
   display: grid;
-
-  /*
-   * Label à gauche
-   * Valeur à droite
-   */
 
   grid-template-columns: minmax(0, 1fr) auto auto;
 
@@ -695,9 +676,9 @@ body {
   background: rgba(13, 16, 21, 0.78);
 }
 
-/* ---------------------------------------------------------
+/* =========================================================
    LABEL STAT
---------------------------------------------------------- */
+========================================================= */
 
 .stat-label {
   min-width: 0;
@@ -717,9 +698,9 @@ body {
   white-space: nowrap;
 }
 
-/* ---------------------------------------------------------
+/* =========================================================
    VALEUR STAT
---------------------------------------------------------- */
+========================================================= */
 
 .stat-value {
   color: #f2f3f4;
@@ -737,9 +718,9 @@ body {
   white-space: nowrap;
 }
 
-/* ---------------------------------------------------------
+/* =========================================================
    UNITE
---------------------------------------------------------- */
+========================================================= */
 
 .stat-unit {
   min-width: 65px;
@@ -868,6 +849,203 @@ body {
 }
 
 /* =========================================================
+   NAVIGATION ENTRE ITEMS
+========================================================= */
+
+.item-navigation {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+  gap: 16px;
+
+  margin-top: 70px;
+
+  padding-top: 35px;
+
+  border-top: 1px solid #252a31;
+}
+
+/* ---------------------------------------------------------
+   CARTE PRECEDENTE / SUIVANTE
+--------------------------------------------------------- */
+
+.item-nav-card {
+  min-width: 0;
+
+  min-height: 145px;
+
+  display: grid;
+
+  grid-template-columns: 150px minmax(0, 1fr);
+
+  overflow: hidden;
+
+  border: 1px solid #252a31;
+
+  background: rgba(13, 16, 21, 0.78);
+
+  color: #fff;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.item-nav-card:hover {
+  transform: translateY(-4px);
+
+  border-color: #69717b;
+
+  background: #15191f;
+}
+
+/* ---------------------------------------------------------
+   IMAGE NAVIGATION
+--------------------------------------------------------- */
+
+.item-nav-image {
+  min-width: 0;
+  min-height: 145px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px;
+
+  background: rgba(8, 10, 13, 0.65);
+
+  border-right: 1px solid #252a31;
+}
+
+.item-nav-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+/* ---------------------------------------------------------
+   INFORMATIONS NAVIGATION
+--------------------------------------------------------- */
+
+.item-nav-info {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding: 20px;
+}
+
+.item-nav-direction {
+  margin-bottom: 8px;
+
+  color: #626a73;
+
+  font-family: 'Share Tech Mono', monospace;
+
+  font-size: 10px;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+.item-nav-name {
+  margin: 0;
+
+  overflow: hidden;
+
+  color: #f2f3f4;
+
+  font-size: 22px;
+
+  font-weight: 600;
+
+  line-height: 1.1;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+.item-nav-category {
+  margin-top: 8px;
+
+  overflow: hidden;
+
+  color: #737b84;
+
+  font-family: 'Share Tech Mono', monospace;
+
+  font-size: 10px;
+
+  letter-spacing: 1px;
+
+  text-overflow: ellipsis;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+   DIRECTION
+--------------------------------------------------------- */
+
+.item-nav-next {
+  text-align: right;
+}
+
+.item-nav-next .item-nav-card {
+  grid-template-columns: minmax(0, 1fr) 150px;
+}
+
+.item-nav-next .item-nav-image {
+  order: 2;
+
+  border-right: 0;
+
+  border-left: 1px solid #252a31;
+}
+
+.item-nav-next .item-nav-info {
+  order: 1;
+
+  align-items: flex-end;
+}
+
+.item-nav-next .item-nav-name,
+.item-nav-next .item-nav-category {
+  text-align: right;
+}
+
+/* ---------------------------------------------------------
+   EMPLACEMENT VIDE
+--------------------------------------------------------- */
+
+.item-nav-empty {
+  min-height: 145px;
+
+  border: 1px dashed #252a31;
+
+  background: rgba(13, 16, 21, 0.35);
+}
+
+/* =========================================================
    MESSAGE ERREUR
 ========================================================= */
 
@@ -919,6 +1097,14 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .item-nav-card {
+    grid-template-columns: 120px minmax(0, 1fr);
+  }
+
+  .item-nav-next .item-nav-card {
+    grid-template-columns: minmax(0, 1fr) 120px;
+  }
+
 }
 
 /* =========================================================
@@ -960,7 +1146,9 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  /* ITEM */
+  /* -------------------------------------------------------
+     ITEM
+  ------------------------------------------------------- */
 
   .item-page {
     padding-left: 25px;
@@ -975,6 +1163,26 @@ body {
 
   .item-image {
     height: 300px;
+  }
+
+  /* -------------------------------------------------------
+     NAVIGATION ITEM
+  ------------------------------------------------------- */
+
+  .item-navigation {
+    gap: 12px;
+  }
+
+  .item-nav-card {
+    grid-template-columns: 100px minmax(0, 1fr);
+  }
+
+  .item-nav-next .item-nav-card {
+    grid-template-columns: minmax(0, 1fr) 100px;
+  }
+
+  .item-nav-image {
+    min-height: 135px;
   }
 
 }
@@ -1021,14 +1229,6 @@ body {
     height: 240px;
   }
 
-  /*
-   * Sur petit écran on repasse en une colonne.
-   * Chaque stat reste cependant horizontale :
-   *
-   * DÉGÂTS          22
-   * CADENCE         850 RPM
-   */
-
   .stats-grid {
     grid-template-columns: 1fr;
   }
@@ -1059,6 +1259,56 @@ body {
     grid-template-columns: 1fr 1fr;
   }
 
+  /* -------------------------------------------------------
+     NAVIGATION ITEM
+  ------------------------------------------------------- */
+
+  .item-navigation {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    margin-top: 50px;
+
+    padding-top: 25px;
+  }
+
+  .item-nav-card,
+  .item-nav-next .item-nav-card {
+    grid-template-columns: 100px minmax(0, 1fr);
+  }
+
+  .item-nav-next .item-nav-image {
+    order: 0;
+
+    border-left: 0;
+
+    border-right: 1px solid #252a31;
+  }
+
+  .item-nav-next .item-nav-info {
+    order: 1;
+
+    align-items: flex-start;
+  }
+
+  .item-nav-next .item-nav-name,
+  .item-nav-next .item-nav-category {
+    text-align: left;
+  }
+
+  .item-nav-image {
+    min-height: 120px;
+  }
+
+  .item-nav-info {
+    padding: 15px;
+  }
+
+  .item-nav-name {
+    font-size: 19px;
+  }
+
 }
 
 /* =========================================================
@@ -1086,6 +1336,21 @@ body {
 
   .damage-grid {
     grid-template-columns: 1fr;
+  }
+
+  .item-nav-card,
+  .item-nav-next .item-nav-card {
+    grid-template-columns: 85px minmax(0, 1fr);
+  }
+
+  .item-nav-image {
+    min-height: 105px;
+
+    padding: 10px;
+  }
+
+  .item-nav-name {
+    font-size: 17px;
   }
 
 }
