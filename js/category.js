@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     initializeNavigation();
 
     const params = new URLSearchParams(window.location.search);
-
     const type = params.get("type");
 
     if (!type) {
@@ -82,10 +81,14 @@ function initializeNavigation() {
                     String(!expanded)
                 );
 
-                children.classList.toggle(
-                    "open",
-                    !expanded
-                );
+                if (children) {
+
+                    children.classList.toggle(
+                        "open",
+                        !expanded
+                    );
+
+                }
 
             });
 
@@ -95,22 +98,63 @@ function initializeNavigation() {
 
 
 /* =========================================================
-   CHARGEMENT DATABASE
+   CHARGEMENT DES DATABASES
 ========================================================= */
 
 async function loadDatabase() {
 
-    const [weaponsResponse, artifactsResponse] =
-        await Promise.all([
-            fetch("data/weapons.json"),
-            fetch("data/artifacts.json")
-        ]);
+    const [
+        weaponsResponse,
+        armorsResponse,
+        mapsResponse,
+        enemiesResponse,
+        artifactsResponse
+    ] = await Promise.all([
+
+        fetch("data/weapons.json"),
+
+        fetch("data/armors.json"),
+
+        fetch("data/maps.json"),
+
+        fetch("data/enemies.json"),
+
+        fetch("data/artifacts.json")
+
+    ]);
 
 
     if (!weaponsResponse.ok) {
 
         throw new Error(
             "Impossible de charger weapons.json"
+        );
+
+    }
+
+
+    if (!armorsResponse.ok) {
+
+        throw new Error(
+            "Impossible de charger armors.json"
+        );
+
+    }
+
+
+    if (!mapsResponse.ok) {
+
+        throw new Error(
+            "Impossible de charger maps.json"
+        );
+
+    }
+
+
+    if (!enemiesResponse.ok) {
+
+        throw new Error(
+            "Impossible de charger enemies.json"
         );
 
     }
@@ -125,26 +169,83 @@ async function loadDatabase() {
     }
 
 
-    const weaponsData =
-        await weaponsResponse.json();
+    const [
+        weaponsData,
+        armorsData,
+        mapsData,
+        enemiesData,
+        artifactsData
+    ] = await Promise.all([
 
-    const artifactsData =
-        await artifactsResponse.json();
+        weaponsResponse.json(),
+
+        armorsResponse.json(),
+
+        mapsResponse.json(),
+
+        enemiesResponse.json(),
+
+        artifactsResponse.json()
+
+    ]);
 
 
     return {
 
-        weapons:
-            Array.isArray(weaponsData)
-                ? weaponsData
-                : weaponsData.weapons || [],
+        weapons: extractArray(
+            weaponsData,
+            "weapons"
+        ),
 
-        artifacts:
-            Array.isArray(artifactsData)
-                ? artifactsData
-                : artifactsData.artifacts || []
+        armors: extractArray(
+            armorsData,
+            "armors"
+        ),
+
+        maps: extractArray(
+            mapsData,
+            "maps"
+        ),
+
+        enemies: extractArray(
+            enemiesData,
+            "enemies"
+        ),
+
+        artifacts: extractArray(
+            artifactsData,
+            "artifacts"
+        )
 
     };
+
+}
+
+
+/* =========================================================
+   EXTRACTION TABLEAU JSON
+========================================================= */
+
+function extractArray(data, propertyName) {
+
+    if (Array.isArray(data)) {
+
+        return data;
+
+    }
+
+
+    if (
+        data &&
+        Array.isArray(data[propertyName])
+    ) {
+
+        return data[propertyName];
+
+    }
+
+
+    return [];
 
 }
 
@@ -155,18 +256,215 @@ async function loadDatabase() {
 
 function getItemsForCategory(data, type) {
 
-    if (type === "artifacts") {
+    const normalizedType =
+        normalizeType(type);
+
+
+    /*
+     * -------------------------------------------------------
+     * ARMES
+     * -------------------------------------------------------
+     *
+     * Les catégories SMG, Shotgun, etc. appartiennent
+     * exclusivement à weapons.json.
+     */
+
+    const weaponCategories = [
+
+        "smg",
+
+        "shotgun",
+
+        "machine-gun",
+
+        "assault-rifle",
+
+        "sniper",
+
+        "dmr"
+
+    ];
+
+
+    if (
+        weaponCategories.includes(
+            normalizedType
+        )
+    ) {
+
+        return data.weapons.filter(
+            weapon =>
+                normalizeType(
+                    weapon.category
+                ) === normalizedType
+        );
+
+    }
+
+
+    /*
+     * -------------------------------------------------------
+     * ARMURES
+     * -------------------------------------------------------
+     */
+
+    if (
+        normalizedType === "armor-combat"
+        ||
+        normalizedType === "armor-research"
+        ||
+        normalizedType === "armor-intermediate"
+    ) {
+
+        const armorCategory =
+            normalizedType.replace(
+                "armor-",
+                ""
+            );
+
+
+        return data.armors.filter(
+            armor => {
+
+                const category =
+                    normalizeType(
+                        armor.category
+                    );
+
+                const typeValue =
+                    normalizeType(
+                        armor.type
+                    );
+
+                const subCategory =
+                    normalizeType(
+                        armor.subCategory
+                    );
+
+                return (
+
+                    category === normalizedType
+
+                    ||
+
+                    category === armorCategory
+
+                    ||
+
+                    typeValue === normalizedType
+
+                    ||
+
+                    typeValue === armorCategory
+
+                    ||
+
+                    subCategory === normalizedType
+
+                    ||
+
+                    subCategory === armorCategory
+
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+     * -------------------------------------------------------
+     * MAPS
+     * -------------------------------------------------------
+     */
+
+    if (
+        normalizedType === "fort-bastion"
+        ||
+        normalizedType === "dune-ensanglantee"
+        ||
+        normalizedType === "map-03"
+        ||
+        normalizedType === "map-04"
+        ||
+        normalizedType === "map-05"
+        ||
+        normalizedType === "map-06"
+        ||
+        normalizedType === "map-07"
+    ) {
+
+        return data.maps.filter(
+            map => {
+
+                const values = [
+
+                    map.category,
+
+                    map.type,
+
+                    map.subCategory,
+
+                    map.id,
+                    
+                    map.slug
+
+                ];
+
+                return values.some(
+                    value =>
+                        normalizeType(value)
+                        === normalizedType
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+     * -------------------------------------------------------
+     * ENNEMIS
+     * -------------------------------------------------------
+     */
+
+    if (
+        normalizedType === "enemies"
+        ||
+        normalizedType === "enemy"
+    ) {
+
+        return data.enemies;
+
+    }
+
+
+    /*
+     * -------------------------------------------------------
+     * ARTEFACTS
+     * -------------------------------------------------------
+     */
+
+    if (
+        normalizedType === "artifacts"
+        ||
+        normalizedType === "artifact"
+    ) {
 
         return data.artifacts;
 
     }
 
 
-    return data.weapons.filter(
-        weapon =>
-            normalizeType(weapon.category)
-            === normalizeType(type)
-    );
+    /*
+     * -------------------------------------------------------
+     * TYPE INCONNU
+     * -------------------------------------------------------
+     */
+
+    return [];
 
 }
 
@@ -178,8 +476,11 @@ function getItemsForCategory(data, type) {
 function normalizeType(value) {
 
     if (!value) {
+
         return "";
+
     }
+
 
     return String(value)
         .trim()
@@ -191,41 +492,75 @@ function normalizeType(value) {
 
 
 /* =========================================================
-   TITRES CATEGORIES
+   TITRES DES CATEGORIES
 ========================================================= */
 
 const categoryNames = {
 
-    smg: "SMG",
+    smg:
+        "SMG",
 
-    shotgun: "SHOTGUN",
+    shotgun:
+        "SHOTGUN",
 
-    "machine-gun": "MACHINE GUN",
+    "machine-gun":
+        "MACHINE GUN",
 
-    "assault-rifle": "ASSAULT RIFLE",
+    "assault-rifle":
+        "ASSAULT RIFLE",
 
-    sniper: "SNIPER",
+    sniper:
+        "SNIPER",
 
-    dmr: "DMR",
+    dmr:
+        "DMR",
 
-    artifacts: "ARTEFACTS",
 
-    "armor-combat": "ARMURES — COMBAT",
+    artifacts:
+        "ARTEFACTS",
 
-    "armor-research": "ARMURES — RECHERCHE",
+
+    "armor-combat":
+        "ARMURES — COMBAT",
+
+    "armor-research":
+        "ARMURES — RECHERCHE",
 
     "armor-intermediate":
         "ARMURES — INTERMÉDIAIRE",
 
-    "fort-bastion": "FORT BASTION",
+
+    "fort-bastion":
+        "FORT BASTION",
 
     "dune-ensanglantee":
         "DUNE ENSANGLANTÉE",
 
-    enemies: "ENNEMIS"
+    "map-03":
+        "MAP 03",
+
+    "map-04":
+        "MAP 04",
+
+    "map-05":
+        "MAP 05",
+
+    "map-06":
+        "MAP 06",
+
+    "map-07":
+        "MAP 07",
+
+
+    enemies:
+        "ENNEMIS"
 
 };
 
+
+/* =========================================================
+   DESCRIPTIONS
+========================================================= */
 
 const categoryDescriptions = {
 
@@ -247,8 +582,10 @@ const categoryDescriptions = {
     dmr:
         "Fusils semi-automatiques spécialisés dans les tirs de précision.",
 
+
     artifacts:
         "Objets anormaux possédant différents bonus, malus et propriétés.",
+
 
     "armor-combat":
         "Équipements de protection conçus pour les affrontements.",
@@ -257,7 +594,12 @@ const categoryDescriptions = {
         "Équipements spécialisés dans la recherche et l'exploration.",
 
     "armor-intermediate":
-        "Protection polyvalente offrant un compromis entre mobilité et défense."
+        "Protection polyvalente offrant un compromis entre mobilité et défense.",
+
+
+    enemies:
+        "Créatures et menaces rencontrées dans le monde d'ANOPOLY."
+
 
 };
 
@@ -268,44 +610,89 @@ const categoryDescriptions = {
 
 function setupCategoryHeader(type, count) {
 
+    const normalizedType =
+        normalizeType(type);
+
+
     const title =
-        categoryNames[type]
-        || formatCategory(type);
+        categoryNames[normalizedType]
+        ||
+        formatCategory(normalizedType);
+
 
     const description =
-        categoryDescriptions[type]
-        || "Données disponibles dans la database ANOPOLY.";
+        categoryDescriptions[normalizedType]
+        ||
+        "Données disponibles dans la database ANOPOLY.";
 
 
     document.title =
         `${title} — ANOPOLY`;
 
 
-    document.getElementById(
-        "category-title"
-    ).textContent = title;
+    const titleElement =
+        document.getElementById(
+            "category-title"
+        );
+
+    if (titleElement) {
+
+        titleElement.textContent =
+            title;
+
+    }
 
 
-    document.getElementById(
-        "category-eyebrow"
-    ).textContent =
-        `ANOPOLY // ${title}`;
+    const eyebrowElement =
+        document.getElementById(
+            "category-eyebrow"
+        );
+
+    if (eyebrowElement) {
+
+        eyebrowElement.textContent =
+            `ANOPOLY // ${title}`;
+
+    }
 
 
-    document.getElementById(
-        "breadcrumb-category"
-    ).textContent = title;
+    const breadcrumbElement =
+        document.getElementById(
+            "breadcrumb-category"
+        );
+
+    if (breadcrumbElement) {
+
+        breadcrumbElement.textContent =
+            title;
+
+    }
 
 
-    document.getElementById(
-        "category-description"
-    ).textContent = description;
+    const descriptionElement =
+        document.getElementById(
+            "category-description"
+        );
+
+    if (descriptionElement) {
+
+        descriptionElement.textContent =
+            description;
+
+    }
 
 
-    document.getElementById(
-        "category-count"
-    ).textContent =
-        `${String(count).padStart(2, "0")} ITEMS`;
+    const countElement =
+        document.getElementById(
+            "category-count"
+        );
+
+    if (countElement) {
+
+        countElement.textContent =
+            `${String(count).padStart(2, "0")} ITEMS`;
+
+    }
 
 }
 
@@ -314,10 +701,20 @@ function setupCategoryHeader(type, count) {
    RENDU DES CARTES
 ========================================================= */
 
-function renderItems(items, type) {
+function renderItems(items, database) {
 
     const grid =
-        document.getElementById("database-grid");
+        document.getElementById(
+            "database-grid"
+        );
+
+
+    if (!grid) {
+
+        return;
+
+    }
+
 
     grid.innerHTML = "";
 
@@ -325,7 +722,10 @@ function renderItems(items, type) {
     items.forEach(item => {
 
         const card =
-            createItemCard(item, type);
+            createItemCard(
+                item,
+                database
+            );
 
         grid.appendChild(card);
 
@@ -338,7 +738,7 @@ function renderItems(items, type) {
    CARTE
 ========================================================= */
 
-function createItemCard(item, type) {
+function createItemCard(item, database) {
 
     const card =
         document.createElement("a");
@@ -348,14 +748,31 @@ function createItemCard(item, type) {
         "database-card";
 
 
+    /*
+     * IMPORTANT
+     *
+     * Le type de database est maintenant TOUJOURS
+     * transmis à item.html.
+     *
+     * Exemple :
+     *
+     * item.html?type=weapons&id=AK74
+     *
+     * Cela évite qu'un même ID présent dans plusieurs
+     * bases soit interprété comme le mauvais objet.
+     */
+
     card.href =
-        `item.html?id=${encodeURIComponent(item.id)}&type=${encodeURIComponent(type)}`;
+        `item.html?type=${encodeURIComponent(database)}&id=${encodeURIComponent(item.id)}`;
 
 
-    /* IMAGE */
+    /* =====================================================
+       IMAGE
+    ===================================================== */
 
     const imageContainer =
         document.createElement("div");
+
 
     imageContainer.className =
         "database-card-image";
@@ -366,21 +783,28 @@ function createItemCard(item, type) {
 
 
     const imagePath =
-        getItemImage(item);
+        getItemImage(
+            item,
+            database
+        );
 
 
     if (imagePath) {
 
-        image.src = imagePath;
+        image.src =
+            imagePath;
 
         image.alt =
             item.name || "Item";
 
-        image.loading = "lazy";
+        image.loading =
+            "lazy";
+
 
         image.onerror = () => {
 
-            image.style.display = "none";
+            image.style.display =
+                "none";
 
             imageContainer.classList.add(
                 "image-missing"
@@ -391,7 +815,10 @@ function createItemCard(item, type) {
 
         };
 
-        imageContainer.appendChild(image);
+
+        imageContainer.appendChild(
+            image
+        );
 
     } else {
 
@@ -405,10 +832,13 @@ function createItemCard(item, type) {
     }
 
 
-    /* INFORMATIONS */
+    /* =====================================================
+       INFORMATIONS
+    ===================================================== */
 
     const info =
         document.createElement("div");
+
 
     info.className =
         "database-card-info";
@@ -417,21 +847,28 @@ function createItemCard(item, type) {
     const name =
         document.createElement("h2");
 
+
     name.textContent =
         item.name || "Sans nom";
 
 
-    info.appendChild(name);
+    info.appendChild(
+        name
+    );
 
 
     const metadata =
         document.createElement("div");
 
+
     metadata.className =
         "database-card-rarity";
 
 
-    if (type === "artifacts") {
+    if (
+        normalizeType(database)
+        === "artifacts"
+    ) {
 
         metadata.textContent =
             formatRarity(
@@ -443,17 +880,28 @@ function createItemCard(item, type) {
         metadata.textContent =
             formatCategory(
                 item.category
+                ||
+                item.type
+                ||
+                item.subCategory
             );
 
     }
 
 
-    info.appendChild(metadata);
+    info.appendChild(
+        metadata
+    );
 
 
-    card.appendChild(imageContainer);
+    card.appendChild(
+        imageContainer
+    );
 
-    card.appendChild(info);
+
+    card.appendChild(
+        info
+    );
 
 
     return card;
@@ -465,11 +913,10 @@ function createItemCard(item, type) {
    IMAGE
 ========================================================= */
 
-function getItemImage(item) {
+function getItemImage(item, database) {
 
     /*
-     * Si le JSON possède déjà un chemin d'image,
-     * on l'utilise.
+     * Le JSON possède déjà un chemin d'image.
      */
 
     if (item.image) {
@@ -501,7 +948,11 @@ function getItemImage(item) {
 
 
     /*
-     * Fallback automatique par ID.
+     * Fallback automatique.
+     *
+     * On ne force pas le nom de la database dans le chemin
+     * afin de rester compatible avec l'organisation actuelle
+     * des images.
      */
 
     if (item.id) {
@@ -517,7 +968,7 @@ function getItemImage(item) {
 
 
 /* =========================================================
-   FORMATAGE
+   FORMATAGE CATEGORIE
 ========================================================= */
 
 function formatCategory(category) {
@@ -528,18 +979,26 @@ function formatCategory(category) {
 
     }
 
+
     return String(category)
+        .replaceAll("_", " ")
         .replaceAll("-", " ")
         .split(" ")
+        .filter(Boolean)
         .map(
             word =>
                 word.charAt(0).toUpperCase()
-                + word.slice(1)
+                +
+                word.slice(1)
         )
         .join(" ");
 
 }
 
+
+/* =========================================================
+   FORMATAGE RARETE
+========================================================= */
 
 function formatRarity(rarity) {
 
@@ -549,24 +1008,33 @@ function formatRarity(rarity) {
 
     }
 
+
     const names = {
 
-        Common: "COMMON",
+        Common:
+            "COMMON",
 
-        Uncommon: "UNCOMMON",
+        Uncommon:
+            "UNCOMMON",
 
-        Rare: "RARE",
+        Rare:
+            "RARE",
 
-        Epic: "EPIC",
+        Epic:
+            "EPIC",
 
-        Legendary: "LEGENDARY",
+        Legendary:
+            "LEGENDARY",
 
-        Quest: "QUEST"
+        Quest:
+            "QUEST"
 
     };
 
+
     return names[rarity]
-        || String(rarity).toUpperCase();
+        ||
+        String(rarity).toUpperCase();
 
 }
 
@@ -577,13 +1045,29 @@ function formatRarity(rarity) {
 
 function showCategoryError() {
 
-    document.getElementById(
-        "database-grid"
-    ).innerHTML = "";
+    const grid =
+        document.getElementById(
+            "database-grid"
+        );
 
 
-    document.getElementById(
-        "category-error"
-    ).hidden = false;
+    if (grid) {
+
+        grid.innerHTML = "";
+
+    }
+
+
+    const error =
+        document.getElementById(
+            "category-error"
+        );
+
+
+    if (error) {
+
+        error.hidden = false;
+
+    }
 
 }
