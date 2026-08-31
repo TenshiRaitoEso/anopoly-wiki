@@ -1,4 +1,3 @@
-```javascript
 document.addEventListener("DOMContentLoaded", async () => {
 
     // Récupère l'id dans l'URL
@@ -229,4 +228,3 @@ function showError() {
     `;
 
 }
-```
