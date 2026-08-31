@@ -191,24 +191,28 @@ function normalizeItemType(type) {
         arme: "weapon",
         armes: "weapon",
 
+
         armor: "armor",
         armors: "armor",
 
         armour: "armor",
         armours: "armor",
 
-        armor-combat: "armor",
-        armor-research: "armor",
-        armor-intermediate: "armor",
+        "armor-combat": "armor",
+        "armor-research": "armor",
+        "armor-intermediate": "armor",
+
 
         map: "map",
         maps: "map",
+
 
         enemy: "enemy",
         enemies: "enemy",
 
         ennemi: "enemy",
         ennemies: "enemy",
+
 
         artifact: "artifact",
         artifacts: "artifact",
@@ -221,6 +225,8 @@ function normalizeItemType(type) {
     return aliases[value] ?? null;
 
 }
+
+
 
 
 /* =============================================================
