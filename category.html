@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>ANOPOLY — Database</title>
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <header class="topbar">
-    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
+
+    <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Ouvrir le menu">
+        ☰
+    </button>
 
     <a class="brand" href="index.html">
         <span>ANO</span>POLY
@@ -19,11 +28,13 @@
     <div class="topbar-label">
         DATABASE // ARCHIVE
     </div>
+
 </header>
 
-<!-- =========================
+
+<!-- =========================================================
      SIDEBAR
-     ========================= -->
+========================================================= -->
 
 <aside class="sidebar" id="sidebar">
 
@@ -32,84 +43,150 @@
         <!-- ACCUEIL -->
 
         <a class="nav-home" href="index.html">
-            ⌂ <span>Accueil</span>
+            <span>⌂</span>
+            <span>Accueil</span>
         </a>
+
 
         <!-- ARMES -->
 
         <div class="nav-group">
 
-            <button class="nav-parent" aria-expanded="false">
+            <button
+                class="nav-parent"
+                aria-expanded="true">
+
                 <span>⚔</span>
                 <span>Armes</span>
                 <span class="chevron">⌄</span>
+
             </button>
 
-            <div class="nav-children">
+            <div class="nav-children open">
 
-                <a href="category.html?type=smg">SMG</a>
-                <a href="category.html?type=shotgun">Shotgun</a>
-                <a href="category.html?type=machine-gun">Machine Gun</a>
-                <a href="category.html?type=assault-rifle">Assault Rifle</a>
-                <a href="category.html?type=sniper">Sniper</a>
-                <a href="category.html?type=dmr">DMR</a>
+                <a href="category.html?type=smg">
+                    SMG
+                </a>
+
+                <a href="category.html?type=shotgun">
+                    Shotgun
+                </a>
+
+                <a href="category.html?type=machine-gun">
+                    Machine Gun
+                </a>
+
+                <a href="category.html?type=assault-rifle">
+                    Assault Rifle
+                </a>
+
+                <a href="category.html?type=sniper">
+                    Sniper
+                </a>
+
+                <a href="category.html?type=dmr">
+                    DMR
+                </a>
 
             </div>
 
         </div>
+
 
         <!-- ARMURES -->
 
         <div class="nav-group">
 
-            <button class="nav-parent" aria-expanded="false">
+            <button
+                class="nav-parent"
+                aria-expanded="false">
+
                 <span>🛡</span>
                 <span>Armures</span>
                 <span class="chevron">⌄</span>
+
             </button>
 
             <div class="nav-children">
 
-                <a href="category.html?type=armor-combat">Combat</a>
-                <a href="category.html?type=armor-research">Recherche</a>
-                <a href="category.html?type=armor-intermediate">Intermédiaire</a>
+                <a href="category.html?type=armor-combat">
+                    Combat
+                </a>
+
+                <a href="category.html?type=armor-research">
+                    Recherche
+                </a>
+
+                <a href="category.html?type=armor-intermediate">
+                    Intermédiaire
+                </a>
 
             </div>
 
         </div>
+
 
         <!-- MAPS -->
 
         <div class="nav-group">
 
-            <button class="nav-parent" aria-expanded="false">
+            <button
+                class="nav-parent"
+                aria-expanded="false">
+
                 <span>▣</span>
                 <span>Maps</span>
                 <span class="chevron">⌄</span>
+
             </button>
 
             <div class="nav-children">
 
-                <a href="category.html?type=fort-bastion">Fort Bastion</a>
-                <a href="category.html?type=dune-ensanglantee">Dune Ensanglantée</a>
-                <a href="category.html?type=map-03">Map 03</a>
-                <a href="category.html?type=map-04">Map 04</a>
-                <a href="category.html?type=map-05">Map 05</a>
-                <a href="category.html?type=map-06">Map 06</a>
-                <a href="category.html?type=map-07">Map 07</a>
+                <a href="category.html?type=fort-bastion">
+                    Fort Bastion
+                </a>
+
+                <a href="category.html?type=dune-ensanglantee">
+                    Dune Ensanglantée
+                </a>
+
+                <a href="category.html?type=map-03">
+                    Map 03
+                </a>
+
+                <a href="category.html?type=map-04">
+                    Map 04
+                </a>
+
+                <a href="category.html?type=map-05">
+                    Map 05
+                </a>
+
+                <a href="category.html?type=map-06">
+                    Map 06
+                </a>
+
+                <a href="category.html?type=map-07">
+                    Map 07
+                </a>
 
             </div>
 
         </div>
 
+
         <!-- ENNEMIS -->
 
         <div class="nav-group">
 
-            <button class="nav-parent" aria-expanded="false">
+            <button
+                class="nav-parent"
+                aria-expanded="false">
+
                 <span>☠</span>
-                <span>Ennemis</span>
+                <span>Ennemies</span>
                 <span class="chevron">⌄</span>
+
             </button>
 
             <div class="nav-children">
@@ -122,14 +199,19 @@
 
         </div>
 
+
         <!-- ARTEFACTS -->
 
         <div class="nav-group">
 
-            <button class="nav-parent" aria-expanded="false">
+            <button
+                class="nav-parent"
+                aria-expanded="false">
+
                 <span>✦</span>
                 <span>Artefacts</span>
                 <span class="chevron">⌄</span>
+
             </button>
 
             <div class="nav-children">
@@ -146,49 +228,99 @@
 
 </aside>
 
-<!-- =========================
+
+<!-- =========================================================
      CONTENU
-     ========================= -->
+========================================================= -->
 
-<main class="content inner">
+<main class="content">
 
-    <div class="breadcrumb">
-        <a href="index.html">ANOPOLY</a> / DATABASE
-    </div>
+    <section class="inner">
 
-    <div class="eyebrow" id="eyebrow">
-        DATABASE
-    </div>
+        <div class="breadcrumb">
+            <a href="index.html">
+                ANOPOLY
+            </a>
 
-    <h1 id="title">
-        Chargement...
-    </h1>
+            <span> / </span>
 
-    <p class="lead" id="description"></p>
+            <span id="breadcrumb-category">
+                DATABASE
+            </span>
+        </div>
 
-    <!-- =========================
-         LISTE DES OBJETS
-         ========================= -->
 
-    <section class="database-grid" id="databaseGrid">
-        <!-- Les cartes seront générées automatiquement par category.js -->
+        <div class="category-heading">
+
+            <div>
+
+                <div
+                    class="eyebrow"
+                    id="category-eyebrow">
+                    DATABASE
+                </div>
+
+                <h1 id="category-title">
+                    Chargement...
+                </h1>
+
+                <p
+                    class="lead"
+                    id="category-description">
+                    Chargement des données...
+                </p>
+
+            </div>
+
+            <div
+                class="category-count"
+                id="category-count">
+                00 ITEMS
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             GRILLE
+        ================================================== -->
+
+        <section
+            class="database-grid"
+            id="database-grid">
+
+            <div class="placeholder">
+                Chargement de la database...
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ERREUR
+        ================================================== -->
+
+        <div
+            id="category-error"
+            class="error-message"
+            hidden>
+
+            <h1>
+                Database introuvable
+            </h1>
+
+            <p>
+                Cette catégorie n'existe pas ou les données
+                n'ont pas pu être chargées.
+            </p>
+
+        </div>
+
     </section>
-
-    <!-- =========================
-         MESSAGE SI AUCUN OBJET
-         ========================= -->
-
-    <div class="placeholder" id="emptyMessage" style="display: none;">
-        Aucun élément disponible dans cette catégorie.
-    </div>
 
 </main>
 
-<!-- =========================
-     SCRIPTS
-     ========================= -->
 
-<script src="js/app.js"></script>
 <script src="js/category.js"></script>
 
 </body>
