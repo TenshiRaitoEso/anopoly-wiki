@@ -1,271 +1,293 @@
 <!DOCTYPE html>
-<html lang="fr">
 
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Arme - ANOPOLY</title>
+```
+<title>Arme - Anopoly Wiki</title>
 
-    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
+```
+
 </head>
 
 <body>
 
 <header class="topbar">
 
-    <button
-        class="menu-btn"
-        id="menuBtn"
-        aria-label="Ouvrir le menu">
-        ☰
-    </button>
+```
+<button
+    class="menu-btn"
+    id="menuBtn"
+    aria-label="Ouvrir le menu">
+    ☰
+</button>
 
-    <a class="brand" href="index.html">
-        <span>ANO</span>POLY
-    </a>
+<a class="brand" href="index.html">
+    <span>ANO</span>POLY
+</a>
 
-    <div class="topbar-label">
-        DATABASE // WEAPONS
-    </div>
+<div class="topbar-label">
+    DATABASE // ARCHIVE
+</div>
+```
 
 </header>
 
+<!-- =========================================================
+SIDEBAR
+========================================================= -->
 
 <aside class="sidebar" id="sidebar">
 
-    <nav class="nav">
+```
+<nav class="nav">
 
-        <!-- ACCUEIL -->
-        <a class="nav-home" href="index.html">
-            ⌂
-            <span>Accueil</span>
-        </a>
-
-
-        <!-- ARMES -->
-        <div class="nav-group">
-
-            <button
-                class="nav-parent"
-                aria-expanded="true">
-
-                <span>⚔</span>
-                <span>Armes</span>
-                <span class="chevron">⌄</span>
-
-            </button>
-
-            <div class="nav-children open">
-
-                <a href="category.html?type=smg">
-                    SMG
-                </a>
-
-                <a href="category.html?type=shotgun">
-                    Shotgun
-                </a>
-
-                <a href="category.html?type=machine-gun">
-                    Machine Gun
-                </a>
-
-                <a href="category.html?type=assault-rifle">
-                    Assault Rifle
-                </a>
-
-                <a href="category.html?type=sniper">
-                    Sniper
-                </a>
-
-                <a href="category.html?type=dmr">
-                    DMR
-                </a>
-
-            </div>
-
-        </div>
+    <!-- ACCUEIL -->
+    <a class="nav-home" href="index.html">
+        ⌂
+        <span>Accueil</span>
+    </a>
 
 
-        <!-- ARMURES -->
-        <div class="nav-group">
+    <!-- ARMES -->
+    <div class="nav-group">
 
-            <button
-                class="nav-parent"
-                aria-expanded="false">
+        <button
+            class="nav-parent"
+            aria-expanded="true">
 
-                <span>🛡</span>
-                <span>Armures</span>
-                <span class="chevron">⌄</span>
+            <span>⚔</span>
+            <span>Armes</span>
+            <span class="chevron">⌄</span>
 
-            </button>
+        </button>
 
-            <div class="nav-children">
+        <div class="nav-children open">
 
-                <a href="category.html?type=armor-combat">
-                    Combat
-                </a>
+            <a href="category.html?type=smg">
+                SMG
+            </a>
 
-                <a href="category.html?type=armor-research">
-                    Recherche
-                </a>
+            <a href="category.html?type=shotgun">
+                Shotgun
+            </a>
 
-                <a href="category.html?type=armor-intermediate">
-                    Intermédiaire
-                </a>
+            <a href="category.html?type=machine-gun">
+                Machine Gun
+            </a>
 
-            </div>
+            <a href="category.html?type=assault-rifle">
+                Assault Rifle
+            </a>
+
+            <a href="category.html?type=sniper">
+                Sniper
+            </a>
+
+            <a href="category.html?type=dmr">
+                DMR
+            </a>
 
         </div>
 
+    </div>
 
-        <!-- MAPS -->
-        <div class="nav-group">
 
-            <button
-                class="nav-parent"
-                aria-expanded="false">
+    <!-- ARMURES -->
+    <div class="nav-group">
 
-                <span>▣</span>
-                <span>Maps</span>
-                <span class="chevron">⌄</span>
+        <button
+            class="nav-parent"
+            aria-expanded="false">
 
-            </button>
+            <span>🛡</span>
+            <span>Armures</span>
+            <span class="chevron">⌄</span>
 
-            <div class="nav-children">
+        </button>
 
-                <a href="category.html?type=fort-bastion">
-                    Fort Bastion
-                </a>
+        <div class="nav-children">
 
-                <a href="category.html?type=dune-ensanglantee">
-                    Dune Ensanglantée
-                </a>
+            <a href="category.html?type=armor-combat">
+                Combat
+            </a>
 
-                <a href="category.html?type=map-03">
-                    Map 03
-                </a>
+            <a href="category.html?type=armor-research">
+                Recherche
+            </a>
 
-                <a href="category.html?type=map-04">
-                    Map 04
-                </a>
-
-                <a href="category.html?type=map-05">
-                    Map 05
-                </a>
-
-                <a href="category.html?type=map-06">
-                    Map 06
-                </a>
-
-                <a href="category.html?type=map-07">
-                    Map 07
-                </a>
-
-            </div>
+            <a href="category.html?type=armor-intermediate">
+                Intermédiaire
+            </a>
 
         </div>
 
+    </div>
 
-        <!-- ENNEMIS -->
-        <div class="nav-group">
 
-            <button
-                class="nav-parent"
-                aria-expanded="false">
+    <!-- MAPS -->
+    <div class="nav-group">
 
-                <span>☠</span>
-                <span>Ennemis</span>
-                <span class="chevron">⌄</span>
+        <button
+            class="nav-parent"
+            aria-expanded="false">
 
-            </button>
+            <span>▣</span>
+            <span>Maps</span>
+            <span class="chevron">⌄</span>
 
-            <div class="nav-children">
+        </button>
 
-                <a href="category.html?type=enemies">
-                    Tous les ennemis
-                </a>
+        <div class="nav-children">
 
-            </div>
+            <a href="category.html?type=fort-bastion">
+                Fort Bastion
+            </a>
+
+            <a href="category.html?type=dune-ensanglantee">
+                Dune Ensanglantée
+            </a>
+
+            <a href="category.html?type=map-03">
+                Map 03
+            </a>
+
+            <a href="category.html?type=map-04">
+                Map 04
+            </a>
+
+            <a href="category.html?type=map-05">
+                Map 05
+            </a>
+
+            <a href="category.html?type=map-06">
+                Map 06
+            </a>
+
+            <a href="category.html?type=map-07">
+                Map 07
+            </a>
 
         </div>
 
+    </div>
 
-        <!-- ARTEFACTS -->
-        <div class="nav-group">
 
-            <button
-                class="nav-parent"
-                aria-expanded="false">
+    <!-- ENNEMIS -->
+    <div class="nav-group">
 
-                <span>✦</span>
-                <span>Artefacts</span>
-                <span class="chevron">⌄</span>
+        <button
+            class="nav-parent"
+            aria-expanded="false">
 
-            </button>
+            <span>☠</span>
+            <span>Ennemies</span>
+            <span class="chevron">⌄</span>
 
-            <div class="nav-children">
+        </button>
 
-                <a href="category.html?type=artifacts">
-                    Tous les artefacts
-                </a>
+        <div class="nav-children">
 
-            </div>
+            <a href="category.html?type=enemies">
+                Tous les ennemis
+            </a>
 
         </div>
 
-    </nav>
+    </div>
+
+
+    <!-- ARTEFACTS -->
+    <div class="nav-group">
+
+        <button
+            class="nav-parent"
+            aria-expanded="false">
+
+            <span>✦</span>
+            <span>Artefacts</span>
+            <span class="chevron">⌄</span>
+
+        </button>
+
+        <div class="nav-children">
+
+            <a href="category.html?type=artifacts">
+                Tous les artefacts
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+```
 
 </aside>
 
+<!-- =========================================================
+CONTENU
+========================================================= -->
 
-<main class="content item-content">
+<main class="content">
 
-    <!-- =====================================================
-         RETOUR
-    ====================================================== -->
+```
+<div class="inner item-page">
 
+    <!-- RETOUR -->
     <div class="item-back">
 
-        <a href="javascript:history.back()" class="back-button">
-            ← Retour
+        <a
+            id="back-link"
+            href="category.html?type=smg"
+            class="back-button">
+
+            ← Retour aux armes
+
         </a>
 
     </div>
 
 
-    <!-- =====================================================
-         EN-TÊTE
-    ====================================================== -->
+    <!-- =================================================
+    EN-TÊTE
+    ================================================= -->
 
     <section class="item-header">
 
-        <div class="item-header-image">
+        <div class="item-image">
 
             <img
                 id="weapon-image"
                 src=""
                 alt="">
 
+            <div
+                id="weapon-image-placeholder"
+                class="item-image-placeholder">
+
+                IMAGE INDISPONIBLE
+
+            </div>
+
         </div>
 
 
-        <div class="item-header-info">
+        <div class="item-title">
 
-            <div
+            <span
                 id="weapon-category"
                 class="item-category">
-                CHARGEMENT
-            </div>
+            </span>
 
             <h1 id="weapon-name">
                 Chargement...
             </h1>
 
-            <p
-                id="weapon-caliber"
-                class="item-caliber">
-                —
+            <p id="weapon-caliber">
             </p>
 
         </div>
@@ -273,147 +295,186 @@
     </section>
 
 
-    <!-- =====================================================
-         STATISTIQUES
-    ====================================================== -->
+    <!-- =================================================
+    STATISTIQUES
+    ================================================= -->
 
-    <section class="item-section">
+    <section class="stats-section">
 
         <div class="section-heading">
-
-            <span class="section-number">
-                01
-            </span>
-
-            <div>
-                <span class="section-label">
-                    DATABASE
-                </span>
 
                 <h2>
                     Statistiques
                 </h2>
-            </div>
 
         </div>
 
 
-        <div class="weapon-stats">
+        <div class="stats-list">
+
 
             <!-- DÉGÂTS -->
-            <div class="weapon-stat">
+            <div class="stat-row">
 
-                <span class="weapon-stat-label">
+                <span class="stat-label">
                     Dégâts
                 </span>
 
-                <span class="weapon-stat-value">
-                    <strong id="damage">—</strong>
-                    <small>par tir</small>
+                <span class="stat-value">
+                    <span id="damage">-</span>
+                    <span class="stat-unit">
+                        par tir
+                    </span>
                 </span>
 
             </div>
 
 
             <!-- CADENCE -->
-            <div class="weapon-stat">
+            <div class="stat-row">
 
-                <span class="weapon-stat-label">
+                <span class="stat-label">
                     Cadence
                 </span>
 
-                <span class="weapon-stat-value">
-                    <strong id="fire-rate">—</strong>
-                    <small>RPM</small>
+                <span class="stat-value">
+
+                    <span id="fire-rate">
+                        -
+                    </span>
+
+                    <span class="stat-unit">
+                        RPM
+                    </span>
+
                 </span>
 
             </div>
 
 
             <!-- CHARGEUR -->
-            <div class="weapon-stat">
+            <div class="stat-row">
 
-                <span class="weapon-stat-label">
+                <span class="stat-label">
                     Chargeur
                 </span>
 
-                <span class="weapon-stat-value">
-                    <strong id="magazine">—</strong>
-                    <small>coups</small>
+                <span class="stat-value">
+
+                    <span id="magazine">
+                        -
+                    </span>
+
+                    <span class="stat-unit">
+                        coups
+                    </span>
+
                 </span>
 
             </div>
 
 
             <!-- RECHARGEMENT -->
-            <div class="weapon-stat">
+            <div class="stat-row">
 
-                <span class="weapon-stat-label">
+                <span class="stat-label">
                     Rechargement
                 </span>
 
-                <span class="weapon-stat-value">
-                    <strong id="reload-time">—</strong>
-                    <small>secondes</small>
+                <span class="stat-value">
+
+                    <span id="reload-time">
+                        -
+                    </span>
+
+                    <span class="stat-unit">
+                        secondes
+                    </span>
+
                 </span>
 
             </div>
 
 
             <!-- PORTÉE -->
-            <div class="weapon-stat">
+            <div class="stat-row">
 
-                <span class="weapon-stat-label">
+                <span class="stat-label">
                     Portée
                 </span>
 
-                <span class="weapon-stat-value">
-                    <strong id="range">—</strong>
-                    <small>mètres</small>
+                <span class="stat-value">
+
+                    <span id="range">
+                        -
+                    </span>
+
+                    <span class="stat-unit">
+                        mètres
+                    </span>
+
                 </span>
 
             </div>
 
 
             <!-- DISPERSION -->
-            <div class="weapon-stat">
+            <div class="stat-row">
 
-                <span class="weapon-stat-label">
+                <span class="stat-label">
                     Dispersion
                 </span>
 
-                <span class="weapon-stat-value">
-                    <strong id="spread">—</strong>
-                    <small>°</small>
+                <span class="stat-value">
+
+                    <span id="spread">
+                        -
+                    </span>
+
+                    <span class="stat-unit">
+                        °
+                    </span>
+
                 </span>
 
             </div>
 
 
             <!-- ERGONOMIE -->
-            <div class="weapon-stat">
+            <div class="stat-row">
 
-                <span class="weapon-stat-label">
+                <span class="stat-label">
                     Ergonomie
                 </span>
 
-                <span class="weapon-stat-value">
-                    <strong id="ergonomics">—</strong>
+                <span class="stat-value">
+
+                    <span id="ergonomics">
+                        -
+                    </span>
+
                 </span>
 
             </div>
 
 
             <!-- POIDS -->
-            <div class="weapon-stat">
+            <div class="stat-row">
 
-                <span class="weapon-stat-label">
+                <span class="stat-label">
                     Poids
                 </span>
 
-                <span class="weapon-stat-value">
-                    <strong id="weight">—</strong>
-                    <small>kg</small>
+                <span class="stat-value">
+
+                    <span id="weight">
+                        -
+                    </span>
+
+                    <span class="stat-unit">
+                        kg
+                    </span>
+
                 </span>
 
             </div>
@@ -423,81 +484,81 @@
     </section>
 
 
-    <!-- =====================================================
-         ZONES D'IMPACT
-    ====================================================== -->
+    <!-- =================================================
+    ZONES D'IMPACT
+    ================================================= -->
 
-    <section class="item-section">
+    <section class="damage-section">
 
         <div class="section-heading">
 
-            <span class="section-number">
-                02
-            </span>
 
-            <div>
-                <span class="section-label">
-                    DAMAGE MODEL
-                </span>
 
                 <h2>
                     Zones d'impact
                 </h2>
-            </div>
-
         </div>
 
 
-        <div class="impact-grid">
+        <div class="damage-list">
 
-            <div class="impact-card">
 
-                <span>
+            <div class="damage-row">
+
+                <span class="damage-label">
                     Corps
                 </span>
 
-                <strong id="body-multiplier">
-                    1.00×
-                </strong>
+                <span
+                    id="body-multiplier"
+                    class="damage-value">
+                    -
+                </span>
 
             </div>
 
 
-            <div class="impact-card">
+            <div class="damage-row">
 
-                <span>
+                <span class="damage-label">
                     Tête
                 </span>
 
-                <strong id="head-multiplier">
-                    —
-                </strong>
+                <span
+                    id="head-multiplier"
+                    class="damage-value">
+                    -
+                </span>
 
             </div>
 
 
-            <div class="impact-card">
+            <div class="damage-row">
 
-                <span>
+                <span class="damage-label">
                     Bras
                 </span>
 
-                <strong id="arm-multiplier">
-                    —
-                </strong>
+                <span
+                    id="arm-multiplier"
+                    class="damage-value">
+                    -
+                </span>
 
             </div>
 
 
-            <div class="impact-card">
+            <div class="damage-row">
 
-                <span>
+                <span class="damage-label">
                     Jambes
                 </span>
 
-                <strong id="leg-multiplier">
-                    —
-                </strong>
+                <span
+                    id="leg-multiplier"
+                    class="damage-value">
+                    -
+                </span>
 
             </div>
 
@@ -506,200 +567,103 @@
     </section>
 
 
-    <!-- =====================================================
-         INFORMATIONS
-    ====================================================== -->
+    <!-- =================================================
+    INFORMATIONS
+    ================================================= -->
 
-    <section class="item-section">
+    <section class="info-section">
 
         <div class="section-heading">
 
-            <span class="section-number">
-                03
-            </span>
-
-            <div>
-                <span class="section-label">
-                    DATABASE
-                </span>
-
-                <h2>
-                    Informations
-                </h2>
-            </div>
-
-        </div>
-
-
-        <div class="weapon-information">
-
-            <div class="information-row">
-
-                <span>
-                    Identifiant
-                </span>
-
-                <strong id="weapon-id">
-                    —
-                </strong>
-
-            </div>
-
-
-            <div class="information-row">
-
-                <span>
-                    Catégorie
-                </span>
-
-                <strong id="weapon-category-info">
-                    —
-                </strong>
-
-            </div>
-
-
-            <div class="information-row">
-
-                <span>
-                    Calibre
-                </span>
-
-                <strong id="weapon-caliber-info">
-                    —
-                </strong>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         NAVIGATION
-    ====================================================== -->
-
-    <section
-        class="item-navigation"
-        id="item-navigation"
-        hidden>
-
-        <div class="navigation-title">
-
-            <span>
-                DATABASE
-            </span>
-
             <h2>
-                Explorer les armes
+                Informations
             </h2>
 
         </div>
 
 
-        <div class="navigation-cards">
+        <div class="info-list">
+
+            <div class="info-row">
+
+                <span>
+                    Identifiant
+                </span>
+
+                <span id="weapon-id">
+                    -
+                </span>
+
+            </div>
 
 
-            <!-- PRÉCÉDENT -->
-            <a
-                id="previous-weapon"
-                class="navigation-card navigation-previous"
-                href="#">
+            <div class="info-row">
 
-                <div class="navigation-direction">
-                    ← Précédent
-                </div>
+                <span>
+                    Catégorie
+                </span>
 
-                <div class="navigation-card-content">
+                <span id="weapon-category-info">
+                    -
+                </span>
 
-                    <div class="navigation-image">
-
-                        <img
-                            id="previous-image"
-                            src=""
-                            alt="">
-
-                    </div>
-
-                    <div class="navigation-info">
-
-                        <span
-                            id="previous-category"
-                            class="navigation-category">
-                            —
-                        </span>
-
-                        <h3 id="previous-name">
-                            —
-                        </h3>
-
-                        <p id="previous-caliber">
-                            —
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </a>
+            </div>
 
 
-            <!-- SUIVANT -->
-            <a
-                id="next-weapon"
-                class="navigation-card navigation-next"
-                href="#">
+            <div class="info-row">
 
-                <div class="navigation-direction">
-                    Suivant →
-                </div>
+                <span>
+                    Calibre
+                </span>
 
-                <div class="navigation-card-content">
+                <span id="weapon-caliber-info">
+                    -
+                </span>
 
-                    <div class="navigation-image">
-
-                        <img
-                            id="next-image"
-                            src=""
-                            alt="">
-
-                    </div>
-
-                    <div class="navigation-info">
-
-                        <span
-                            id="next-category"
-                            class="navigation-category">
-                            —
-                        </span>
-
-                        <h3 id="next-name">
-                            —
-                        </h3>
-
-                        <p id="next-caliber">
-                            —
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </a>
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- =====================================================
-         ERREUR
-    ====================================================== -->
+    <!-- =================================================
+    NAVIGATION ENTRE ARMES
+    ================================================= -->
+
+    <section
+        id="item-navigation"
+        class="item-navigation">
+
+        <!-- PRÉCÉDENT -->
+        <div
+            id="previous-container"
+            class="item-navigation-slot">
+
+            <!-- Généré par JS -->
+
+        </div>
+
+
+        <!-- SUIVANT -->
+        <div
+            id="next-container"
+            class="item-navigation-slot">
+
+            <!-- Généré par JS -->
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+    ERREUR
+    ================================================= -->
 
     <div
         id="error-message"
-        class="item-error"
+        class="error-message"
         hidden>
 
         <h1>
@@ -712,18 +676,22 @@
 
         <a
             href="category.html?type=smg"
-            class="cta">
-            Retour aux armes
+            class="back-button">
+
+            ← Retour à la database
+
         </a>
 
     </div>
 
+</div>
+```
+
 </main>
 
-
 <script src="js/app.js"></script>
+
 <script src="js/item.js"></script>
 
 </body>
-
 </html>
